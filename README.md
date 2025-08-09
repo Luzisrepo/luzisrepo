@@ -3,46 +3,55 @@
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=luzisrepo&layout=compact)
 
 ## 🛠️ Skills
-Below is a summary of my skills and the duration of my experience with them:
+## 🛠 Skills & Experience Timeline
 
-Python - from June 2017: Everything and anything
-JavaScript (JS) - since May 2017: Browser extensions and plugins
-HTML + CSS - since May 2017: I have never made a good looking web page in pure HTML and CSS
-jQuery - from August 2017: Didn't make it into my stack
-discord.py - from September 2018: Made so many cool discord bots
-git - from January 2019: #1 content creator on the hub
-Linux - from October 2020: I use arch btw.
-Bash - from December 2020: Got tired of typing out commands for repetitive tasks.
-Java - since May 2021: Minecraft mods... but also many other projects because I really love java and the "everything is an object" ideology
-Java deobfuscation and bytecode from August 2021 to May 2022: 0xCAFEBABE
-TensorFlow - since February 2022: And so it begins
-MoviePy - since March 2023: Wow. Жадность фраера сгубила. You live you learn.
-React - from September 2023: React is react
-Tailwind - since September 2023: Made frontend go from torture to therapy
-Next.js - since November 2023: Can't stand svelte fanboys
-TypeScript (TS) - from September 2023: Looks better than js and it reminds me of java
-React Native + Expo - from March 2024: Roses are red, violets are blue, I should study for exams, but there's a new SDK to review.
-JAX + FLAX + OPTAX - from April 2024: I want to go a level deeper than tensorflow.
-Supabase - from June 2024: How is this the only decent BaaS that provides templates for react native that actually work and don't require an hour of debugging to get it half working???
-PyTorch - from July 2024: Why not?
-Docker - from August 2024: Used to be a hater but it is growing on me.
-AWS - from August 2024: Addicted to the cloud
-RabbitMQ - from September 2024: I <3 microservices
-Go - from September 2024: It is fun.
-Rust - from September 2024: Doing too much to minimize serverless cold starts 💀
-Processing - from October 2024: Overkilling university homework assignments
-Terraform - from October 2024: I do not enjoy terraform.
-Gymnasium - from November 2024: To leverage libraries like StableBaselines.
-StableBaselines - from November 2024: To implement some research papers.
-FastAPI - from January 2025: Serving some ML services
-NestJS - from February 2025: Opiniated frameworks make for maintainable team projects.
-NGINX - from March 2025: Hosting servers and frontend on my own machines 🫡
-ffmpeg - in depth from May 2025: Never realised before how delicate videos are
-WebSockets - from May 2025: I don't know how I managed to avoid them for 8 years
-Solidity - from June 2025: Nothing like making smart contracts for betting
-Neovim - from June 2025: I give in
-Glorious Engrammer - from June 2025: Glove80 warmup
-I've also worked with a load of other languages, frameworks and libraries... so many that I can't remember half of them. I have forgotten them because I couldn't find any ongoing applications for them.
+> A brief history of my programming journey — from my first line of code to my latest obsessions.
+
+| Skill / Tech | Since | Notes |
+|--------------|-------|-------|
+| 🐍 **Python** | Jun 2017 | Everything and anything. |
+| ⚡ **JavaScript (JS)** | May 2017 | Browser extensions & plugins. |
+| 🎨 **HTML + CSS** | May 2017 | Never made a *good-looking* site in pure HTML & CSS 😅 |
+| 💡 **jQuery** | Aug 2017 | Didn’t make it into my stack. |
+| 🤖 **discord.py** | Sep 2018 | Made *so many* cool Discord bots. |
+| 🌱 **git** | Jan 2019 | #1 content creator on the hub. |
+| 🐧 **Linux** | Oct 2020 | I use Arch btw. |
+| 🖥 **Bash** | Dec 2020 | Automated repetitive tasks. |
+| ☕ **Java** | May 2021 | From Minecraft mods to “everything is an object” love. |
+| 🔍 **Java Deobfuscation & Bytecode** | Aug 2021 – May 2022 | `0xCAFEBABE` |
+| 🧠 **TensorFlow** | Feb 2022 | And so it begins… |
+| 🎬 **MoviePy** | Mar 2023 | *Жадность фраера сгубила*. You live, you learn. |
+| ⚛ **React** | Sep 2023 | React is React. |
+| 🎨 **Tailwind CSS** | Sep 2023 | Made frontend go from torture to therapy. |
+| 🌐 **Next.js** | Nov 2023 | Can’t stand Svelte fanboys. |
+| 📜 **TypeScript (TS)** | Sep 2023 | Looks better than JS, reminds me of Java. |
+| 📱 **React Native + Expo** | Mar 2024 | Roses are red… new SDKs > studying. |
+| 🔬 **JAX + FLAX + OPTAX** | Apr 2024 | Going deeper than TensorFlow. |
+| 🗄 **Supabase** | Jun 2024 | The only decent BaaS with working RN templates. |
+| 🔥 **PyTorch** | Jul 2024 | Why not? |
+| 📦 **Docker** | Aug 2024 | Went from hater → growing fond. |
+| ☁ **AWS** | Aug 2024 | Addicted to the cloud. |
+| 📨 **RabbitMQ** | Sep 2024 | I ❤️ microservices. |
+| 🐹 **Go** | Sep 2024 | It’s fun. |
+| 🦀 **Rust** | Sep 2024 | Doing *too much* to minimize cold starts 💀 |
+| 🎨 **Processing** | Oct 2024 | Overkilling uni homework. |
+| 🛠 **Terraform** | Oct 2024 | I do **not** enjoy Terraform. |
+| 🏋 **Gymnasium** | Nov 2024 | For StableBaselines. |
+| 🤖 **StableBaselines** | Nov 2024 | Implementing research papers. |
+| ⚡ **FastAPI** | Jan 2025 | Serving ML services. |
+| 🏗 **NestJS** | Feb 2025 | Opinionated frameworks = maintainable teams. |
+| 🌐 **NGINX** | Mar 2025 | Hosting servers & frontends 🫡 |
+| 🎥 **ffmpeg** | May 2025 | Never realized how delicate videos are. |
+| 🔌 **WebSockets** | May 2025 | How did I avoid them for 8 years? |
+| ⛓ **Solidity** | Jun 2025 | Smart contracts for betting. |
+| ✍ **Neovim** | Jun 2025 | I give in. |
+| ⌨ **Glorious Engrammer** | Jun 2025 | Glove80 warmup. |
+
+---
+
+> I've also touched countless other languages, frameworks, and libraries…  
+> so many that I’ve forgotten half — because I never found ongoing uses for them.
+
 
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=luzisrepo&show_icons=true&theme=radical)
 ![Visitor](https://visitor-badge.laobi.icu/badge?page_id=luzisrepo.luzisrepo)
