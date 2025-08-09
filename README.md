@@ -2,7 +2,6 @@
 
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=luzisrepo&layout=compact)
 
-## 🛠️ Skills
 ## 🛠 Skills & Experience Timeline
 
 > A brief history of my programming journey — from my first line of code to my latest obsessions.
