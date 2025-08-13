@@ -4,42 +4,43 @@
 
 **Sleep Depraved | Full-stack Dev | React & Tailwind stan| Deobsfucation**
 
-- 🐍 Python since 2017 – everything and anything.
-- ⚡ JavaScript since 2017 – browser extensions & plugins.
-- 🎨 HTML + CSS since 2017 – never made a good-looking site in pure HTML & CSS 😅
-- 💡 jQuery since 2017 – didn’t make it into my stack.
-- 🤖 discord.py since 2018 – made so many cool Discord bots.
-- 🌱 git since 2019 – #1 content creator on the hub.
-- 🐧 Linux since 2020 – I use Arch btw.
-- 🖥 Bash since 2020 – automated repetitive tasks.
-- ☕ Java since 2021 – from Minecraft mods to “everything is an object” love.
-- 🔍 Java Deobfuscation & Bytecode – 0xCAFEBABE.
-- 🧠 TensorFlow since 2022 – and so it begins…
-- 🎬 MoviePy since 2023 – Жадность фраера сгубила. You live, you learn.
-- ⚛ React since 2023 – React is React.
-- 🎨 Tailwind CSS since 2023 – made frontend go from torture to therapy.
-- 🌐 Next.js since 2023 – can’t stand Svelte fanboys.
-- 📜 TypeScript since 2023 – looks better than JS, reminds me of Java.
-- 📱 React Native + Expo since 2024 – roses are red… new SDKs > studying.
-- 🔬 JAX + FLAX + OPTAX since 2024 – going deeper than TensorFlow.
-- 🗄 Supabase since 2024 – the only decent BaaS with working RN templates.
-- 🔥 PyTorch since 2024 – why not?
-- 📦 Docker since 2024 – went from hater → growing fond.
-- ☁ AWS since 2024 – addicted to the cloud.
-- 📨 RabbitMQ since 2024 – I ❤️ microservices.
-- 🐹 Go since 2024 – it’s fun.
-- 🦀 Rust since 2024 – doing too much to minimize cold starts 💀
-- 🎨 Processing since 2024 – overkilling uni homework.
-- 🛠 Terraform since 2024 – I do not enjoy Terraform.
-- 🏋 Gymnasium since 2024 – for StableBaselines.
-- 🤖 StableBaselines since 2024 – implementing research papers.
-- ⚡ FastAPI since 2025 – serving ML services.
-- 🏗 NestJS since 2025 – opinionated frameworks = maintainable teams.
-- 🌐 NGINX since 2025 – hosting servers & frontends 🫡
-- 🎥 ffmpeg since 2025 – never realized how delicate videos are.
-- 🔌 WebSockets since 2025 – how did I avoid them for 8 years?
-- ⛓ Solidity since 2025 – smart contracts for betting.
-- ✍ Neovim since 2025 – I give in.
-- ⌨ Glorious Engrammer since 2025 – Glove80 warmup.
-
 ---
+
+**Mastered technologies and topics:**
+
+![Python](https://raw.githubusercontent.com/github/explore/main/topics/python/python.png)
+![JavaScript](https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png)
+![HTML5](https://raw.githubusercontent.com/github/explore/main/topics/html/html.png)
+![CSS3](https://raw.githubusercontent.com/github/explore/main/topics/css/css.png)
+![jQuery](https://raw.githubusercontent.com/github/explore/main/topics/jquery/jquery.png)
+![discord.py](https://raw.githubusercontent.com/Rapptz/discord.py/master/docs/_static/logo.png)
+![Git](https://raw.githubusercontent.com/github/explore/main/topics/git/git.png)
+![Linux](https://raw.githubusercontent.com/github/explore/main/topics/linux/linux.png)
+![Bash](https://raw.githubusercontent.com/github/explore/main/topics/bash/bash.png)
+![Java](https://raw.githubusercontent.com/github/explore/main/topics/java/java.png)
+![TensorFlow](https://raw.githubusercontent.com/github/explore/main/topics/tensorflow/tensorflow.png)
+![MoviePy](https://raw.githubusercontent.com/Zulko/moviepy/master/docs/logo/logo.png)
+![React](https://raw.githubusercontent.com/github/explore/main/topics/react/react.png)
+![Tailwind CSS](https://raw.githubusercontent.com/github/explore/main/topics/tailwind/tailwind.png)
+![Next.js](https://raw.githubusercontent.com/github/explore/main/topics/nextjs/nextjs.png)
+![TypeScript](https://raw.githubusercontent.com/github/explore/main/topics/typescript/typescript.png)
+![React Native](https://raw.githubusercontent.com/github/explore/main/topics/react-native/react-native.png)
+![JAX](https://avatars.githubusercontent.com/u/43847212?s=200&v=4)
+![Supabase](https://avatars.githubusercontent.com/u/54469796?s=200&v=4)
+![PyTorch](https://raw.githubusercontent.com/github/explore/main/topics/pytorch/pytorch.png)
+![Docker](https://raw.githubusercontent.com/github/explore/main/topics/docker/docker.png)
+![AWS](https://raw.githubusercontent.com/github/explore/main/topics/aws/aws.png)
+![RabbitMQ](https://avatars.githubusercontent.com/u/96669?s=200&v=4)
+![Go](https://raw.githubusercontent.com/github/explore/main/topics/go/go.png)
+![Rust](https://raw.githubusercontent.com/github/explore/main/topics/rust/rust.png)
+![Processing](https://raw.githubusercontent.com/github/explore/main/topics/processing/processing.png)
+![Terraform](https://raw.githubusercontent.com/github/explore/main/topics/terraform/terraform.png)
+![Gymnasium](https://avatars.githubusercontent.com/u/124692142?s=200&v=4)
+![StableBaselines](https://avatars.githubusercontent.com/u/41463892?s=200&v=4)
+![FastAPI](https://raw.githubusercontent.com/github/explore/main/topics/fastapi/fastapi.png)
+![NestJS](https://raw.githubusercontent.com/github/explore/main/topics/nestjs/nestjs.png)
+![NGINX](https://raw.githubusercontent.com/github/explore/main/topics/nginx/nginx.png)
+![ffmpeg](https://raw.githubusercontent.com/github/explore/main/topics/ffmpeg/ffmpeg.png)
+![WebSockets](https://avatars.githubusercontent.com/u/131524?s=200&v=4)
+![Solidity](https://raw.githubusercontent.com/github/explore/main/topics/solidity/solidity.png)
+![Neovim](https://raw.githubusercontent.com/github/explore/main/topics/neovim/neovim.png)
