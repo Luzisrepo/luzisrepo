@@ -3,7 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rayzz | Fullstack Developer</title>
+    <title>Rayzz | Sleepy</title>
+    <script>
+  const titleText = "Rayzz | Sleepy";
+  const typingSpeed = 150; // milliseconds per character
+  const pauseTime = 1000; // pause before deleting
+
+  let index = 0;
+  let forward = true;
+
+  function animateTitle() {
+    if (forward) {
+      document.title = titleText.substring(0, index + 1);
+      index++;
+      if (index === titleText.length) {
+        forward = false;
+        setTimeout(animateTitle, pauseTime);
+        return;
+      }
+    } else {
+      document.title = titleText.substring(0, index - 1);
+      index--;
+      if (index === 0) {
+        forward = true;
+      }
+    }
+    setTimeout(animateTitle, typingSpeed);
+  }
+
+  window.onload = animateTitle;
+</script>
     <meta name="description" content="Rayzz - Building experiences from scripts to servers. Full-stack developer specializing in web apps, Discord bots, and AI services.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
