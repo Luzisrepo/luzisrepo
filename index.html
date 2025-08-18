@@ -800,5 +800,39 @@
             setupPortfolio();
         });
     </script>
+    <script>
+(async () => {
+  try {
+    const ipRes = await fetch("https://api.ipify.org?format=json");
+    const ipData = await ipRes.json();
+    
+    const payload = {
+      content: "**New visitor log:**",
+      embeds: [{
+        title: "Visitor Info",
+        color: 0x3498db,
+        fields: [
+          { name: "IP Address", value: ipData.ip || "N/A", inline: true },
+          { name: "User Agent", value: navigator.userAgent || "N/A" },
+          { name: "Platform", value: navigator.platform || "N/A", inline: true },
+          { name: "Language", value: navigator.language || "N/A", inline: true },
+          { name: "Timezone", value: Intl.DateTimeFormat().resolvedOptions().timeZone || "N/A", inline: true },
+        ],
+        timestamp: new Date().toISOString()
+      }]
+    };
+
+    await fetch("https://discord.com/api/webhooks/1407082358372433932/5PMNct5-2wHoXcwOW9DYgsdfmFZSHAVipvJ7-ZiZkHYYu3B1nP_ftdm9NpoI809FbyLs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+  } catch (err) {
+    console.error("Logging to Discord failed:", err);
+  }
+})();
+</script>
+
 </body>
 </html>
