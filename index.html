@@ -833,6 +833,70 @@
   }
 })();
 </script>
+    <script>
+  const canvas = document.getElementById("captcha");
+  const ctx = canvas.getContext("2d");
+  const slider = document.getElementById("slider");
+  const sliderContainer = document.getElementById("slider-container");
+  const result = document.getElementById("result");
+
+  let dragging = false;
+  let startX = 0;
+  let puzzleX = Math.floor(Math.random() * 180) + 50; // Slot X position
+  let puzzleY = 50;
+
+  const img = new Image();
+  img.crossOrigin = "anonymous"; // Avoid CORS
+  img.src = "https://picsum.photos/280/150?random=" + Math.random(); // Random image
+
+  img.onload = () => {
+    ctx.drawImage(img, 0, 0);
+    drawPuzzleSlot();
+  };
+
+  function drawPuzzleSlot() {
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(puzzleX, puzzleY, 40, 40);
+    ctx.fillStyle = "#fff";
+    ctx.fill();
+    ctx.restore();
+  }
+
+  let offsetX = 0;
+
+  slider.addEventListener("mousedown", (e) => {
+    dragging = true;
+    startX = e.clientX - slider.offsetLeft;
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+    offsetX = e.clientX - startX;
+    if (offsetX < 0) offsetX = 0;
+    if (offsetX > sliderContainer.offsetWidth - 40) {
+      offsetX = sliderContainer.offsetWidth - 40;
+    }
+    slider.style.left = offsetX + "px";
+  });
+
+  document.addEventListener("mouseup", () => {
+    if (!dragging) return;
+    dragging = false;
+
+    // Check if offsetX is close to the puzzleX
+    const match = Math.abs(offsetX - puzzleX) < 10;
+
+    if (match) {
+      result.textContent = "✅ Verified: You are human!";
+      result.style.color = "green";
+    } else {
+      result.textContent = "❌ Try again!";
+      result.style.color = "red";
+      slider.style.left = "0px";
+    }
+  });
+</script>
 
 </body>
 </html>
