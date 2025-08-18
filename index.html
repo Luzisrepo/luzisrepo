@@ -3,971 +3,821 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Portfolio</title>
+    <title>Rayzz | Creative Developer</title>
+    <meta name="description" content="Rayzz - Building experiences from scripts to servers. Full-stack developer specializing in web apps, Discord bots, and AI services.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8a2be2',
+                        secondary: '#9370db',
+                        accent: '#9932cc',
+                        dark: '#0f0a19',
+                        darker: '#090511',
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        /* Custom styles */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f0a1a;
-            color: #e2d9ff;
-            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+            background-color: #090511;
+            color: #e2e8f0;
+            overflow-x: hidden;
         }
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
+        
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
         }
-        .gradient-text {
-            background: linear-gradient(90deg, #b388ff, #7c4dff, #651fff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        
+        .neon-text {
+            text-shadow: 0 0 5px rgba(138, 43, 226, 0.7), 
+                         0 0 10px rgba(138, 43, 226, 0.5),
+                         0 0 20px rgba(138, 43, 226, 0.3);
         }
+        
+        .neon-border {
+            box-shadow: 0 0 5px rgba(138, 43, 226, 0.7), 
+                        0 0 10px rgba(138, 43, 226, 0.5);
+        }
+        
+        .neon-hover:hover {
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.9), 
+                        0 0 20px rgba(138, 43, 226, 0.6),
+                        0 0 30px rgba(138, 43, 226, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .particle {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(138, 43, 226, 0.1), rgba(147, 112, 219, 0.3), rgba(138, 43, 226, 0.1));
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #48bb78;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 8px;
+            box-shadow: 0 0 5px #48bb78;
+            animation: pulse-slow 2s infinite;
+        }
+        
         .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(101, 31, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
         }
-        input, textarea {
+        
+        .portfolio-item {
             transition: all 0.3s ease;
         }
-        input:focus, textarea:focus {
-            border-color: #7c4dff !important;
-            box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.2) !important;
+        
+        .portfolio-item:hover {
+            transform: scale(1.03);
+            z-index: 10;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .floating {
+        
+        .qr-code {
             animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes particle-move {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-text {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body class="min-h-screen">
-    <nav class="fixed w-full z-50 bg-opacity-90 backdrop-blur-sm bg-[#0f0a1a] border-b border-purple-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold gradient-text mono">dev@portfolio:~$</span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-  <button data-scroll="#home" class="text-purple-300 hover:text-white transition">Home</button>
-  <button data-scroll="#skills" class="text-purple-300 hover:text-white transition">Skills</button>
-  <button data-scroll="#about" class="text-purple-300 hover:text-white transition">About</button>
-  <button data-scroll="#contact" class="text-purple-300 hover:text-white transition">Contact</button>
-</div>
+    <!-- Particle Background -->
+    <div id="particles"></div>
+    
+    <!-- Header -->
+    <header class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold neon-text text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                    Rayzz <span class="status-dot"></span>
+                </h1>
+                <p class="text-secondary text-lg mt-2">Fullstack Developer – Building experiences from scripts to servers</p>
+            </div>
+            
+            <div class="flex flex-wrap gap-3">
+                <button onclick="window.location.href='tel:+1234567890'" class="px-4 py-2 bg-primary hover:bg-accent rounded-lg font-medium transition-all duration-300 neon-hover">
+                    Call
+                </button>
+                <button onclick="copyEmail()" 
+  class="relative px-4 py-2 bg-secondary hover:bg-accent rounded-lg font-medium transition-all duration-300 neon-hover">
+  Copy Email
+  <span id="tooltip" 
+    class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black text-white text-sm px-2 py-1 rounded opacity-0 pointer-events-none transition-opacity duration-300">
+    Copied!
+  </span>
+</button>
 
 <script>
-  document.querySelectorAll('[data-scroll]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = document.querySelector(btn.getAttribute('data-scroll'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  function copyEmail() {
+    const email = "andrrr.discord@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+      const tooltip = document.getElementById("tooltip");
+      tooltip.classList.remove("opacity-0");
+      tooltip.classList.add("opacity-100");
+      
+      setTimeout(() => {
+        tooltip.classList.remove("opacity-100");
+        tooltip.classList.add("opacity-0");
+      }, 1500); // tooltip hides after 1.5s
+    }).catch(err => {
+      console.error("Failed to copy email: ", err);
     });
-  });
+  }
 </script>
 
-                <div class="md:hidden flex items-center">
-                    <button class="mobile-menu-button">
-                        <svg class="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
+                    
+                </button>
+                <button onclick="copyDiscord()" class="px-4 py-2 bg-dark hover:bg-accent border border-secondary rounded-lg font-medium transition-all duration-300 neon-hover">
+                    Discord
+                </button>
+                <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="px-4 py-2 bg-dark hover:bg-accent border border-secondary rounded-lg font-medium transition-all duration-300 neon-hover">
+                    GitHub
+                </button>
+            </div>
+        </div>
+        
+        <div class="mt-8 max-w-3xl">
+            <p class="text-lg text-gray-300">
+                I build and automate everything — from Discord bots and web apps to cloud-deployed AI services. 
+                Explore my work, my skills, and ways to connect with me.
+            </p>
+            
+            <div class="mt-6 flex flex-wrap gap-4">
+                <button onclick="saveContact()" class="px-4 py-2 bg-dark hover:bg-accent border border-secondary rounded-lg font-medium transition-all duration-300 neon-hover">
+                    Save Contact
+                </button>
+                <button onclick="shareProfile(this)"
+  class="relative px-4 py-2 bg-dark hover:bg-accent border border-secondary rounded-lg font-medium transition-all duration-300 neon-hover">
+  Share
+  <span class="share-tooltip absolute left-1/2 -translate-x-1/2 -top-10 bg-black text-white text-sm px-2 py-1 rounded opacity-0 pointer-events-none transition-opacity duration-300">
+    Copied!
+  </span>
+</button>
+
+<script>
+(() => {
+  async function copyText(text) {
+    // Try modern API (requires secure context: https or localhost)
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (e) { /* fall back below */ }
+    }
+    // Fallback for http/file:// and older browsers
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, ta.value.length);
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  window.shareProfile = async function(btnEl) {
+    const textToCopy = 'luzisrepo.vercel.app';
+    const tooltip = btnEl?.querySelector('.share-tooltip');
+
+    const success = await copyText(textToCopy);
+
+    if (tooltip) {
+      tooltip.textContent = success ? 'Copied!' : 'Copy failed';
+      tooltip.classList.remove('opacity-0');
+      tooltip.classList.add('opacity-100');
+
+      clearTimeout(btnEl._hideTip);
+      btnEl._hideTip = setTimeout(() => {
+        tooltip.classList.remove('opacity-100');
+        tooltip.classList.add('opacity-0');
+      }, 1500);
+    }
+  };
+})();
+</script>
+
+                
+                <!-- QR Code Toggle -->
+                <button onclick="toggleQR()" class="px-4 py-2 bg-dark hover:bg-accent border border-secondary rounded-lg font-medium transition-all duration-300 neon-hover">
+                    Show QR
+                </button>
+            </div>
+            
+            <!-- QR Code Modal -->
+<div id="qrModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div class="bg-darker p-8 rounded-lg max-w-md relative">
+        <button onclick="toggleQR()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+            ✕
+        </button>
+        <h3 class="text-xl font-bold mb-4 text-center">Scan to connect</h3>
+        <div class="qr-code bg-white p-4 rounded-lg flex items-center justify-center">
+            <!-- Actual QR Code -->
+            <img src="frame.png" alt="QR Code" class="w-48 h-48 object-contain" />
+        </div>
+        <p class="mt-4 text-center text-gray-300">Scan this QR code to save my contact</p>
+    </div>
+</div>
+
+    
+    <main class="container mx-auto px-4 py-12">
+        <!-- Skills Section -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 neon-text">Skills & Expertise</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Programming Languages -->
+                <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="flex items-center mb-4">
+                        <div class="text-2xl mr-3">💻</div>
+                        <h3 class="text-xl font-bold">Programming Languages</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li>JavaScript/TypeScript (Expert)</li>
+                        <li>Python (Advanced)</li>
+                        <li>C++ (Intermediate)</li>
+                        <li>Java (Intermediate)</li>
+                    </ul>
+                </div>
+                
+                <!-- Web Development -->
+                <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="flex items-center mb-4">
+                        <div class="text-2xl mr-3">🌐</div>
+                        <h3 class="text-xl font-bold">Web Development</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li>React & Next.js</li>
+                        <li>Node.js & Express</li>
+                        <li>Tailwind CSS</li>
+                        <li>REST & GraphQL APIs</li>
+                    </ul>
+                </div>
+                
+                <!-- Database -->
+                <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="flex items-center mb-4">
+                        <div class="text-2xl mr-3">🗃️</div>
+                        <h3 class="text-xl font-bold">Database</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li>MongoDB</li>
+                        <li>PostgreSQL</li>
+                        <li>Firebase</li>
+                        <li>Redis</li>
+                    </ul>
+                </div>
+                
+                <!-- DevOps & Cloud -->
+                <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="flex items-center mb-4">
+                        <div class="text-2xl mr-3">☁️</div>
+                        <h3 class="text-xl font-bold">DevOps & Cloud</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li>Docker & Kubernetes</li>
+                        <li>AWS & GCP</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Nginx & Apache</li>
+                    </ul>
+                </div>
+                
+                <!-- Automation -->
+                <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="flex items-center mb-4">
+                        <div class="text-2xl mr-3">⚙️</div>
+                        <h3 class="text-xl font-bold">Automation</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li>Discord Bots</li>
+                        <li>Web Scraping</li>
+                        <li>Browser Extensions</li>
+                        <li>Scripting</li>
+                    </ul>
+                </div>
+                
+                <!-- AI/ML -->
+                <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="flex items-center mb-4">
+                        <div class="text-2xl mr-3">🧠</div>
+                        <h3 class="text-xl font-bold">AI/ML</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li>TensorFlow/PyTorch</li>
+                        <li>NLP & Computer Vision</li>
+                        <li>LLM Integration</li>
+                        <li>Data Analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 neon-text">By The Numbers</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="stat-card bg-dark p-8 rounded-xl border border-gray-800 text-center">
+                    <div class="text-5xl font-bold text-primary mb-2" id="projectsCount">0</div>
+                    <h3 class="text-xl">Projects Completed</h3>
+                </div>
+                
+                <div class="stat-card bg-dark p-8 rounded-xl border border-gray-800 text-center">
+                    <div class="text-5xl font-bold text-primary mb-2" id="clientsCount">0</div>
+                    <h3 class="text-xl">Happy Clients</h3>
+                </div>
+                
+                <div class="stat-card bg-dark p-8 rounded-xl border border-gray-800 text-center">
+                    <div class="text-5xl font-bold text-primary mb-2" id="awardsCount">0</div>
+                    <h3 class="text-xl">Awards Won</h3>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 neon-text">Services Offered</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="service-card bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
+                    <div class="text-4xl mb-4">🖥️</div>
+                    <h3 class="text-xl font-bold mb-2">Full-stack Web Apps</h3>
+                    <p class="text-gray-300">Custom web applications with modern frameworks and scalable backends.</p>
+                </div>
+                
+                <div class="service-card bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
+                    <div class="text-4xl mb-4">🤖</div>
+                    <h3 class="text-xl font-bold mb-2">Discord Bot Development</h3>
+                    <p class="text-gray-300">Feature-rich bots for moderation, utilities, games, and community management.</p>
+                </div>
+                
+                <div class="service-card bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-2">Machine Learning & AI</h3>
+                    <p class="text-gray-300">Custom AI solutions, model training, and smart automation.</p>
+                </div>
+                
+                <div class="service-card bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-2">Automation & DevOps</h3>
+                    <p class="text-gray-300">Workflow automation, CI/CD pipelines, and cloud deployments.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pricing Section -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 neon-text">Pricing</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Website Building -->
+                <div class="pricing-card bg-dark p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-4">Website Building</h3>
+                    <div class="text-4xl font-bold text-primary mb-6">€199+</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Simple contact/landing page</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>1–2 portfolio sections</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>SEO-ready & mobile-friendly</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 bg-primary hover:bg-accent rounded-lg font-bold transition-all duration-300">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Plugin Building -->
+                <div class="pricing-card bg-dark p-8 rounded-xl border border-primary transition-all duration-300 transform scale-105 neon-border">
+                    <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg rounded-tr-lg text-sm font-bold">
+                        POPULAR
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Plugin Building</h3>
+                    <div class="text-4xl font-bold text-primary mb-6">€349+</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Custom browser extensions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Discord bots & automation scripts</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Lightweight API integrations</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 bg-primary hover:bg-accent rounded-lg font-bold transition-all duration-300">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Others (AI, Automation, Cloud) -->
+                <div class="pricing-card bg-dark p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-4">Advanced Projects</h3>
+                    <div class="text-4xl font-bold text-primary mb-6">€499+</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>AI & ML integrations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Cloud deployments (AWS, Docker)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Custom automation pipelines</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 bg-primary hover:bg-accent rounded-lg font-bold transition-all duration-300">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+            
+            <p class="text-center mt-8 text-gray-400">
+                * Prices are starting points. Final cost depends on project complexity and requirements.
+            </p>
+        </section>
+        
+        <!-- Portfolio Section -->
+        <section class="mb-20">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                <h2 class="text-3xl font-bold neon-text">Specific Services</h2>
+                
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                    <button class="filter-btn px-4 py-2 bg-primary text-white rounded-lg font-medium" data-filter="all">
+                        All
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="web">
+                        Web
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="apps">
+                        Apps
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="bots">
+                        Bots
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="ai">
+                        AI
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="automation">
+                        Automation
+                    </button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
+                <!-- Portfolio items will be added here by JavaScript -->
+            </div>
+        </section>
+        
+        <!--
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 neon-text">Client Testimonials</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="testimonial bg-dark p-6 rounded-xl border border-gray-800">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-2xl">
+                            👤
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">John D.</h4>
+                            <p class="text-sm text-gray-400">CEO, TechStart</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">
+                        "Rayzz did an amazing job creating our cybersecurity website. It's clean, professional, and perfectly captures the trust and expertise our clients expect. The team was fast, responsive, and truly understood our goals. Highly recommend!"
+                    </p>
+                </div>
+                
+                <div class="testimonial bg-dark p-6 rounded-xl border border-gray-800">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary bg-opacity-20 flex items-center justify-center text-2xl">
+                            👤
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Sarah M.</h4>
+                            <p class="text-sm text-gray-400">Community Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">
+                        "Our Discord community was struggling with moderation until Rayzz built us a custom bot. 
+                        It handles everything automatically and has saved us countless hours of manual work."
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>-->
+    
+    <footer class="bg-darker py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold neon-text">Rayzz</h2>
+                    <p class="text-gray-400 mt-2">© 2025 All rights reserved</p>
+                </div>
+                
+                <div class="flex gap-4">
+                    <a href="https://github.com/luzisrepo" target="_blank" class="w-10 h-10 rounded-full bg-dark border border-gray-800 flex items-center justify-center hover:bg-primary transition-all duration-300">
+                        <span class="text-xl">👨‍💻</span>
+                    </a>
+                    <a href="mailto:andrrr.discord@gmail.com" class="w-10 h-10 rounded-full bg-dark border border-gray-800 flex items-center justify-center hover:bg-primary transition-all duration-300">
+                        <span class="text-xl">✉️</span>
+                    </a>
+                    <button onclick="copyDiscord()" class="w-10 h-10 rounded-full bg-dark border border-gray-800 flex items-center justify-center hover:bg-primary transition-all duration-300">
+                        <span class="text-xl">💬</span>
                     </button>
                 </div>
             </div>
         </div>
-        
-       <div class="skills-gr id hidden" id="additional-skills">
-            <div class="skill-card">
-                <span class="skill-icon">🎨</span>
-                <h3>Processing</h3>
-                <p class="skill-date">Oct 2024</p>
-                <p class="skill-desc">Overkilling uni homework</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">🛠</span>
-                <h3>Terraform</h3>
-                <p class="skill-date">Oct 2024</p>
-                <p class="skill-desc">I do not enjoy Terraform</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">🏋</span>
-                <h3>Gymnasium</h3>
-                <p class="skill-date">Nov 2024</p>
-                <p class="skill-desc">For StableBaselines</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">🤖</span>
-                <h3>StableBaselines</h3>
-                <p class="skill-date">Nov 2024</p>
-                <p class="skill-desc">Implementing research papers</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">⚡</span>
-                <h3>FastAPI</h3>
-                <p class="skill-date">Jan 2025</p>
-                <p class="skill-desc">Serving ML services</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">🏗</span>
-                <h3>NestJS</h3>
-                <p class="skill-date">Feb 2025</p>
-                <p class="skill-desc">Opinionated = maintainable</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">🌐</span>
-                <h3>NGINX</h3>
-                <p class="skill-date">Mar 2025</p>
-                <p class="skill-desc">Hosting servers & frontends 🫡</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">🎥</span>
-                <h3>ffmpeg</h3>
-                <p class="skill-date">May 2025</p>
-                <p class="skill-desc">Videos are fragile</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">🔌</span>
-                <h3>WebSockets</h3>
-                <p class="skill-date">May 2025</p>
-                <p class="skill-desc">How did I avoid them for 8 years?</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">⛓</span>
-                <h3>Solidity</h3>
-                <p class="skill-date">Jun 2025</p>
-                <p class="skill-desc">Smart contracts for betting</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">✍</span>
-                <h3>Neovim</h3>
-                <p class="skill-date">Jun 2025</p>
-                <p class="skill-desc">I give in</p>
-            </div>
-            <div class="skill-card">
-                <span class="skill-icon">⌨</span>
-                <h3>Glorious Engrammer</h3>
-                <p class="skill-date">Jun 2025</p>
-                <p class="skill-desc">Glove80 warmup</p>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-
-    <!-- Background video -->
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover -z-10">
-        <source src="https://www.vecteezy.com/video/27989671-purple-plexus-abstract-digital-connection-moving-dots-and-lines-mesh-technology-background" type="video/mp4" />
-        <!-- Add fallback text or sources if needed -->
-    </video>
-
-    <div id="particles-js" class="absolute inset-0"></div>
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6">
-            <span class="gradient-text">Hello, I'm</span> 
-            <span class="text-white">Rayzz</span>
-        </h1>
-        <div class="text-xl md:text-2xl text-purple-200 mb-8 mono">
-            <span class="typed-text"></span><span class="cursor">&nbsp;</span>
-        </div>
-        <p class="text-lg text-purple-300 mb-12 max-w-2xl mx-auto">
-            Crafting elegant solutions to complex problems with code, algorithms, and a touch of sleep-depravation.
-        </p>
-        <div class="flex justify-center space-x-4">
-            <a href="#skills" class="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full text-white font-medium hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:scale-105">
-                Explore Skills
-            </a>
-            <a href="#contact" class="px-8 py-3 border border-purple-600 rounded-full text-purple-300 font-medium hover:bg-purple-900/50 transition-all transform hover:scale-105">
-                Get in Touch
-            </a>
-        </div>
-    </div>
-</section>
-
-            <script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
-</script>
-
-        </div>
-        <div class="absolute bottom-10 left-0 right-0 flex justify-center">
-    <a href="#skills" id="scrollToSkills" class="text-purple-300 hover:text-white animate-bounce">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-    </a>
-</div>
-
-<script>
-document.getElementById('scrollToSkills').addEventListener('click', function(event) {
-  event.preventDefault(); // Prevent the default jump
-  const skillsSection = document.querySelector('#skills');
-  if (skillsSection) {
-    skillsSection.scrollIntoView({ behavior: 'smooth' });
-  }
-});
-</script>
-
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0f0a1a] to-[#1a1030]">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4 gradient-text">Tech Stack & Skills</h2>
-                <p class="text-lg text-purple-300 max-w-2xl mx-auto">
-                    Tools and technologies I've worked with over the years. Each comes with its own story.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-                    <div class="flex items-center mb-4">
-                        <span class="text-3xl mr-3">🐍</span>
-                        <h3 class="text-xl font-bold text-white">Python</h3>
-                    </div>
-                    <div class="text-sm text-purple-300 mb-3">Since Jun 2017</div>
-                    <p class="text-purple-200">Everything and anything</p>
-                </div>
-
-                
-                <div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-                    <div class="flex items-center mb-4">
-                        <span class="text-3xl mr-3">⚡</span>
-                        <h3 class="text-xl font-bold text-white">JavaScript</h3>
-                    </div>
-                    <div class="text-sm text-purple-300 mb-3">Since May 2017</div>
-                    <p class="text-purple-200">Browser extensions & plugins</p>
-                </div>
-
-                
-                <div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-                    <div class="flex items-center mb-4">
-                        <span class="text-3xl mr-3">🎨</span>
-                        <h3 class="text-xl font-bold text-white">HTML + CSS</h3>
-                    </div>
-                    <div class="text-sm text-purple-300 mb-3">Since May 2017</div>
-                    <p class="text-purple-200">Never made a good-looking site in pure HTML & CSS 😅</p>
-                </div>
-
-                
-                <div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-                    <div class="flex items-center mb-4">
-                        <span class="text-3xl mr-3">⚛</span>
-                        <h3 class="text-xl font-bold text-white">React</h3>
-                    </div>
-                    <div class="text-sm text-purple-300 mb-3">Since Sep 2023</div>
-                    <p class="text-purple-200">React is React</p>
-                </div>
-
-                
-                <div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-                    <div class="flex items-center mb-4">
-                        <span class="text-3xl mr-3">🎨</span>
-                        <h3 class="text-xl font-bold text-white">Tailwind CSS</h3>
-                    </div>
-                    <div class="text-sm text-purple-300 mb-3">Since Sep 2023</div>
-                    <p class="text-purple-200">Frontend went from torture to therapy</p>
-                </div>
-
-                
-                <div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-                    <div class="flex items-center mb-4">
-                        <span class="text-3xl mr-3">📜</span>
-                        <h3 class="text-xl font-bold text-white">TypeScript</h3>
-                    </div>
-                    <div class="text-sm text-purple-300 mb-3">Since Sep 2023</div>
-                    <p class="text-purple-200">Looks better than JS, reminds me of Java</p>
-                </div>
-
-                
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">💡</span>
-        <h3 class="text-xl font-bold text-white">jQuery</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Aug 2017</div>
-    <p class="text-purple-200">Didn’t make it into my stack.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🤖</span>
-        <h3 class="text-xl font-bold text-white">discord.py</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Sep 2018</div>
-    <p class="text-purple-200">Made so many cool Discord bots.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🌱</span>
-        <h3 class="text-xl font-bold text-white">Git</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Jan 2019</div>
-    <p class="text-purple-200">#1 content creator on the hub.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🐧</span>
-        <h3 class="text-xl font-bold text-white">Linux</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Oct 2020</div>
-    <p class="text-purple-200">I use Arch btw.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🖥</span>
-        <h3 class="text-xl font-bold text-white">Bash</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Dec 2020</div>
-    <p class="text-purple-200">Automated repetitive tasks.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">☕</span>
-        <h3 class="text-xl font-bold text-white">Java</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since May 2021</div>
-    <p class="text-purple-200">From Minecraft mods to “everything is an object” love.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🔍</span>
-        <h3 class="text-xl font-bold text-white">Java Deobfuscation & Bytecode</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Aug 2021 – May 2022</div>
-    <p class="text-purple-200">0xCAFEBABE</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🧠</span>
-        <h3 class="text-xl font-bold text-white">TensorFlow</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Feb 2022</div>
-    <p class="text-purple-200">And so it begins…</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🎬</span>
-        <h3 class="text-xl font-bold text-white">MoviePy</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Mar 2023</div>
-    <p class="text-purple-200">Жадность фраера сгубила. You live, you learn.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🌐</span>
-        <h3 class="text-xl font-bold text-white">Next.js</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Nov 2023</div>
-    <p class="text-purple-200">Can’t stand Svelte fanboys.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">📱</span>
-        <h3 class="text-xl font-bold text-white">React Native + Expo</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Mar 2024</div>
-    <p class="text-purple-200">Roses are red… new SDKs &gt; studying.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🔬</span>
-        <h3 class="text-xl font-bold text-white">JAX + FLAX + OPTAX</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Apr 2024</div>
-    <p class="text-purple-200">Going deeper than TensorFlow.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🗄</span>
-        <h3 class="text-xl font-bold text-white">Supabase</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Jun 2024</div>
-    <p class="text-purple-200">The only decent BaaS with working RN templates.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🔥</span>
-        <h3 class="text-xl font-bold text-white">PyTorch</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Jul 2024</div>
-    <p class="text-purple-200">Why not?</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">📦</span>
-        <h3 class="text-xl font-bold text-white">Docker</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Aug 2024</div>
-    <p class="text-purple-200">Went from hater → growing fond.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">☁</span>
-        <h3 class="text-xl font-bold text-white">AWS</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Aug 2024</div>
-    <p class="text-purple-200">Addicted to the cloud.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">📨</span>
-        <h3 class="text-xl font-bold text-white">RabbitMQ</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Sep 2024</div>
-    <p class="text-purple-200">I ❤️ microservices.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🐹</span>
-        <h3 class="text-xl font-bold text-white">Go</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Sep 2024</div>
-    <p class="text-purple-200">It’s fun.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🦀</span>
-        <h3 class="text-xl font-bold text-white">Rust</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Sep 2024</div>
-    <p class="text-purple-200">Doing too much to minimize cold starts 💀</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🎨</span>
-        <h3 class="text-xl font-bold text-white">Processing</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Oct 2024</div>
-    <p class="text-purple-200">Overkilling uni homework.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🛠</span>
-        <h3 class="text-xl font-bold text-white">Terraform</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Oct 2024</div>
-    <p class="text-purple-200">I do not enjoy Terraform.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🏋</span>
-        <h3 class="text-xl font-bold text-white">Gymnasium</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Nov 2024</div>
-    <p class="text-purple-200">For StableBaselines.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🤖</span>
-        <h3 class="text-xl font-bold text-white">StableBaselines</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Nov 2024</div>
-    <p class="text-purple-200">Implementing research papers.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">⚡</span>
-        <h3 class="text-xl font-bold text-white">FastAPI</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Jan 2025</div>
-    <p class="text-purple-200">Serving ML services.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🏗</span>
-        <h3 class="text-xl font-bold text-white">NestJS</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Feb 2025</div>
-    <p class="text-purple-200">Opinionated frameworks = maintainable teams.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🌐</span>
-        <h3 class="text-xl font-bold text-white">NGINX</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Mar 2025</div>
-    <p class="text-purple-200">Hosting servers & frontends 🫡</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🎥</span>
-        <h3 class="text-xl font-bold text-white">ffmpeg</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since May 2025</div>
-    <p class="text-purple-200">Never realized how delicate videos are.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🔌</span>
-        <h3 class="text-xl font-bold text-white">WebSockets</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since May 2025</div>
-    <p class="text-purple-200">How did I avoid them for 8 years?</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">⛓</span>
-        <h3 class="text-xl font-bold text-white">Solidity</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Jun 2025</div>
-    <p class="text-purple-200">Smart contracts for betting.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">✍</span>
-        <h3 class="text-xl font-bold text-white">Neovim</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Jun 2025</div>
-    <p class="text-purple-200">I give in.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">⌨</span>
-        <h3 class="text-xl font-bold text-white">Glorious Engrammer</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Jun 2025</div>
-    <p class="text-purple-200">Glove80 warmup.</p>
-</div>
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🎞</span>
-        <h3 class="text-xl font-bold text-white">Framer Motion</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Apr 2024</div>
-    <p class="text-purple-200">Turning static into cinematic.</p>
-</div>
-
-
-<div class="skill-card bg-[#1a1030] rounded-xl p-6 border border-purple-900/50 transition-all duration-300 hover:border-purple-600">
-    <div class="flex items-center mb-4">
-        <span class="text-3xl mr-3">🪐</span>
-        <h3 class="text-xl font-bold text-white">Three.js</h3>
-    </div>
-    <div class="text-sm text-purple-300 mb-3">Since Aug 2024</div>
-    <p class="text-purple-200">Making the browser 3D again.</p>
-</div>
-
-
-            </div>
-    </section>
-
-    
-    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-[#1a1030]">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
-                    <div class="relative">
-                        <div class="w-full h-full bg-purple-900/20 rounded-xl border border-purple-900/50 p-1">
-                            <div class="bg-gradient-to-br from-purple-900/10 to-indigo-900/10 rounded-lg overflow-hidden">
-                                <div class="p-4">
-                                    <div class="flex space-x-2 mb-4">
-                                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                                    </div>
-                                    <div class="bg-[#0f0a1a] rounded-lg p-4">
-                                        <pre class="text-sm text-purple-300 mono"><code><span class="text-green-400">// about_me.js</span>
-<span class="text-purple-400">const</span> about = {
-  name: <span class="text-yellow-300">"Rayzz"</span>,
-  role: <span class="text-yellow-300">"Full-Stack Developer"</span>,
-  passion: <span class="text-yellow-300">"Solving problems with clean, efficient code."</span>,
-  hobbies: [<span class="text-yellow-300">"Deobsfucation"</span>, <span class="text-yellow-300">"Automation"</span>, 
-           <span class="text-yellow-300">"Anime"</span>, <span class="text-yellow-300">"Video-Games"</span>]
-};
-
-<span class="text-purple-400">function</span> <span class="text-blue-400">buildFuture</span>() {
-  <span class="text-purple-400">return</span> <span class="text-yellow-300">"Unemployment"</span>;
-}</code></pre>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="absolute -z-10 w-full h-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-xl -right-4 -bottom-4"></div>
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text">About Me</h2>
-                    <p class="text-purple-200 mb-4">
-                        I'm a sleep-deprived developer with a deep love / hate relationship for building all kinds of systems. My nightmares started with simple scripts and have since evolved into architecting complex applications across the stack.
-                    </p>
-                    <p class="text-purple-200 mb-4">
-                        What excites me most is task automation, reverse engineering and deobsfucation.
-                    </p>
-                    <p class="text-purple-200 mb-6">
-                        When I'm not coding, you can find me playing minecraft.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="px-4 py-2 bg-purple-900/50 rounded-full text-sm font-medium text-purple-200">Full-Stack Development</div>
-                        <div class="px-4 py-2 bg-purple-900/50 rounded-full text-sm font-medium text-purple-200">AI & ML</div>
-                        <div class="px-4 py-2 bg-purple-900/50 rounded-full text-sm font-medium text-purple-200">DevOps</div>
-                        <div class="px-4 py-2 bg-purple-900/50 rounded-full text-sm font-medium text-purple-200">Cloud Architecture</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#1a1030] to-[#0f0a1a]">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4 gradient-text">Get In Touch</h2>
-                <p class="text-lg text-purple-300 max-w-2xl mx-auto">
-                    Have a project in mind or want to collaborate? Feel free to reach out!
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-purple-300 mb-2">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 bg-[#1a1030] border border-purple-900/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 text-purple-200" placeholder="Your name">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-purple-300 mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 bg-[#1a1030] border border-purple-900/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 text-purple-200" placeholder="your.email@example.com">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-purple-300 mb-2">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-[#1a1030] border border-purple-900/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 text-purple-200" placeholder="Your message here..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg text-white font-medium hover:from-purple-700 hover:to-indigo-700 transition-all transform hover:scale-[1.02]">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="p-3 bg-purple-900/30 rounded-lg">
-                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-medium text-white mb-1">Email</h3>
-                                <a href="mailto:andrrr.discord@gmail.com" class="text-purple-300 hover:text-white transition">andrrr.discord@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="p-3 bg-purple-900/30 rounded-lg">
-                                <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-medium text-white mb-1">GitHub</h3>
-                                <a href="https://github.com/luzisrepo" target="_blank" class="text-purple-300 hover:text-white transition">github.com/luzisrepo</a>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-  <div class="p-3 bg-purple-900/30 rounded-lg">
-    <svg class="w-6 h-6 text-purple-400" role="img" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0786-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.079.0095c.1202.099.246.1981.372.2924a.0766.0766 0 01-.0064.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.0822.0822 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.66a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1824 0-2.1568-1.0857-2.1568-2.419 0-1.3332.9554-2.4189 2.1568-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
-    </svg>
-  </div>
-  <div>
-    <h3 class="text-lg font-medium text-white mb-1">Discord</h3>
-    <a href="https://discord.com/users/1302710495362420747" target="_blank" class="text-purple-300 hover:text-white transition">
-      ._rayzz
-    </a>
-  </div>
-</div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 px-4 sm:px-6 lg:px-8 bg-[#0f0a1a] border-t border-purple-900/20">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-purple-400 mb-4 md:mb-0">
-                    © <span id="year"></span> Rayzz. All rights reserved.
-                </div>
-                
-                    </a>
-                </div>
-            </div>
-        </div>
     </footer>
-
+    
     <script>
-        // Set current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Typing animation
-        const typedTextSpan = document.querySelector(".typed-text");
-        const cursorSpan = document.querySelector(".cursor");
-
-        const textArray = ["Full-Stack Developer", "Task Automation", "Front-End Development", "Reverse Engineering"];
-        const typingDelay = 100;
-        const erasingDelay = 50;
-        const newTextDelay = 1500;
-        let textArrayIndex = 0;
-        let charIndex = 0;
-
-        function type() {
-            if (charIndex < textArray[textArrayIndex].length) {
-                if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, typingDelay);
-            } 
-            else {
-                cursorSpan.classList.remove("typing");
-                setTimeout(erase, newTextDelay);
-            }
-        }
-
-        function erase() {
-            if (charIndex > 0) {
-                if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
-                charIndex--;
-                setTimeout(erase, erasingDelay);
-            } 
-            else {
-                cursorSpan.classList.remove("typing");
-                textArrayIndex++;
-                if(textArrayIndex>=textArray.length) textArrayIndex=0;
-                setTimeout(type, typingDelay + 1100);
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            if(textArray.length) setTimeout(type, newTextDelay + 250);
-        });
-
-        
-        document.getElementById('showMoreBtn').addEventListener('click', function() {
-            const moreSkills = document.getElementById('moreSkills');
-            const btn = this;
+        // Particle background
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = Math.floor(window.innerWidth / 10);
             
-            if (moreSkills.classList.contains('hidden')) {
-                moreSkills.classList.remove('hidden');
-                btn.textContent = 'Show Less';
-            } else {
-                moreSkills.classList.add('hidden');
-                btn.textContent = 'Show More Skills';
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 3 + 1;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const opacity = Math.random() * 0.3 + 0.1;
+                const animationDuration = Math.random() * 20 + 10;
+                const delay = Math.random() * 20;
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size * 10}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                particle.style.opacity = opacity;
+                particle.style.animation = `particle-move ${animationDuration}s linear ${delay}s infinite`;
+                
+                container.appendChild(particle);
             }
-        });
-
-        // Particles.js initialization
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#7c4dff"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                        "polygon": {
-                            "nb_sides": 5
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.3,
-                        "random": false,
-                        "anim": {
-                            "enable": false,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": false,
-                            "speed": 40,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#7c4dff",
-                        "opacity": 0.2,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": false,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
+        }
+        
+        // Animated counters
+        function animateCounters() {
+            const projects = document.getElementById('projectsCount');
+            const clients = document.getElementById('clientsCount');
+            const awards = document.getElementById('awardsCount');
+            
+            const targetProjects = 47;
+            const targetClients = 23;
+            const targetAwards = 5;
+            
+            let countProjects = 0;
+            let countClients = 0;
+            let countAwards = 0;
+            
+            const interval = setInterval(() => {
+                if (countProjects < targetProjects) {
+                    countProjects++;
+                    projects.textContent = countProjects;
+                }
+                
+                if (countClients < targetClients) {
+                    countClients++;
+                    clients.textContent = countClients;
+                }
+                
+                if (countAwards < targetAwards) {
+                    countAwards++;
+                    awards.textContent = countAwards;
+                }
+                
+                if (countProjects >= targetProjects && 
+                    countClients >= targetClients && 
+                    countAwards >= targetAwards) {
+                    clearInterval(interval);
+                }
+            }, 50);
+        }
+        
+        // Portfolio filtering
+        function setupPortfolio() {
+            const portfolioItems = [
+                {
+                    id: 1,
+                    title: "E-commerce Platform",
+                    category: "web",
+                    description: "Full-stack e-commerce solution with payment integration",
+                    tags: ["React", "Node.js", "MongoDB"]
                 },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
-                    }
+                {
+                    id: 2,
+                    title: "Discord Moderation Bot",
+                    category: "bots",
+                    description: "Advanced moderation and utility bot for large communities",
+                    tags: ["JavaScript", "Discord.js", "MongoDB"]
                 },
-                "retina_detect": true
+                {
+                    id: 3,
+                    title: "AI Content Generator",
+                    category: "ai",
+                    description: "GPT-powered content creation tool with custom fine-tuning",
+                    tags: ["Python", "TensorFlow", "Flask"]
+                },
+                {
+                    id: 4,
+                    title: "Task Automation System",
+                    category: "automation",
+                    description: "Automated workflow management for business processes",
+                    tags: ["Python", "Selenium", "AWS"]
+                },
+                {
+                    id: 5,
+                    title: "Mobile Food Delivery App",
+                    category: "apps",
+                    description: "Cross-platform food ordering application with real-time tracking",
+                    tags: ["React Native", "Firebase", "Node.js"]
+                },
+                {
+                    id: 6,
+                    title: "Portfolio Website",
+                    category: "web",
+                    description: "Custom portfolio site with CMS integration",
+                    tags: ["Next.js", "Tailwind CSS", "Sanity"]
+                }
+            ];
+            
+            const portfolioGrid = document.getElementById('portfolioGrid');
+            
+            // Render portfolio items
+            portfolioItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = `portfolio-item bg-dark p-4 rounded-xl border border-gray-800 cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/10`;
+                itemElement.dataset.category = item.category;
+                
+                itemElement.innerHTML = `
+                    <div class="h-48 bg-gradient-to-br from-darker to-primary rounded-lg mb-4 flex items-center justify-center text-4xl">
+                        ${getCategoryIcon(item.category)}
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">${item.title}</h3>
+                    <p class="text-gray-400 mb-3">${item.description}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${item.tags.map(tag => `<span class="text-xs bg-gray-800 px-2 py-1 rounded">${tag}</span>`).join('')}
+                    </div>
+                `;
+                
+                portfolioGrid.appendChild(itemElement);
             });
-        });
-
-        // Scroll reveal animations
-        ScrollReveal().reveal('.skill-card', {
-            delay: 200,
-            interval: 100,
-            origin: 'bottom',
-            distance: '20px',
-            easing: 'cubic-bezier(0.5, 0, 0, 1)',
-        });
-
-        ScrollReveal().reveal('#about', {
-            delay: 200,
-            origin: 'left',
-            distance: '50px',
-            easing: 'cubic-bezier(0.5, 0, 0, 1)',
+            
+            // Filter buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-dark', 'border', 'border-gray-700');
+                    });
+                    button.classList.add('bg-primary', 'text-white');
+                    button.classList.remove('bg-dark', 'border', 'border-gray-700');
+                    
+                    // Filter items
+                    const filter = button.dataset.filter;
+                    const items = document.querySelectorAll('.portfolio-item');
+                    
+                    items.forEach(item => {
+                        if (filter === 'all' || item.dataset.category === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Set 'All' as active by default
+            document.querySelector('.filter-btn[data-filter="all"]').click();
+        }
+        
+        function getCategoryIcon(category) {
+            const icons = {
+                'web': '🌐',
+                'apps': '📱',
+                'bots': '🤖',
+                'ai': '🧠',
+                'automation': '⚙️'
+            };
+            return icons[category] || '✨';
+        }
+        
+        // QR Code Modal
+        function toggleQR() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.toggle('hidden');
+        }
+        
+        // Copy Discord to clipboard
+        function copyDiscord() {
+            navigator.clipboard.writeText('._rayzz.');
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-lg shadow-lg';
+            notification.textContent = 'Discord username copied to clipboard!';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Save contact
+        function saveContact() {
+            // In a real app, this would save contact info to device
+            alert('Contact information saved to your device!');
+        }
+        
+        // Share profile
+        function shareProfile() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Rayzz - Creative Developer',
+                    text: 'Check out Rayzz\'s developer portfolio',
+                    url: window.location.href
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                navigator.clipboard.writeText(window.location.href);
+                
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-lg shadow-lg';
+                notification.textContent = 'Link copied to clipboard!';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            animateCounters();
+            setupPortfolio();
         });
     </script>
-<script>
-    document.getElementById('show-more-btn').addEventListener('click', function() {
-        const additionalSkills = document.getElementById('additional-skills');
-        const button = this;
-        
-        if (additionalSkills.classList.contains('hidden')) {
-            additionalSkills.classList.remove('hidden');
-            button.textContent = 'Show less skills';
-        } else {
-            additionalSkills.classList.add('hidden');
-            button.textContent = 'Show more skills';
-        }
-    });
-</script>
+</body>
 </html>
