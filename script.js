@@ -1,5 +1,5 @@
 const video = document.createElement("video");
-const videoList = [""];
+const videoList = ["ray.gif"];
 const rndNum = Math.floor(Math.random() * videoList.length);
 video.src = videoList[rndNum];
 video.crossOrigin = "anonymous";
