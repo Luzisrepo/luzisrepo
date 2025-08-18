@@ -143,9 +143,7 @@
                 </div>
                 
                 <div class="flex flex-wrap gap-3">
-                    <button onclick="window.location.href='tel:+1234567890'" class="px-4 py-2 bg-primary hover:bg-accent rounded-lg font-medium transition-all duration-300 neon-hover">
-                        Call
-                    </button>
+                    
                     <button onclick="copyEmail()" class="relative px-4 py-2 bg-secondary hover:bg-accent rounded-lg font-medium transition-all duration-300 neon-hover">
                         Copy Email
                         <span id="tooltip" class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black text-white text-sm px-2 py-1 rounded opacity-0 pointer-events-none transition-opacity duration-300">
@@ -672,7 +670,7 @@
         
         // Copy Discord to clipboard
         function copyDiscord() {
-            navigator.clipboard.writeText('._rayzz.');
+            navigator.clipboard.writeText('._rayzz');
             
             // Show notification
             const notification = document.createElement('div');
