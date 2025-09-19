@@ -36,6 +36,7 @@
     <meta name="description" content="Rayzz - Sleep-Deprived Full-Stack Dev">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -55,11 +56,27 @@
                     animation: {
                         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'tilt': 'tilt 10s infinite linear',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-10px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        glow: {
+                            'from': { 'box-shadow': '0 0 5px rgba(138, 43, 226, 0.5), 0 0 10px rgba(138, 43, 226, 0.3), 0 0 15px rgba(138, 43, 226, 0.2)' },
+                            'to': { 'box-shadow': '0 0 15px rgba(138, 43, 226, 0.7), 0 0 20px rgba(138, 43, 226, 0.5), 0 0 30px rgba(138, 43, 226, 0.3)' },
+                        },
+                        tilt: {
+                            '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(1deg)' },
+                            '75%': { transform: 'rotate(-1deg)' },
                         }
                     }
                 }
@@ -67,15 +84,31 @@
         }
     </script>
     <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #9370db;
+            --accent: #9932cc;
+            --dark: #0f0a19;
+            --darker: #090511;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #090511;
+            background-color: var(--darker);
             color: #e2e8f0;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background: linear-gradient(-45deg, #090511, #0f0a19, #160b2e, #1d0e3d);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
         }
         
         .container {
@@ -87,24 +120,27 @@
         
         h1, h2, h3, h4 {
             font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
         }
         
         .neon-text {
             text-shadow: 0 0 5px rgba(138, 43, 226, 0.7), 
                          0 0 10px rgba(138, 43, 226, 0.5),
                          0 0 20px rgba(138, 43, 226, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
         }
         
         .neon-border {
             box-shadow: 0 0 5px rgba(138, 43, 226, 0.7), 
                         0 0 10px rgba(138, 43, 226, 0.5);
+            border: 1px solid rgba(138, 43, 226, 0.3);
         }
         
         .neon-hover:hover {
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.9), 
-                        0 0 20px rgba(138, 43, 226, 0.6),
-                        0 0 30px rgba(138, 43, 226, 0.3);
-            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.9), 
+                        0 0 25px rgba(138, 43, 226, 0.6),
+                        0 0 35px rgba(138, 43, 226, 0.3);
+            transform: translateY(-3px) scale(1.02);
         }
         
         .particle {
@@ -112,46 +148,211 @@
             background: linear-gradient(90deg, rgba(138, 43, 226, 0.1), rgba(147, 112, 219, 0.3), rgba(138, 43, 226, 0.1));
             z-index: -1;
             opacity: 0.3;
+            border-radius: 50%;
         }
         
         .status-dot {
-            width: 10px;
-            height: 10px;
-            background-color: #48bb78;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(45deg, #48bb78, #38a169);
             border-radius: 50%;
             display: inline-block;
             margin-left: 8px;
-            box-shadow: 0 0 5px #48bb78;
+            box-shadow: 0 0 10px #48bb78;
             animation: pulse-slow 2s infinite;
         }
         
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+        .skill-card, .service-card, .pricing-card, .stat-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 10, 25, 0.6);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .skill-card:hover, .service-card:hover, .pricing-card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
+            border: 1px solid rgba(138, 43, 226, 0.4);
+        }
+        
+        .skill-card::before, .service-card::before, .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .skill-card:hover::before, .service-card:hover::before, .pricing-card:hover::before {
+            left: 100%;
         }
         
         .portfolio-item {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
         }
         
         .portfolio-item:hover {
-            transform: scale(1.03);
+            transform: scale(1.05) translateY(-5px) rotate(0.5deg);
             z-index: 10;
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
         }
         
         .qr-code {
             animation: float 6s ease-in-out infinite;
         }
         
+        button, .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        button::before, .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        button:hover::before, .btn:hover::before {
+            opacity: 1;
+        }
+        
         @keyframes particle-move {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
+            0% { 
+                transform: translateY(0) rotate(0deg) scale(1); 
+                opacity: 0.3;
+            }
+            50% { 
+                opacity: 0.6;
+            }
+            100% { 
+                transform: translateY(-100vh) rotate(360deg) scale(1.5); 
+                opacity: 0;
+            }
+        }
+        
+        /* Glassmorphism effect */
+        .glass {
+            background: rgba(15, 10, 25, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.18);
+        }
+        
+        /* Text gradient */
+        .text-gradient {
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+        }
+        
+        /* Hover effect for list items */
+        li {
+            transition: transform 0.3s ease, color 0.3s ease;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        li::before {
+            content: '➜';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        li:hover {
+            transform: translateX(5px);
+            color: var(--secondary);
+        }
+        
+        li:hover::before {
+            transform: translateX(3px);
+        }
+        
+        /* Pulse animation for CTA elements */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Floating animation */
+        @keyframes floating {
+            0% { transform: translate(0px, 0px); }
+            50% { transform: translate(0px, -15px); }
+            100% { transform: translate(0px, 0px); }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--primary);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
         }
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .hero-text {
                 font-size: 2.5rem;
+            }
+            
+            .skill-card:hover, .service-card:hover, .pricing-card:hover {
+                transform: translateY(-5px);
             }
         }
     </style>
@@ -160,66 +361,62 @@
     <!-- Particle Background -->
     <div id="particles"></div>
     
-    
-    <header class="w-full">
-        <div class="container mx-auto px-4 py-8">
+    <header class="w-full pt-12 pb-20">
+        <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-    <h1 class="text-4xl md:text-5xl font-bold neon-text text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-        <a href="./xedni.html" class="hover:underline">Rayzz</a> <span class="status-dot"></span>
-    </h1>
-    <p class="text-secondary text-lg mt-2">
-        Life just isn't enjoyable without a filter in your mouth.
-    </p>
-</div>
-
+                <div class="mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold neon-text text-gradient">
+                        <a href="./xedni.html" class="hover:underline transition-all duration-300">Rayzz</a> <span class="status-dot"></span>
+                    </h1>
+                    <p class="text-secondary text-lg mt-3 typewriter">
+                        Life just isn't enjoyable without a filter in your mouth.
+                    </p>
+                </div>
                 
                 <div class="flex flex-wrap gap-3">
-                    <button onclick="copyEmail()" class="relative px-4 py-2 bg-secondary hover:bg-accent rounded-lg font-medium transition-all duration-300 neon-hover">
-                        Copy Email
-                        <span id="tooltip" class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black text-white text-sm px-2 py-1 rounded opacity-0 pointer-events-none transition-opacity duration-300">
+                    <button onclick="copyEmail()" class="relative px-6 py-3 bg-secondary/20 hover:bg-accent/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                        <i class="fas fa-envelope mr-2"></i>Copy Email
+                        <span id="tooltip" class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
                             Copied!
                         </span>
                     </button>
-                    <button onclick="copyDiscord()" class="px-4 py-2 bg-dark hover:bg-accent border border-secondary rounded-lg font-medium transition-all duration-300 neon-hover">
-                        Discord
+                    <button onclick="copyDiscord()" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                        <i class="fab fa-discord mr-2"></i>Discord
                     </button>
-                    <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="px-4 py-2 bg-dark hover:bg-accent border border-secondary rounded-lg font-medium transition-all duration-300 neon-hover">
-                        GitHub
+                    <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                        <i class="fab fa-github mr-2"></i>GitHub
                     </button>
                 </div>
             </div>
             
-            <div class="mt-8 max-w-3xl">
-                <p class="text-lg text-gray-300">
+            <div class="mt-12 max-w-3xl glass p-8 rounded-2xl border border-white/5">
+                <p class="text-lg text-gray-300 leading-relaxed">
                     I build and automate everything — from Discord bots and web apps to cloud-deployed AI services. 
                     Explore my work, my skills, and ways to connect with me.
                 </p>
                 
-                <div class="mt-6 flex flex-wrap gap-4">
-                    <button onclick="shareProfile(this)" class="relative px-4 py-2 bg-dark hover:bg-accent border border-secondary rounded-lg font-medium transition-all duration-300 neon-hover">
-                        Share
-                        <span class="share-tooltip absolute left-1/2 -translate-x-1/2 -top-10 bg-black text-white text-sm px-2 py-1 rounded opacity-0 pointer-events-none transition-opacity duration-300">
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <button onclick="shareProfile(this)" class="relative px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                        <i class="fas fa-share-alt mr-2"></i>Share
+                        <span class="share-tooltip absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
                             Copied!
                         </span>
                     </button>
-                    <button onclick="toggleQR()" class="px-4 py-2 bg-dark hover:bg-accent border border-secondary rounded-lg font-medium transition-all duration-300 neon-hover">
-                        Show QR
+                    <button onclick="toggleQR()" class="px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                        <i class="fas fa-qrcode mr-2"></i>Show QR
                     </button>
                 </div>
             </div>
         </div>
     </header>
     
-    
-    <div id="qrModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-        <div class="bg-darker p-8 rounded-lg max-w-md relative">
-            <button onclick="toggleQR()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
-                ✕
+    <div id="qrModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm">
+        <div class="bg-darker/90 p-8 rounded-2xl max-w-md relative border border-primary/30 neon-border">
+            <button onclick="toggleQR()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-300">
+                <i class="fas fa-times text-xl"></i>
             </button>
-            <h3 class="text-xl font-bold mb-4 text-center">Scan to connect</h3>
-            <div class="qr-code bg-white p-4 rounded-lg flex items-center justify-center">
-                
+            <h3 class="text-xl font-bold mb-4 text-center text-gradient">Scan to connect</h3>
+            <div class="qr-code bg-white p-4 rounded-xl flex items-center justify-center">
                 <img src="frame.png" alt="QR Code" class="w-48 h-48 object-contain" />
             </div>
             <p class="mt-4 text-center text-gray-300">Scan this QR code to save my contact</p>
@@ -228,16 +425,14 @@
     
     <main class="flex-1 w-full">
         <div class="container mx-auto px-4 py-12">
-            
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 neon-text">Skills & Expertise</h2>
+                <h2 class="text-3xl font-bold mb-12 neon-text text-center"><span class="text-gradient">Skills & Expertise</span></h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3">💻</div>
-                            <h3 class="text-xl font-bold">Programming Languages</h3>
+                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-laptop-code"></i></div>
+                            <h3 class="text-xl font-bold text-gradient">Programming Languages</h3>
                         </div>
                         <ul class="space-y-2">
                             <li>JavaScript/TypeScript (Expert)</li>
@@ -247,11 +442,10 @@
                         </ul>
                     </div>
                     
-                    
-                    <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3">🌐</div>
-                            <h3 class="text-xl font-bold">Web Development</h3>
+                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-globe"></i></div>
+                            <h3 class="text-xl font-bold text-gradient">Web Development</h3>
                         </div>
                         <ul class="space-y-2">
                             <li>React & Next.js</li>
@@ -261,11 +455,10 @@
                         </ul>
                     </div>
                     
-                    
-                    <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3">🗃️</div>
-                            <h3 class="text-xl font-bold">Database</h3>
+                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-database"></i></div>
+                            <h3 class="text-xl font-bold text-gradient">Database</h3>
                         </div>
                         <ul class="space-y-2">
                             <li>MongoDB</li>
@@ -275,11 +468,10 @@
                         </ul>
                     </div>
                     
-                    
-                    <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3">☁️</div>
-                            <h3 class="text-xl font-bold">DevOps & Cloud</h3>
+                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-cloud"></i></div>
+                            <h3 class="text-xl font-bold text-gradient">DevOps & Cloud</h3>
                         </div>
                         <ul class="space-y-2">
                             <li>Docker & Kubernetes</li>
@@ -289,11 +481,10 @@
                         </ul>
                     </div>
                     
-                    
-                    <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3">⚙️</div>
-                            <h3 class="text-xl font-bold">Automation</h3>
+                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-cogs"></i></div>
+                            <h3 class="text-xl font-bold text-gradient">Automation</h3>
                         </div>
                         <ul class="space-y-2">
                             <li>Discord Bots</li>
@@ -303,11 +494,10 @@
                         </ul>
                     </div>
                     
-                    
-                    <div class="skill-card bg-dark p-6 rounded-xl border border-gray-800 transition-all duration-300 hover:border-primary">
+                    <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3">🧠</div>
-                            <h3 class="text-xl font-bold">AI/ML</h3>
+                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-brain"></i></div>
+                            <h3 class="text-xl font-bold text-gradient">AI/ML</h3>
                         </div>
                         <ul class="space-y-2">
                             <li>TensorFlow/PyTorch</li>
@@ -319,68 +509,64 @@
                 </div>
             </section>
             
-            
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 neon-text">By The Numbers</h2>
+                <h2 class="text-3xl font-bold mb-12 neon-text text-center"><span class="text-gradient">By The Numbers</span></h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="stat-card bg-dark p-8 rounded-xl border border-gray-800 text-center">
-                        <div class="text-5xl font-bold text-primary mb-2" id="projectsCount">0</div>
+                    <div class="stat-card p-8 rounded-2xl text-center">
+                        <div class="text-5xl font-bold text-gradient mb-2" id="projectsCount">0</div>
                         <h3 class="text-xl">Projects Completed</h3>
                     </div>
                     
-                    <div class="stat-card bg-dark p-8 rounded-xl border border-gray-800 text-center">
-                        <div class="text-5xl font-bold text-primary mb-2" id="clientsCount">0</div>
+                    <div class="stat-card p-8 rounded-2xl text-center">
+                        <div class="text-5xl font-bold text-gradient mb-2" id="clientsCount">0</div>
                         <h3 class="text-xl">Happy Clients</h3>
                     </div>
                     
-                    <div class="stat-card bg-dark p-8 rounded-xl border border-gray-800 text-center">
-                        <div class="text-5xl font-bold text-primary mb-2" id="awardsCount">0</div>
+                    <div class="stat-card p-8 rounded-2xl text-center">
+                        <div class="text-5xl font-bold text-gradient mb-2" id="awardsCount">0</div>
                         <h3 class="text-xl">Awards Won</h3>
                     </div>
                 </div>
             </section>
             
-            
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 neon-text">Services Offered</h2>
+                <h2 class="text-3xl font-bold mb-12 neon-text text-center"><span class="text-gradient">Services Offered</span></h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="service-card bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
-                        <div class="text-4xl mb-4">🖥️</div>
-                        <h3 class="text-xl font-bold mb-2">Full-stack Web Apps</h3>
+                    <div class="service-card p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-desktop"></i></div>
+                        <h3 class="text-xl font-bold mb-2 text-gradient">Full-stack Web Apps</h3>
                         <p class="text-gray-300">Custom web applications with modern frameworks and scalable backends.</p>
                     </div>
                     
-                    <div class="service-card bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
-                        <div class="text-4xl mb-4">🤖</div>
-                        <h3 class="text-xl font-bold mb-2">Discord Bot Development</h3>
+                    <div class="service-card p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-robot"></i></div>
+                        <h3 class="text-xl font-bold mb-2 text-gradient">Discord Bot Development</h3>
                         <p class="text-gray-300">Feature-rich bots for moderation, utilities, games, and community management.</p>
                     </div>
                     
-                    <div class="service-card bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
-                        <div class="text-4xl mb-4">🧠</div>
-                        <h3 class="text-xl font-bold mb-2">Machine Learning & AI</h3>
+                    <div class="service-card p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-ai"></i></div>
+                        <h3 class="text-xl font-bold mb-2 text-gradient">Machine Learning & AI</h3>
                         <p class="text-gray-300">Custom AI solutions, model training, and smart automation.</p>
                     </div>
                     
-                    <div class="service-card bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
-                        <div class="text-4xl mb-4">⚡</div>
-                        <h3 class="text-xl font-bold mb-2">Automation & DevOps</h3>
+                    <div class="service-card p-6 rounded-2xl text-center">
+                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-bolt"></i></div>
+                        <h3 class="text-xl font-bold mb-2 text-gradient">Automation & DevOps</h3>
                         <p class="text-gray-300">Workflow automation, CI/CD pipelines, and cloud deployments.</p>
                     </div>
                 </div>
             </section>
             
-            
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-8 neon-text">Pricing</h2>
+                <h2 class="text-3xl font-bold mb-12 neon-text text-center"><span class="text-gradient">Pricing</span></h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
-                    <div class="pricing-card bg-dark p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
-                        <h3 class="text-2xl font-bold mb-4">Website Building</h3>
-                        <div class="text-4xl font-bold text-primary mb-6">€199+</div>
+                    <div class="pricing-card p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-4 text-gradient">Website Building</h3>
+                        <div class="text-4xl font-bold text-gradient mb-6">€199+</div>
                         <ul class="space-y-3 mb-8">
                             <li class="flex items-start">
                                 <span class="text-primary mr-2">✓</span>
@@ -395,18 +581,17 @@
                                 <span>SEO-ready & mobile-friendly</span>
                             </li>
                         </ul>
-                        <button class="w-full py-3 bg-primary hover:bg-accent rounded-lg font-bold transition-all duration-300">
+                        <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
                             Get Started
                         </button>
                     </div>
                     
-                    
-                    <div class="pricing-card bg-dark p-8 rounded-xl border border-primary transition-all duration-300 transform scale-105 neon-border">
-                        <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 rounded-bl-lg rounded-tr-lg text-sm font-bold">
+                    <div class="pricing-card p-8 rounded-2xl relative neon-border scale-105">
+                        <div class="absolute top-0 right-0 bg-gradient-to-r from-primary to-accent text-white px-4 py-1 rounded-bl-xl rounded-tr-xl text-sm font-bold">
                             POPULAR
                         </div>
-                        <h3 class="text-2xl font-bold mb-4">Plugin Building</h3>
-                        <div class="text-4xl font-bold text-primary mb-6">€349+</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gradient">Plugin Building</h3>
+                        <div class="text-4xl font-bold text-gradient mb-6">€349+</div>
                         <ul class="space-y-3 mb-8">
                             <li class="flex items-start">
                                 <span class="text-primary mr-2">✓</span>
@@ -421,15 +606,14 @@
                                 <span>Lightweight API integrations</span>
                             </li>
                         </ul>
-                        <button class="w-full py-3 bg-primary hover:bg-accent rounded-lg font-bold transition-all duration-300">
+                        <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
                             Get Started
                         </button>
                     </div>
                     
-                    
-                    <div class="pricing-card bg-dark p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300">
-                        <h3 class="text-2xl font-bold mb-4">Advanced Projects</h3>
-                        <div class="text-4xl font-bold text-primary mb-6">€499+</div>
+                    <div class="pricing-card p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-4 text-gradient">Advanced Projects</h3>
+                        <div class="text-4xl font-bold text-gradient mb-6">€499+</div>
                         <ul class="space-y-3 mb-8">
                             <li class="flex items-start">
                                 <span class="text-primary mr-2">✓</span>
@@ -444,7 +628,7 @@
                                 <span>Custom automation pipelines</span>
                             </li>
                         </ul>
-                        <button class="w-full py-3 bg-primary hover:bg-accent rounded-lg font-bold transition-all duration-300">
+                        <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
                             Get Started
                         </button>
                     </div>
@@ -455,28 +639,27 @@
                 </p>
             </section>
             
-            
             <section class="mb-20">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-                    <h2 class="text-3xl font-bold neon-text">Service Examples</h2>
+                    <h2 class="text-3xl font-bold neon-text"><span class="text-gradient">Service Examples</span></h2>
                     
                     <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
-                        <button class="filter-btn px-4 py-2 bg-primary text-white rounded-lg font-medium" data-filter="all">
+                        <button class="filter-btn px-4 py-2 bg-primary/30 text-white rounded-lg font-medium glass" data-filter="all">
                             All
                         </button>
-                        <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="web">
+                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="web">
                             Web
                         </button>
-                        <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="apps">
+                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="apps">
                             Apps
                         </button>
-                        <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="bots">
+                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="bots">
                             Bots
                         </button>
-                        <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="ai">
+                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="ai">
                             AI
                         </button>
-                        <button class="filter-btn px-4 py-2 bg-dark border border-gray-700 hover:bg-primary rounded-lg font-medium" data-filter="automation">
+                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="automation">
                             Automation
                         </button>
                     </div>
@@ -489,42 +672,27 @@
         </div>
     </main>
     
-    <footer class="bg-darker py-12 w-full">
+    <footer class="py-12 w-full glass mt-20">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <h2 class="text-2xl font-bold neon-text">Rayzz</h2>
+                    <h2 class="text-2xl font-bold neon-text text-gradient">Rayzz</h2>
                     <p class="text-gray-400 mt-2">© 2025 All rights reserved</p>
                 </div>
                 
                 <div class="flex gap-4">
-    <!-- GitHub Button -->
-    <a href="https://github.com/luzisrepo" target="_blank" class="w-10 h-10 rounded-full bg-dark border border-gray-800 flex items-center justify-center hover:bg-primary transition-all duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-            <path d="M9 18c-4.51 2-5-2-7-2"/>
-        </svg>
-    </a>
+                    <a href="https://github.com/luzisrepo" target="_blank" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
 
-    <!-- Gmail Button -->
-    <a href="mailto:andrrr.discord@gmail.com" class="w-10 h-10 rounded-full bg-dark border border-gray-800 flex items-center justify-center hover:bg-primary transition-all duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 12.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h7.5"/>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            <path d="M18 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-            <circle cx="18" cy="18" r="3"/>
-            <path d="m22 22-1.5-1.5"/>
-        </svg>
-    </a>
+                    <a href="mailto:andrrr.discord@gmail.com" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
 
-    <!-- Discord Button -->
-    <button onclick="copyDiscord()" class="w-10 h-10 rounded-full bg-dark border border-gray-800 flex items-center justify-center hover:bg-primary transition-all duration-300">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18.8943 4.34399C17.5183 3.71467 16.057 3.256 14.5317 3C14.3396 3.33067 14.1263 3.77866 13.977 4.13067C12.3546 3.89599 10.7439 3.89599 9.14391 4.13067C8.99457 3.77866 8.77056 3.33067 8.58922 3C7.05325 3.256 5.59191 3.71467 4.22552 4.34399C1.46286 8.41865 0.716188 12.3973 1.08952 16.3226C2.92418 17.6559 4.69486 18.4666 6.4346 19C6.86126 18.424 7.24527 17.8053 7.57594 17.1546C6.9466 16.92 6.34927 16.632 5.77327 16.2906C5.9226 16.184 6.07194 16.0667 6.21061 15.9493C9.68793 17.5387 13.4543 17.5387 16.889 15.9493C17.0383 16.0667 17.177 16.184 17.3263 16.2906C16.7503 16.632 16.153 16.92 15.5236 17.1546C15.8543 17.8053 16.2383 18.424 16.665 19C18.4036 18.4666 20.185 17.6559 22.01 16.3226C22.4687 11.7787 21.2836 7.83202 18.8943 4.34399ZM8.05593 13.9013C7.01058 13.9013 6.15725 12.952 6.15725 11.7893C6.15725 10.6267 6.98925 9.67731 8.05593 9.67731C9.11191 9.67731 9.97588 10.6267 9.95454 11.7893C9.95454 12.952 9.11191 13.9013 8.05593 13.9013ZM15.065 13.9013C14.0196 13.9013 13.1652 12.952 13.1652 11.7893C13.1652 10.6267 13.9983 9.67731 15.065 9.67731C16.121 9.67731 16.985 10.6267 16.9636 11.7893C16.9636 12.952 16.1317 13.9013 15.065 13.9013Z"/>
-        </svg>
-    </button>
-</div>
-
+                    <button onclick="copyDiscord()" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                        <i class="fab fa-discord text-xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </footer>
@@ -533,27 +701,30 @@
         // Particle background
         function createParticles() {
             const container = document.getElementById('particles');
-            const particleCount = Math.floor(window.innerWidth / 10);
+            const particleCount = Math.floor(window.innerWidth / 8);
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
                 // Random properties
-                const size = Math.random() * 2.3 + 0.7;
+                const size = Math.random() * 3 + 1;
                 const posX = Math.random() * window.innerWidth;
                 const posY = Math.random() * window.innerHeight;
-                const opacity = Math.random() * 0.3 + 0.1;
+                const opacity = Math.random() * 0.4 + 0.1;
                 const animationDuration = Math.random() * 20 + 10;
-                const delay = Math.random() * 1;
+                const delay = Math.random() * 5;
+                const blur = Math.random() * 5 + 2;
                 
                 // Apply styles
                 particle.style.width = `${size}px`;
-                particle.style.height = `${size * 10}px`;
+                particle.style.height = `${size}px`;
                 particle.style.left = `${posX}px`;
                 particle.style.top = `${posY}px`;
                 particle.style.opacity = opacity;
-                particle.style.animation = `particle-move ${animationDuration}s linear ${delay}s infinite`;
+                particle.style.filter = `blur(${blur}px)`;
+                particle.style.animation = `particle-move ${animationDuration}s linear ${delay}s infinite, glow 4s ease-in-out ${delay}s infinite alternate`;
+                particle.style.borderRadius = '50%';
                 
                 container.appendChild(particle);
             }
@@ -649,17 +820,17 @@
             
             portfolioItems.forEach(item => {
                 const itemElement = document.createElement('div');
-                itemElement.className = `portfolio-item bg-dark p-4 rounded-xl border border-gray-800 cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/10`;
+                itemElement.className = `portfolio-item bg-dark/50 p-4 rounded-2xl border border-gray-800 cursor-pointer transition-all duration-300 glass`;
                 itemElement.dataset.category = item.category;
                 
                 itemElement.innerHTML = `
-                    <div class="h-48 bg-gradient-to-br from-darker to-primary rounded-lg mb-4 flex items-center justify-center text-4xl">
+                    <div class="h-48 bg-gradient-to-br from-darker to-primary rounded-xl mb-4 flex items-center justify-center text-4xl">
                         ${getCategoryIcon(item.category)}
                     </div>
-                    <h3 class="text-xl font-bold mb-2">${item.title}</h3>
+                    <h3 class="text-xl font-bold mb-2 text-gradient">${item.title}</h3>
                     <p class="text-gray-400 mb-3">${item.description}</p>
                     <div class="flex flex-wrap gap-2">
-                        ${item.tags.map(tag => `<span class="text-xs bg-gray-800 px-2 py-1 rounded">${tag}</span>`).join('')}
+                        ${item.tags.map(tag => `<span class="text-xs bg-primary/20 px-2 py-1 rounded">${tag}</span>`).join('')}
                     </div>
                 `;
                 
@@ -672,11 +843,11 @@
                 button.addEventListener('click', () => {
                     // Update active button
                     filterButtons.forEach(btn => {
-                        btn.classList.remove('bg-primary', 'text-white');
-                        btn.classList.add('bg-dark', 'border', 'border-gray-700');
+                        btn.classList.remove('bg-primary/30', 'text-white');
+                        btn.classList.add('bg-dark/50', 'border', 'border-gray-700');
                     });
-                    button.classList.add('bg-primary', 'text-white');
-                    button.classList.remove('bg-dark', 'border', 'border-gray-700');
+                    button.classList.add('bg-primary/30', 'text-white');
+                    button.classList.remove('bg-dark/50', 'border', 'border-gray-700');
                     
                     
                     const filter = button.dataset.filter;
@@ -719,8 +890,8 @@
             
             
             const notification = document.createElement('div');
-            notification.className = 'fixed bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-lg shadow-lg';
-            notification.textContent = 'Discord username copied to clipboard!';
+            notification.className = 'fixed bottom-4 right-4 bg-primary/80 text-white px-4 py-2 rounded-lg shadow-lg glass';
+            notification.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Discord username copied to clipboard!';
             document.body.appendChild(notification);
             
             setTimeout(() => {
@@ -801,6 +972,25 @@
             createParticles();
             animateCounters();
             setupPortfolio();
+            
+            // Add scroll animation
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
         });
     </script>
     <script>
