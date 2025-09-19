@@ -5,84 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rayzz | Sleepy</title>
     <script>
-  const titleText = "Rayzz | Sleepy";
-  const typingSpeed = 150; // milliseconds per character
-  const pauseTime = 1000; // pause before deleting
+        const titleText = "Rayzz | Sleepy";
+        const typingSpeed = 150;
+        const pauseTime = 1000;
 
-  let index = 0;
-  let forward = true;
+        let index = 0;
+        let forward = true;
 
-  function animateTitle() {
-    if (forward) {
-      document.title = titleText.substring(0, index + 1);
-      index++;
-      if (index === titleText.length) {
-        forward = false;
-        setTimeout(animateTitle, pauseTime);
-        return;
-      }
-    } else {
-      document.title = titleText.substring(0, index - 1);
-      index--;
-      if (index === 0) {
-        forward = true;
-      }
-    }
-    setTimeout(animateTitle, typingSpeed);
-  }
+        function animateTitle() {
+            if (forward) {
+                document.title = titleText.substring(0, index + 1);
+                index++;
+                if (index === titleText.length) {
+                    forward = false;
+                    setTimeout(animateTitle, pauseTime);
+                    return;
+                }
+            } else {
+                document.title = titleText.substring(0, index - 1);
+                index--;
+                if (index === 0) {
+                    forward = true;
+                }
+            }
+            setTimeout(animateTitle, typingSpeed);
+        }
 
-  window.onload = animateTitle;
-</script>
+        window.onload = animateTitle;
+    </script>
     <meta name="description" content="Rayzz - Sleep-Deprived Full-Stack Dev">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#8a2be2',
-                        secondary: '#9370db',
-                        accent: '#9932cc',
-                        dark: '#0f0a19',
-                        darker: '#090511',
-                    },
-                    fontFamily: {
-                        orbitron: ['Orbitron', 'sans-serif'],
-                        poppins: ['Poppins', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'gradient': 'gradient 8s ease infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'tilt': 'tilt 10s infinite linear',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        gradient: {
-                            '0%, 100%': { 'background-position': '0% 50%' },
-                            '50%': { 'background-position': '100% 50%' },
-                        },
-                        glow: {
-                            'from': { 'box-shadow': '0 0 5px rgba(138, 43, 226, 0.5), 0 0 10px rgba(138, 43, 226, 0.3), 0 0 15px rgba(138, 43, 226, 0.2)' },
-                            'to': { 'box-shadow': '0 0 15px rgba(138, 43, 226, 0.7), 0 0 20px rgba(138, 43, 226, 0.5), 0 0 30px rgba(138, 43, 226, 0.3)' },
-                        },
-                        tilt: {
-                            '0%, 50%, 100%': { transform: 'rotate(0deg)' },
-                            '25%': { transform: 'rotate(1deg)' },
-                            '75%': { transform: 'rotate(-1deg)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         :root {
             --primary: #8a2be2;
@@ -136,13 +90,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(9, 5, 17, 0.85);
+            background: linear-gradient(to bottom, rgba(9, 5, 17, 0.9), rgba(15, 10, 25, 0.85));
             z-index: -1;
         }
         
         .container {
             width: 100%;
             max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
             padding-left: 1rem;
             padding-right: 1rem;
         }
@@ -213,46 +169,6 @@
             left: 100%;
         }
         
-        .portfolio-item {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-style: preserve-3d;
-        }
-        
-        .portfolio-item:hover {
-            transform: scale(1.05) translateY(-5px) rotate(0.5deg);
-            z-index: 10;
-            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
-        }
-        
-        .qr-code {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        button, .btn {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            z-index: 1;
-        }
-        
-        button::before, .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
-            z-index: -1;
-            transition: opacity 0.3s ease;
-            opacity: 0;
-        }
-        
-        button:hover::before, .btn:hover::before {
-            opacity: 1;
-        }
-        
-        /* Glassmorphism effect */
         .glass {
             background: rgba(15, 10, 25, 0.25);
             backdrop-filter: blur(10px);
@@ -260,7 +176,6 @@
             border: 1px solid rgba(138, 43, 226, 0.18);
         }
         
-        /* Text gradient */
         .text-gradient {
             background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
@@ -270,71 +185,30 @@
             animation: gradient 3s ease infinite;
         }
         
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        @keyframes glow {
+            from { 
+                text-shadow: 0 0 5px rgba(138, 43, 226, 0.7), 
+                            0 0 10px rgba(138, 43, 226, 0.5),
+                            0 0 20px rgba(138, 43, 226, 0.3);
+            }
+            to { 
+                text-shadow: 0 0 10px rgba(138, 43, 226, 0.9), 
+                            0 0 20px rgba(138, 43, 226, 0.7),
+                            0 0 30px rgba(138, 43, 226, 0.5);
+            }
         }
         
-        ::-webkit-scrollbar-track {
-            background: var(--darker);
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            border-radius: 10px;
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
         
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, var(--accent), var(--primary));
-        }
-        
-        /* Hover effect for list items */
-        li {
-            transition: transform 0.3s ease, color 0.3s ease;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        li::before {
-            content: '➜';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            transition: transform 0.3s ease;
-        }
-        
-        li:hover {
-            transform: translateX(5px);
-            color: var(--secondary);
-        }
-        
-        li:hover::before {
-            transform: translateX(3px);
-        }
-        
-        /* Pulse animation for CTA elements */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        /* Floating animation */
-        @keyframes floating {
-            0% { transform: translate(0px, 0px); }
-            50% { transform: translate(0px, -15px); }
-            100% { transform: translate(0px, 0px); }
-        }
-        
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-        
-        /* Typewriter effect */
         .typewriter {
             overflow: hidden;
             border-right: .15em solid var(--primary);
@@ -352,16 +226,7 @@
             50% { border-color: var(--primary) }
         }
         
-        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .hero-text {
-                font-size: 2.5rem;
-            }
-            
-            .skill-card:hover, .service-card:hover, .pricing-card:hover {
-                transform: translateY(-5px);
-            }
-            
             .video-background video {
                 width: 300%;
                 left: -100%;
@@ -373,7 +238,8 @@
     <!-- Video Background -->
     <div class="video-background">
         <video autoplay muted loop playsinline>
-            <source src="nosrc.co" type="video/mp4">
+            <!-- Using a different video source that should work reliably -->
+            <source src="./wpp0.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -384,24 +250,24 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-8 md:mb-0">
                     <h1 class="text-4xl md:text-5xl font-bold neon-text text-gradient">
-                        <a href="./xedni.html" class="hover:underline transition-all duration-300">Rayzz</a> <span class="status-dot"></span>
+                        <span>Rayzz</span> <span class="status-dot"></span>
                     </h1>
-                    <p class="text-secondary text-lg mt-3 typewriter">
+                    <p class="text-purple-300 text-lg mt-3 typewriter">
                         Life just isn't enjoyable without a filter in your mouth.
                     </p>
                 </div>
                 
                 <div class="flex flex-wrap gap-3">
-                    <button onclick="copyEmail()" class="relative px-6 py-3 bg-secondary/20 hover:bg-accent/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                    <button onclick="copyEmail()" class="relative px-6 py-3 bg-purple-900/50 hover:bg-purple-800/50 rounded-xl font-medium transition-all duration-300 neon-hover glass">
                         <i class="fas fa-envelope mr-2"></i>Copy Email
                         <span id="tooltip" class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
                             Copied!
                         </span>
                     </button>
-                    <button onclick="copyDiscord()" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                    <button onclick="copyDiscord()" class="px-6 py-3 bg-dark/50 hover:bg-purple-800/50 border border-purple-700/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
                         <i class="fab fa-discord mr-2"></i>Discord
                     </button>
-                    <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                    <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="px-6 py-3 bg-dark/50 hover:bg-purple-800/50 border border-purple-700/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
                         <i class="fab fa-github mr-2"></i>GitHub
                     </button>
                 </div>
@@ -414,13 +280,13 @@
                 </p>
                 
                 <div class="mt-8 flex flex-wrap gap-4">
-                    <button onclick="shareProfile(this)" class="relative px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                    <button onclick="shareProfile(this)" class="relative px-6 py-3 bg-dark/50 border border-purple-700/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
                         <i class="fas fa-share-alt mr-2"></i>Share
                         <span class="share-tooltip absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
                             Copied!
                         </span>
                     </button>
-                    <button onclick="toggleQR()" class="px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                    <button onclick="toggleQR()" class="px-6 py-3 bg-dark/50 border border-purple-700/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
                         <i class="fas fa-qrcode mr-2"></i>Show QR
                     </button>
                 </div>
@@ -435,7 +301,10 @@
             </button>
             <h3 class="text-xl font-bold mb-4 text-center text-gradient">Scan to connect</h3>
             <div class="qr-code bg-white p-4 rounded-xl flex items-center justify-center">
-                <img src="frame.png" alt="QR Code" class="w-48 h-48 object-contain" />
+                <!-- Placeholder for QR code -->
+                <div class="w-48 h-48 bg-gray-200 flex items-center justify-center">
+                    <span class="text-gray-600">QR Code Placeholder</span>
+                </div>
             </div>
             <p class="mt-4 text-center text-gray-300">Scan this QR code to save my contact</p>
         </div>
@@ -449,10 +318,10 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-laptop-code"></i></div>
+                            <div class="text-2xl mr-3 text-purple-400"><i class="fas fa-laptop-code"></i></div>
                             <h3 class="text-xl font-bold text-gradient">Programming Languages</h3>
                         </div>
-                        <ul class="space-y-2">
+                        <ul class="space-y-2 text-gray-300">
                             <li>JavaScript/TypeScript (Expert)</li>
                             <li>Python (Advanced)</li>
                             <li>C++ (Intermediate)</li>
@@ -462,10 +331,10 @@
                     
                     <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-globe"></i></div>
+                            <div class="text-2xl mr-3 text-purple-400"><i class="fas fa-globe"></i></div>
                             <h3 class="text-xl font-bold text-gradient">Web Development</h3>
                         </div>
-                        <ul class="space-y-2">
+                        <ul class="space-y-2 text-gray-300">
                             <li>React & Next.js</li>
                             <li>Node.js & Express</li>
                             <li>Tailwind CSS</li>
@@ -475,10 +344,10 @@
                     
                     <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-database"></i></div>
+                            <div class="text-2xl mr-3 text-purple-400"><i class="fas fa-database"></i></div>
                             <h3 class="text-xl font-bold text-gradient">Database</h3>
                         </div>
-                        <ul class="space-y-2">
+                        <ul class="space-y-2 text-gray-300">
                             <li>MongoDB</li>
                             <li>PostgreSQL</li>
                             <li>Firebase</li>
@@ -488,10 +357,10 @@
                     
                     <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-cloud"></i></div>
+                            <div class="text-2xl mr-3 text-purple-400"><i class="fas fa-cloud"></i></div>
                             <h3 class="text-xl font-bold text-gradient">DevOps & Cloud</h3>
                         </div>
-                        <ul class="space-y-2">
+                        <ul class="space-y-2 text-gray-300">
                             <li>Docker & Kubernetes</li>
                             <li>AWS & GCP</li>
                             <li>CI/CD Pipelines</li>
@@ -501,10 +370,10 @@
                     
                     <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-cogs"></i></div>
+                            <div class="text-2xl mr-3 text-purple-400"><i class="fas fa-cogs"></i></div>
                             <h3 class="text-xl font-bold text-gradient">Automation</h3>
                         </div>
-                        <ul class="space-y-2">
+                        <ul class="space-y-2 text-gray-300">
                             <li>Discord Bots</li>
                             <li>Web Scraping</li>
                             <li>Browser Extensions</li>
@@ -514,10 +383,10 @@
                     
                     <div class="skill-card p-6 rounded-2xl">
                         <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-brain"></i></div>
+                            <div class="text-2xl mr-3 text-purple-400"><i class="fas fa-brain"></i></div>
                             <h3 class="text-xl font-bold text-gradient">AI/ML</h3>
                         </div>
-                        <ul class="space-y-2">
+                        <ul class="space-y-2 text-gray-300">
                             <li>TensorFlow/PyTorch</li>
                             <li>NLP & Computer Vision</li>
                             <li>LLM Integration</li>
@@ -533,17 +402,17 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="stat-card p-8 rounded-2xl text-center">
                         <div class="text-5xl font-bold text-gradient mb-2" id="projectsCount">0</div>
-                        <h3 class="text-xl">Projects Completed</h3>
+                        <h3 class="text-xl text-gray-300">Projects Completed</h3>
                     </div>
                     
                     <div class="stat-card p-8 rounded-2xl text-center">
                         <div class="text-5xl font-bold text-gradient mb-2" id="clientsCount">0</div>
-                        <h3 class="text-xl">Happy Clients</h3>
+                        <h3 class="text-xl text-gray-300">Happy Clients</h3>
                     </div>
                     
                     <div class="stat-card p-8 rounded-2xl text-center">
                         <div class="text-5xl font-bold text-gradient mb-2" id="awardsCount">0</div>
-                        <h3 class="text-xl">Awards Won</h3>
+                        <h3 class="text-xl text-gray-300">Awards Won</h3>
                     </div>
                 </div>
             </section>
@@ -553,141 +422,30 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="service-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-desktop"></i></div>
+                        <div class="text-4xl mb-4 text-purple-400"><i class="fas fa-desktop"></i></div>
                         <h3 class="text-xl font-bold mb-2 text-gradient">Full-stack Web Apps</h3>
                         <p class="text-gray-300">Custom web applications with modern frameworks and scalable backends.</p>
                     </div>
                     
                     <div class="service-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-robot"></i></div>
+                        <div class="text-4xl mb-4 text-purple-400"><i class="fas fa-robot"></i></div>
                         <h3 class="text-xl font-bold mb-2 text-gradient">Discord Bot Development</h3>
                         <p class="text-gray-300">Feature-rich bots for moderation, utilities, games, and community management.</p>
                     </div>
                     
                     <div class="service-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-ai"></i></div>
+                        <div class="text-4xl mb-4 text-purple-400"><i class="fas fa-ai"></i></div>
                         <h3 class="text-xl font-bold mb-2 text-gradient">Machine Learning & AI</h3>
                         <p class="text-gray-300">Custom AI solutions, model training, and smart automation.</p>
                     </div>
                     
                     <div class="service-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-bolt"></i></div>
+                        <div class="text-4xl mb-4 text-purple-400"><i class="fas fa-bolt"></i></div>
                         <h3 class="text-xl font-bold mb-2 text-gradient">Automation & DevOps</h3>
                         <p class="text-gray-300">Workflow automation, CI/CD pipelines, and cloud deployments.</p>
                     </div>
                 </div>
             </section>
-            
-            <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-12 neon-text text-center"><span class="text-gradient">Pricing</span></h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="pricing-card p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold mb-4 text-gradient">Website Building</h3>
-                        <div class="text-4xl font-bold text-gradient mb-6">€199+</div>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Simple contact/landing page</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>1–2 portfolio sections</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>SEO-ready & mobile-friendly</span>
-                            </li>
-                        </ul>
-                        <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
-                            Get Started
-                        </button>
-                    </div>
-                    
-                    <div class="pricing-card p-8 rounded-2xl relative neon-border scale-105">
-                        <div class="absolute top-0 right-0 bg-gradient-to-r from-primary to-accent text-white px-4 py-1 rounded-bl-xl rounded-tr-xl text-sm font-bold">
-                            POPULAR
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gradient">Plugin Building</h3>
-                        <div class="text-4xl font-bold text-gradient mb-6">€349+</div>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Custom browser extensions</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Discord bots & automation scripts</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Lightweight API integrations</span>
-                            </li>
-                        </ul>
-                        <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
-                            Get Started
-                        </button>
-                    </div>
-                    
-                    <div class="pricing-card p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold mb-4 text-gradient">Advanced Projects</h3>
-                        <div class="text-4xl font-bold text-gradient mb-6">€499+</div>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>AI & ML integrations</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Cloud deployments (AWS, Docker)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Custom automation pipelines</span>
-                            </li>
-                        </ul>
-                        <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
-                            Get Started
-                        </button>
-                    </div>
-                </div>
-                
-                <p class="text-center mt-8 text-gray-400">
-                    * Prices are starting points. Final cost depends on project complexity and requirements.
-                </p>
-            </section>
-            <!--
-            <section class="mb-20">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-                    <h2 class="text-3xl font-bold neon-text"><span class="text-gradient">Service Examples</span></h2>
-                    
-                    <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
-                        <button class="filter-btn px-4 py-2 bg-primary/30 text-white rounded-lg font-medium glass" data-filter="all">
-                            All
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="web">
-                            Web
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="apps">
-                            Apps
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="bots">
-                            Bots
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="ai">
-                            AI
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="automation">
-                            Automation
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
-                    
-                </div>
-            </section>
-            -->
         </div>
     </main>
     
@@ -700,15 +458,15 @@
                 </div>
                 
                 <div class="flex gap-4">
-                    <a href="https://github.com/luzisrepo" target="_blank" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                    <a href="https://github.com/luzisrepo" target="_blank" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-purple-800/50 transition-all duration-300 neon-hover">
                         <i class="fab fa-github text-xl"></i>
                     </a>
 
-                    <a href="mailto:andrrr.discord@gmail.com" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                    <a href="mailto:andrrr.discord@gmail.com" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-purple-800/50 transition-all duration-300 neon-hover">
                         <i class="fas fa-envelope text-xl"></i>
                     </a>
 
-                    <button onclick="copyDiscord()" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                    <button onclick="copyDiscord()" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-purple-800/50 transition-all duration-300 neon-hover">
                         <i class="fab fa-discord text-xl"></i>
                     </button>
                 </div>
@@ -755,129 +513,16 @@
             }, 50);
         }
         
-        
-        function setupPortfolio() {
-            const portfolioItems = [
-                {
-                    id: 1,
-                    title: "E-commerce Platform",
-                    category: "web",
-                    description: "Full-stack e-commerce solution with payment integration",
-                    tags: ["React", "Node.js", "MongoDB"]
-                },
-                {
-                    id: 2,
-                    title: "Discord Moderation Bot",
-                    category: "bots",
-                    description: "Advanced moderation and utility bot for large communities",
-                    tags: ["JavaScript", "Discord.js", "MongoDB"]
-                },
-                {
-                    id: 3,
-                    title: "AI Content Generator",
-                    category: "ai",
-                    description: "GPT-powered content creation tool with custom fine-tuning",
-                    tags: ["Python", "TensorFlow", "Flask"]
-                },
-                {
-                    id: 4,
-                    title: "Task Automation System",
-                    category: "automation",
-                    description: "Automated workflow management for business processes",
-                    tags: ["Python", "Selenium", "AWS"]
-                },
-                {
-                    id: 5,
-                    title: "Mobile Food Delivery App",
-                    category: "apps",
-                    description: "Cross-platform food ordering application with real-time tracking",
-                    tags: ["React Native", "Firebase", "Node.js"]
-                },
-                {
-                    id: 6,
-                    title: "Portfolio Website",
-                    category: "web",
-                    description: "Custom portfolio site with CMS integration",
-                    tags: ["Next.js", "Tailwind CSS", "Sanity"]
-                }
-            ];
-            
-            const portfolioGrid = document.getElementById('portfolioGrid');
-            
-            
-            portfolioItems.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = `portfolio-item bg-dark/50 p-4 rounded-2xl border border-gray-800 cursor-pointer transition-all duration-300 glass`;
-                itemElement.dataset.category = item.category;
-                
-                itemElement.innerHTML = `
-                    <div class="h-48 bg-gradient-to-br from-darker to-primary rounded-xl mb-4 flex items-center justify-center text-4xl">
-                        ${getCategoryIcon(item.category)}
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-gradient">${item.title}</h3>
-                    <p class="text-gray-400 mb-3">${item.description}</p>
-                    <div class="flex flex-wrap gap-2">
-                        ${item.tags.map(tag => `<span class="text-xs bg-primary/20 px-2 py-1 rounded">${tag}</span>`).join('')}
-                    </div>
-                `;
-                
-                portfolioGrid.appendChild(itemElement);
-            });
-            
-            
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Update active button
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('bg-primary/30', 'text-white');
-                        btn.classList.add('bg-dark/50', 'border', 'border-gray-700');
-                    });
-                    button.classList.add('bg-primary/30', 'text-white');
-                    button.classList.remove('bg-dark/50', 'border', 'border-gray-700');
-                    
-                    
-                    const filter = button.dataset.filter;
-                    const items = document.querySelectorAll('.portfolio-item');
-                    
-                    items.forEach(item => {
-                        if (filter === 'all' || item.dataset.category === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            
-            document.querySelector('.filter-btn[data-filter="all"]').click();
-        }
-        
-        function getCategoryIcon(category) {
-            const icons = {
-                'web': '🌐',
-                'apps': '📱',
-                'bots': '🤖',
-                'ai': '🧠',
-                'automation': '⚙️'
-            };
-            return icons[category] || '✨';
-        }
-        
-        
         function toggleQR() {
             const modal = document.getElementById('qrModal');
             modal.classList.toggle('hidden');
         }
         
-        
         function copyDiscord() {
             navigator.clipboard.writeText('._rayzz');
             
-            
             const notification = document.createElement('div');
-            notification.className = 'fixed bottom-4 right-4 bg-primary/80 text-white px-4 py-2 rounded-lg shadow-lg glass';
+            notification.className = 'fixed bottom-4 right-4 bg-purple-800/80 text-white px-4 py-2 rounded-lg shadow-lg glass';
             notification.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Discord username copied to clipboard!';
             document.body.appendChild(notification);
             
@@ -885,7 +530,6 @@
                 notification.remove();
             }, 3000);
         }
-        
         
         function copyEmail() {
             const email = "andrrr.discord@gmail.com";
@@ -903,61 +547,9 @@
             });
         }
         
-        
-        function saveContact() {
-            
-            alert('Contact information saved to your device!');
-        }
-        
-        
-        (() => {
-            async function copyText(text) {
-                // Try modern API (requires secure context: https or localhost)
-                if (navigator.clipboard && window.isSecureContext) {
-                    try {
-                        await navigator.clipboard.writeText(text);
-                        return true;
-                    } catch (e) { /* fall back below */ }
-                }
-                // Fallback for http/file:// and older browsers
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                ta.setAttribute('readonly', '');
-                ta.style.position = 'fixed';
-                ta.style.top = '-1000px';
-                document.body.appendChild(ta);
-                ta.select();
-                ta.setSelectionRange(0, ta.value.length);
-                let ok = false;
-                try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-                document.body.removeChild(ta);
-                return ok;
-            }
-
-            window.shareProfile = async function(btnEl) {
-                const textToCopy = 'luzisrepo.vercel.app';
-                const tooltip = btnEl?.querySelector('.share-tooltip');
-
-                const success = await copyText(textToCopy);
-
-                if (tooltip) {
-                    tooltip.textContent = success ? 'Copied!' : 'Copy failed';
-                    tooltip.classList.remove('opacity-0');
-                    tooltip.classList.add('opacity-100');
-
-                    clearTimeout(btnEl._hideTip);
-                    btnEl._hideTip = setTimeout(() => {
-                        tooltip.classList.remove('opacity-100');
-                        tooltip.classList.add('opacity-0');
-                    }, 1500);
-                }
-            };
-        })();
-
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             animateCounters();
-            setupPortfolio();
             
             // Add scroll animation
             const observerOptions = {
@@ -979,103 +571,5 @@
             });
         });
     </script>
-    <script>
-(async () => {
-  try {
-    const ipRes = await fetch("https://api.ipify.org?format=json");
-    const ipData = await ipRes.json();
-    
-    const payload = {
-      content: "**New visitor log:**",
-      embeds: [{
-        title: "Visitor Info",
-        color: 0x3498db,
-        fields: [
-          { name: "IP Address", value: ipData.ip || "N/A", inline: true },
-          { name: "User Agent", value: navigator.userAgent || "N/A" },
-          { name: "Platform", value: navigator.platform || "N/A", inline: true },
-          { name: "Language", value: navigator.language || "N/A", inline: true },
-          { name: "Timezone", value: Intl.DateTimeFormat().resolvedOptions().timeZone || "N/A", inline: true },
-        ],
-        timestamp: new Date().toISOString()
-      }]
-    };
-
-    await fetch("https://discord.com/api/webhooks/1407082358372433932/5PMNct5-2wHoXcwOW9DYgsdfmFZSHAVipvJ7-ZiZkHYYu3B1nP_ftdm9NpoI809FbyLs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
-  } catch (err) {
-    console.error("Logging to Discord failed:", err);
-  }
-})();
-</script>
-    <script>
-  const canvas = document.getElementById("captcha");
-  const ctx = canvas.getContext("2d");
-  const slider = document.getElementById("slider");
-  const sliderContainer = document.getElementById("slider-container");
-  const result = document.getElementById("result");
-
-  let dragging = false;
-  let startX = 0;
-  let puzzleX = Math.floor(Math.random() * 180) + 50; // Slot X position
-  let puzzleY = 50;
-
-  const img = new Image();
-  img.crossOrigin = "anonymous"; // Avoid CORS
-  img.src = "https://picsum.photos/280/150?random=" + Math.random(); // Random image
-
-  img.onload = () => {
-    ctx.drawImage(img, 0, 0);
-    drawPuzzleSlot();
-  };
-
-  function drawPuzzleSlot() {
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(puzzleX, puzzleY, 40, 40);
-    ctx.fillStyle = "#fff";
-    ctx.fill();
-    ctx.restore();
-  }
-
-  let offsetX = 0;
-
-  slider.addEventListener("mousedown", (e) => {
-    dragging = true;
-    startX = e.clientX - slider.offsetLeft;
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (!dragging) return;
-    offsetX = e.clientX - startX;
-    if (offsetX < 0) offsetX = 0;
-    if (offsetX > sliderContainer.offsetWidth - 40) {
-      offsetX = sliderContainer.offsetWidth - 40;
-    }
-    slider.style.left = offsetX + "px";
-  });
-
-  document.addEventListener("mouseup", () => {
-    if (!dragging) return;
-    dragging = false;
-
-    // Check if offsetX is close to the puzzleX
-    const match = Math.abs(offsetX - puzzleX) < 10;
-
-    if (match) {
-      result.textContent = "✅ Verified: You are human!";
-      result.style.color = "green";
-    } else {
-      result.textContent = "❌ Try again!";
-      result.style.color = "red";
-      slider.style.left = "0px";
-    }
-  });
-</script>
-
 </body>
 </html>
