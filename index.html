@@ -100,15 +100,44 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--darker);
             color: #e2e8f0;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background: linear-gradient(-45deg, #090511, #0f0a19, #160b2e, #1d0e3d);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+        }
+        
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(9, 5, 17, 0.85);
+            z-index: -1;
         }
         
         .container {
@@ -141,14 +170,6 @@
                         0 0 25px rgba(138, 43, 226, 0.6),
                         0 0 35px rgba(138, 43, 226, 0.3);
             transform: translateY(-3px) scale(1.02);
-        }
-        
-        .particle {
-            position: absolute;
-            background: linear-gradient(90deg, rgba(138, 43, 226, 0.1), rgba(147, 112, 219, 0.3), rgba(138, 43, 226, 0.1));
-            z-index: -1;
-            opacity: 0.3;
-            border-radius: 50%;
         }
         
         .status-dot {
@@ -229,20 +250,6 @@
         
         button:hover::before, .btn:hover::before {
             opacity: 1;
-        }
-        
-        @keyframes particle-move {
-            0% { 
-                transform: translateY(0) rotate(0deg) scale(1); 
-                opacity: 0.3;
-            }
-            50% { 
-                opacity: 0.6;
-            }
-            100% { 
-                transform: translateY(-100vh) rotate(360deg) scale(1.5); 
-                opacity: 0;
-            }
         }
         
         /* Glassmorphism effect */
@@ -354,12 +361,23 @@
             .skill-card:hover, .service-card:hover, .pricing-card:hover {
                 transform: translateY(-5px);
             }
+            
+            .video-background video {
+                width: 300%;
+                left: -100%;
+            }
         }
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Particle Background -->
-    <div id="particles"></div>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-digital-waves-9883-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="video-overlay"></div>
     
     <header class="w-full pt-12 pb-20">
         <div class="container mx-auto px-4">
@@ -699,38 +717,6 @@
     </footer>
     
     <script>
-        // Particle background
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const particleCount = Math.floor(window.innerWidth / 8);
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random properties
-                const size = Math.random() * 3 + 1;
-                const posX = Math.random() * window.innerWidth;
-                const posY = Math.random() * window.innerHeight;
-                const opacity = Math.random() * 0.4 + 0.1;
-                const animationDuration = Math.random() * 20 + 10;
-                const delay = Math.random() * 5;
-                const blur = Math.random() * 5 + 2;
-                
-                // Apply styles
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}px`;
-                particle.style.top = `${posY}px`;
-                particle.style.opacity = opacity;
-                particle.style.filter = `blur(${blur}px)`;
-                particle.style.animation = `particle-move ${animationDuration}s linear ${delay}s infinite, glow 4s ease-in-out ${delay}s infinite alternate`;
-                particle.style.borderRadius = '50%';
-                
-                container.appendChild(particle);
-            }
-        }
-        
         // Animated counters
         function animateCounters() {
             const projects = document.getElementById('projectsCount');
@@ -970,7 +956,6 @@
 
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
             animateCounters();
             setupPortfolio();
             
