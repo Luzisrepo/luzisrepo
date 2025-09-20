@@ -519,7 +519,18 @@
     </style>
 </head>
     <!-- Audio element -->
-  <audio id="clickSound" src="./sound1.mp3"></audio>
+  <audio id="clickSound" preload="auto">
+    <source src="sound1.mp3" type="audio/mpeg">
+    <source src="sound1.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- Audio element for the song - add controls for testing -->
+<audio id="bg-music" controls preload="auto" loop>
+    <source src="song1.mp3" type="audio/mpeg">
+    <source src="song1.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+</audio>
 
   <script>
     // Get the audio element
