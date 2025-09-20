@@ -395,321 +395,520 @@
                 transform: translateY(-5px);
             }
         }
+
+        /* Enter Screen Styles */
+        #enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0a19 0%, #1a1030 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .enter-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        .enter-logo {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #8a2be2;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        .enter-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #8a2be2, #ba55d3, #9370db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        .enter-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: #d8bfd8;
+        }
+
+        .enter-button {
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #8a2be2, #9932cc);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        .enter-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
+        }
+
+        .enter-button:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: linear-gradient(45deg, #8a2be2, #9932cc, #ba55d3, #9370db, #8a2be2);
+            background-size: 400%;
+            border-radius: 50px;
+            animation: steam 20s linear infinite;
+        }
+
+        @keyframes steam {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 400% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .audio-controls {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 150px;
+            height: 5px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #8a2be2;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+        }
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Starfield Background -->
-    <canvas id="starfield"></canvas>
-    
-    <!-- Shooting Stars Canvas -->
-    <canvas id="shooting-stars"></canvas>
-    
-    <header class="w-full pt-12 pb-20">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-8 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold neon-text text-gradient">
-                        <a href="./xedni.html" class="hover:underline transition-all duration-300">Rayzz</a> <span class="status-dot"></span>
-                    </h1>
-                    <p class="text-secondary text-lg mt-3 typewriter">
-                        Life just isn't enjoyable without a filter in your mouth.
-                    </p>
-                </div>
-                
-                <div class="flex flex-wrap gap-3">
-                    <button onclick="copyEmail()" class="relative px-6 py-3 bg-secondary/20 hover:bg-accent/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
-                        <i class="fas fa-envelope mr-2"></i>Copy Email
-                        <span id="tooltip" class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
-                            Copied!
-                        </span>
-                    </button>
-                    <button onclick="copyDiscord()" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
-                        <i class="fab fa-discord mr-2"></i>Discord
-                    </button>
-                    <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
-                        <i class="fab fa-github mr-2"></i>GitHub
-                    </button>
-                </div>
+    <!-- Enter Screen -->
+    <div id="enter-screen">
+        <div class="enter-content">
+            <div class="enter-logo">
+                <i class="fas fa-star"></i>
             </div>
-            
-            <div class="mt-12 max-w-3xl glass p-8 rounded-2xl border border-white/5">
-                <p class="text-lg text-gray-300 leading-relaxed">
-                    I build and automate everything — from Discord bots and web apps to cloud-deployed AI services. 
-                    Explore my work, my skills, and ways to connect with me.
-                </p>
-                
-                <div class="mt-8 flex flex-wrap gap-4">
-                    <button onclick="shareProfile(this)" class="relative px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
-                        <i class="fas fa-share-alt mr-2"></i>Share
-                        <span class="share-tooltip absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
-                            Copied!
-                        </span>
-                    </button>
-                    <button onclick="toggleQR()" class="px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
-                        <i class="fas fa-qrcode mr-2"></i>Show QR
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-    
-    <div id="qrModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm">
-        <div class="bg-darker/90 p-8 rounded-2xl max-w-md relative border border-primary/30 neon-border">
-            <button onclick="toggleQR()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-300">
-                <i class="fas fa-times text-xl"></i>
+            <h1 class="enter-title">RAYZZ</h1>
+            <p class="enter-subtitle">Welcome to my corner. Click enter to explore it!</p>
+            <button class="enter-button" id="enter-button">
+                ENTER
             </button>
-            <h3 class="text-xl font-bold mb-4 text-center text-gradient">Scan to connect</h3>
-            <div class="qr-code bg-white p-4 rounded-xl flex items-center justify-center">
-                <img src="frame.png" alt="QR Code" class="w-48 h-48 object-contain" />
+            <div class="audio-controls">
+                <i class="fas fa-volume-up text-purple-400"></i>
+                <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider" id="volume-control">
             </div>
-            <p class="mt-4 text-center text-gray-300">Scan this QR code to save my contact</p>
         </div>
     </div>
     
-    <main class="flex-1 w-full">
-        <div class="container mx-auto px-4 py-12">
-            <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Skills & Expertise</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="skill-card p-6 rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-laptop-code"></i></div>
-                            <h3 class="text-xl font-bold text-gradient">Programming Languages</h3>
-                        </div>
-                        <ul class="space-y-2">
-                            <li>JavaScript/TypeScript (Expert)</li>
-                            <li>Python (Advanced)</li>
-                            <li>C++ (Intermediate)</li>
-                            <li>Java (Intermediate)</li>
-                        </ul>
+    <!-- Main Website Content (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        <!-- Starfield Background -->
+        <canvas id="starfield"></canvas>
+        
+        <!-- Shooting Stars Canvas -->
+        <canvas id="shooting-stars"></canvas>
+        
+        <header class="w-full pt-12 pb-20">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-8 md:mb-0">
+                        <h1 class="text-4xl md:text-5xl font-bold neon-text text-gradient">
+                            <a href="./xedni.html" class="hover:underline transition-all duration-300">Rayzz</a> <span class="status-dot"></span>
+                        </h1>
+                        <p class="text-secondary text-lg mt-3 typewriter">
+                            Life just isn't enjoyable without a filter in your mouth.
+                        </p>
                     </div>
                     
-                    <div class="skill-card p-6 rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-globe"></i></div>
-                            <h3 class="text-xl font-bold text-gradient">Web Development</h3>
-                        </div>
-                        <ul class="space-y-2">
-                            <li>React & Next.js</li>
-                            <li>Node.js & Express</li>
-                            <li>Tailwind CSS</li>
-                            <li>REST & GraphQL APIs</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="skill-card p-6 rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-database"></i></div>
-                            <h3 class="text-xl font-bold text-gradient">Database</h3>
-                        </div>
-                        <ul class="space-y-2">
-                            <li>MongoDB</li>
-                            <li>PostgreSQL</li>
-                            <li>Firebase</li>
-                            <li>Redis</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="skill-card p-6 rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-cloud"></i></div>
-                            <h3 class="text-xl font-bold text-gradient">DevOps & Cloud</h3>
-                        </div>
-                        <ul class="space-y-2">
-                            <li>Docker & Kubernetes</li>
-                            <li>AWS & GCP</li>
-                            <li>CI/CD Pipelines</li>
-                            <li>Nginx & Apache</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="skill-card p-6 rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-cogs"></i></div>
-                            <h3 class="text-xl font-bold text-gradient">Automation</h3>
-                        </div>
-                        <ul class="space-y-2">
-                            <li>Discord Bots</li>
-                            <li>Web Scraping</li>
-                            <li>Browser Extensions</li>
-                            <li>Scripting</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="skill-card p-6 rounded-2xl">
-                        <div class="flex items-center mb-4">
-                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-brain"></i></div>
-                            <h3 class="text-xl font-bold text-gradient">AI/ML</h3>
-                        </div>
-                        <ul class="space-y-2">
-                            <li>TensorFlow/PyTorch</li>
-                            <li>NLP & Computer Vision</li>
-                            <li>LLM Integration</li>
-                            <li>Data Analysis</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">By The Numbers</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="stat-card p-8 rounded-2xl text-center">
-                        <div class="text-5xl font-bold text-gradient mb-2" id="projectsCount">0</div>
-                        <h3 class="text-xl">Projects Completed</h3>
-                    </div>
-                    
-                    <div class="stat-card p-8 rounded-2xl text-center">
-                        <div class="text-5xl font-bold text-gradient mb-2" id="clientsCount">0</div>
-                        <h3 class="text-xl">Happy Clients</h3>
-                    </div>
-                    
-                    <div class="stat-card p-8 rounded-2xl text-center">
-                        <div class="text-5xl font-bold text-gradient mb-2" id="awardsCount">0</div>
-                        <h3 class="text-xl">Awards Won</h3>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Services Offered</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="service-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-desktop"></i></div>
-                        <h3 class="text-xl font-bold mb-2 text-gradient">Full-stack Web Apps</h3>
-                        <p class="text-gray-300">Custom web applications with modern frameworks and scalable backends.</p>
-                    </div>
-                    
-                    <div class="service-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-robot"></i></div>
-                        <h3 class="text-xl font-bold mb-2 text-gradient">Discord Bot Development</h3>
-                        <p class="text-gray-300">Feature-rich bots for moderation, utilities, games, and community management.</p>
-                    </div>
-                    
-                    <div class="service-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-ai"></i></div>
-                        <h3 class="text-xl font-bold mb-2 text-gradient">Machine Learning & AI</h3>
-                        <p class="text-gray-300">Custom AI solutions, model training, and smart automation.</p>
-                    </div>
-                    
-                    <div class="service-card p-6 rounded-2xl text-center">
-                        <div class="text-4xl mb-4 text-primary"><i class="fas fa-bolt"></i></div>
-                        <h3 class="text-xl font-bold mb-2 text-gradient">Automation & DevOps</h3>
-                        <p class="text-gray-300">Workflow automation, CI/CD pipelines, and cloud deployments.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Pricing</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="pricing-card p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold mb-4 text-gradient">Website Building</h3>
-                        <div class="text-4xl font-bold text-gradient mb-6">€199+</div>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Simple contact/landing page</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>1–2 portfolio sections</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>SEO-ready & mobile-friendly</span>
-                            </li>
-                        </ul>
-                        <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
-                            Get Started
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="copyEmail()" class="relative px-6 py-3 bg-secondary/20 hover:bg-accent/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fas fa-envelope mr-2"></i>Copy Email
+                            <span id="tooltip" class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
+                                Copied!
+                            </span>
                         </button>
-                    </div>
-                    
-                    <div class="pricing-card p-8 rounded-2xl relative neon-border scale-105">
-                        <div class="absolute top-0 right-0 bg-gradient-to-r from-primary to-accent text-white px-4 py-1 rounded-bl-xl rounded-tr-xl text-sm font-bold">
-                            POPULAR
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-gradient">Plugin Building</h3>
-                        <div class="text-4xl font-bold text-gradient mb-6">€349+</div>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Custom browser extensions</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Discord bots & automation scripts</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Lightweight API integrations</span>
-                            </li>
-                        </ul>
-                        <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
-                            Get Started
+                        <button onclick="copyDiscord()" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fab fa-discord mr-2"></i>Discord
                         </button>
-                    </div>
-                    
-                    <div class="pricing-card p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold mb-4 text-gradient">Advanced Projects</h3>
-                        <div class="text-4xl font-bold text-gradient mb-6">€499+</div>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>AI & ML integrations</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Cloud deployments (AWS, Docker)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-primary mr-2">✓</span>
-                                <span>Custom automation pipelines</span>
-                            </li>
-                        </ul>
-                        <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
-                            Get Started
+                        <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fab fa-github mr-2"></i>GitHub
                         </button>
                     </div>
                 </div>
                 
-                <p class="text-center mt-8 text-gray-400">
-                    * Prices are starting points. Final cost depends on project complexity and requirements.
-                </p>
-            </section>
-        </div>
-    </main>
-    
-    <footer class="py-12 w-full glass mt-20">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h2 class="text-2xl font-bold neon-text text-gradient">Rayzz</h2>
-                    <p class="text-gray-400 mt-2">© 2025 All rights reserved</p>
-                </div>
-                
-                <div class="flex gap-4">
-                    <a href="https://github.com/luzisrepo" target="_blank" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-
-                    <a href="mailto:andrrr.discord@gmail.com" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
-                        <i class="fas fa-envelope text-xl"></i>
-                    </a>
-
-                    <button onclick="copyDiscord()" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
-                        <i class="fab fa-discord text-xl"></i>
-                    </button>
+                <div class="mt-12 max-w-3xl glass p-8 rounded-2xl border border-white/5">
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        I build and automate everything — from Discord bots and web apps to cloud-deployed AI services. 
+                        Explore my work, my skills, and ways to connect with me.
+                    </p>
+                    
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <button onclick="shareProfile(this)" class="relative px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fas fa-share-alt mr-2"></i>Share
+                            <span class="share-tooltip absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
+                                Copied!
+                            </span>
+                        </button>
+                        <button onclick="toggleQR()" class="px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fas fa-qrcode mr-2"></i>Show QR
+                        </button>
+                    </div>
                 </div>
             </div>
+        </header>
+        
+        <div id="qrModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm">
+            <div class="bg-darker/90 p-8 rounded-2xl max-w-md relative border border-primary/30 neon-border">
+                <button onclick="toggleQR()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-300">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <h3 class="text-xl font-bold mb-4 text-center text-gradient">Scan to connect</h3>
+                <div class="qr-code bg-white p-4 rounded-xl flex items-center justify-center">
+                    <img src="frame.png" alt="QR Code" class="w-48 h-48 object-contain" />
+                </div>
+                <p class="mt-4 text-center text-gray-300">Scan this QR code to save my contact</p>
+            </div>
         </div>
-    </footer>
+        
+        <main class="flex-1 w-full">
+            <div class="container mx-auto px-4 py-12">
+                <section class="mb-20">
+                    <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Skills & Expertise</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="skill-card p-6 rounded-2xl">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-laptop-code"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">Programming Languages</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>JavaScript/TypeScript (Expert)</li>
+                                <li>Python (Advanced)</li>
+                                <li>C++ (Intermediate)</li>
+                                <li>Java (Intermediate)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-6 rounded-2xl">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-globe"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">Web Development</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>React & Next.js</li>
+                                <li>Node.js & Express</li>
+                                <li>Tailwind CSS</li>
+                                <li>REST & GraphQL APIs</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-6 rounded-2xl">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-database"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">Database</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>MongoDB</li>
+                                <li>PostgreSQL</li>
+                                <li>Firebase</li>
+                                <li>Redis</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-6 rounded-2xl">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-cloud"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">DevOps & Cloud</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>Docker & Kubernetes</li>
+                                <li>AWS & GCP</li>
+                                <li>CI/CD Pipelines</li>
+                                <li>Nginx & Apache</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-6 rounded-2xl">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-cogs"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">Automation</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>Discord Bots</li>
+                                <li>Web Scraping</li>
+                                <li>Browser Extensions</li>
+                                <li>Scripting</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-6 rounded-2xl">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-brain"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">AI/ML</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>TensorFlow/PyTorch</li>
+                                <li>NLP & Computer Vision</li>
+                                <li>LLM Integration</li>
+                                <li>Data Analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="mb-20">
+                    <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">By The Numbers</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="stat-card p-8 rounded-2xl text-center">
+                            <div class="text-5xl font-bold text-gradient mb-2" id="projectsCount">0</div>
+                            <h3 class="text-xl">Projects Completed</h3>
+                        </div>
+                        
+                        <div class="stat-card p-8 rounded-2xl text-center">
+                            <div class="text-5xl font-bold text-gradient mb-2" id="clientsCount">0</div>
+                            <h3 class="text-xl">Happy Clients</h3>
+                        </div>
+                        
+                        <div class="stat-card p-8 rounded-2xl text-center">
+                            <div class="text-5xl font-bold text-gradient mb-2" id="awardsCount">0</div>
+                            <h3 class="text-xl">Awards Won</h3>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="mb-20">
+                    <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Services Offered</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="service-card p-6 rounded-2xl text-center">
+                            <div class="text-4xl mb-4 text-primary"><i class="fas fa-desktop"></i></div>
+                            <h3 class="text-xl font-bold mb-2 text-gradient">Full-stack Web Apps</h3>
+                            <p class="text-gray-300">Custom web applications with modern frameworks and scalable backends.</p>
+                        </div>
+                        
+                        <div class="service-card p-6 rounded-2xl text-center">
+                            <div class="text-4xl mb-4 text-primary"><i class="fas fa-robot"></i></div>
+                            <h3 class="text-xl font-bold mb-2 text-gradient">Discord Bot Development</h3>
+                            <p class="text-gray-300">Feature-rich bots for moderation, utilities, games, and community management.</p>
+                        </div>
+                        
+                        <div class="service-card p-6 rounded-2xl text-center">
+                            <div class="text-4xl mb-4 text-primary"><i class="fas fa-ai"></i></div>
+                            <h3 class="text-xl font-bold mb-2 text-gradient">Machine Learning & AI</h3>
+                            <p class="text-gray-300">Custom AI solutions, model training, and smart automation.</p>
+                        </div>
+                        
+                        <div class="service-card p-6 rounded-2xl text-center">
+                            <div class="text-4xl mb-4 text-primary"><i class="fas fa-bolt"></i></div>
+                            <h3 class="text-xl font-bold mb-2 text-gradient">Automation & DevOps</h3>
+                            <p class="text-gray-300">Workflow automation, CI/CD pipelines, and cloud deployments.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="mb-20">
+                    <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Pricing</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="pricing-card p-8 rounded-2xl">
+                            <h3 class="text-2xl font-bold mb-4 text-gradient">Website Building</h3>
+                            <div class="text-4xl font-bold text-gradient mb-6">€199+</div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span>Simple contact/landing page</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span>1–2 portfolio sections</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span>SEO-ready & mobile-friendly</span>
+                                </li>
+                            </ul>
+                            <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
+                                Get Started
+                            </button>
+                        </div>
+                        
+                        <div class="pricing-card p-8 rounded-2xl relative neon-border scale-105">
+                            <div class="absolute top-0 right-0 bg-gradient-to-r from-primary to-accent text-white px-4 py-1 rounded-bl-xl rounded-tr-xl text-sm font-bold">
+                                POPULAR
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-gradient">Plugin Building</h3>
+                            <div class="text-4xl font-bold text-gradient mb-6">€349+</div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span>Custom browser extensions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span>Discord bots & automation scripts</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span>Lightweight API integrations</span>
+                                </li>
+                            </ul>
+                            <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
+                                Get Started
+                            </button>
+                        </div>
+                        
+                        <div class="pricing-card p-6 rounded-2xl">
+                            <h3 class="text-2xl font-bold mb-4 text-gradient">Advanced Projects</h3>
+                            <div class="text-4xl font-bold text-gradient mb-6">€499+</div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span>AI & ML integrations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span>Cloud deployments (AWS, Docker)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span>Custom automation pipelines</span>
+                                </li>
+                            </ul>
+                            <button class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center mt-8 text-gray-400">
+                        * Prices are starting points. Final cost depends on project complexity and requirements.
+                    </p>
+                </section>
+            </div>
+        </main>
+        
+        <footer class="py-12 w-full glass mt-20">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <h2 class="text-2xl font-bold neon-text text-gradient">Rayzz</h2>
+                        <p class="text-gray-400 mt-2">© 2025 All rights reserved</p>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <a href="https://github.com/luzisrepo" target="_blank" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+
+                        <a href="mailto:andrrr.discord@gmail.com" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+
+                        <button onclick="copyDiscord()" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                            <i class="fab fa-discord text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Audio element for the song -->
+    <audio id="bg-music" loop>
+        <source src="song1.mp4" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
     
     <script>
+        // Enter screen functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const enterScreen = document.getElementById('enter-screen');
+            const enterButton = document.getElementById('enter-button');
+            const mainContent = document.getElementById('main-content');
+            const bgMusic = document.getElementById('bg-music');
+            const volumeControl = document.getElementById('volume-control');
+            
+            // Set initial volume
+            bgMusic.volume = volumeControl.value;
+            
+            // Update volume when slider changes
+            volumeControl.addEventListener('input', function() {
+                bgMusic.volume = this.value;
+            });
+            
+            // Handle enter button click
+            enterButton.addEventListener('click', function() {
+                // Fade out the enter screen
+                enterScreen.style.opacity = '0';
+                
+                // Play the music
+                bgMusic.play().catch(error => {
+                    console.log('Autoplay prevented:', error);
+                });
+                
+                // Show main content after fade out
+                setTimeout(function() {
+                    enterScreen.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                    
+                    // Initialize the main website components
+                    initStarfield();
+                    initShootingStars();
+                    animateCounters();
+                }, 800);
+            });
+            
+            // Add some floating animation to the enter screen elements
+            const enterLogo = document.querySelector('.enter-logo');
+            const enterTitle = document.querySelector('.enter-title');
+            
+            setTimeout(function() {
+                enterLogo.style.transition = 'transform 2s ease-in-out';
+                enterLogo.style.transform = 'translateY(-10px)';
+                
+                enterTitle.style.transition = 'transform 2s ease-in-out';
+                enterTitle.style.transform = 'scale(1.05)';
+            }, 1000);
+        });
+
         // Starfield shader background
         function initStarfield() {
             const canvas = document.getElementById('starfield');
@@ -1052,9 +1251,10 @@
         
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            initStarfield();
-            initShootingStars();
-            animateCounters();
+            // Don't initialize these yet - wait for enter screen
+            // initStarfield();
+            // initShootingStars();
+            // animateCounters();
             
             // Add scroll animation
             const observerOptions = {
