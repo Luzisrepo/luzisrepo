@@ -106,9 +106,15 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background: linear-gradient(-45deg, #090511, #0f0a19, #160b2e, #1d0e3d);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+        }
+        
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
         
         .container {
@@ -141,14 +147,6 @@
                         0 0 25px rgba(138, 43, 226, 0.6),
                         0 0 35px rgba(138, 43, 226, 0.3);
             transform: translateY(-3px) scale(1.02);
-        }
-        
-        .particle {
-            position: absolute;
-            background: linear-gradient(90deg, rgba(138, 43, 226, 0.1), rgba(147, 112, 219, 0.3), rgba(138, 43, 226, 0.1));
-            z-index: -1;
-            opacity: 0.3;
-            border-radius: 50%;
         }
         
         .status-dot {
@@ -231,20 +229,6 @@
             opacity: 1;
         }
         
-        @keyframes particle-move {
-            0% { 
-                transform: translateY(0) rotate(0deg) scale(1); 
-                opacity: 0.3;
-            }
-            50% { 
-                opacity: 0.6;
-            }
-            100% { 
-                transform: translateY(-100vh) rotate(360deg) scale(1.5); 
-                opacity: 0;
-            }
-        }
-        
         /* Glassmorphism effect */
         .glass {
             background: rgba(15, 10, 25, 0.25);
@@ -261,6 +245,41 @@
             -webkit-text-fill-color: transparent;
             background-size: 200% 200%;
             animation: gradient 3s ease infinite;
+        }
+        
+        /* Animated title gradient */
+        .animated-gradient {
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #9370db,
+                #9932cc,
+                #8a2be2
+            );
+            background-size: 300% 100%;
+            animation: gradient 8s ease infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .animated-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #9370db,
+                #9932cc,
+                #8a2be2
+            );
+            background-size: 300% 100%;
+            animation: gradient 8s ease infinite;
         }
         
         /* Custom scrollbar */
@@ -358,8 +377,8 @@
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Particle Background -->
-    <div id="particles"></div>
+    <!-- Starfield Background -->
+    <canvas id="starfield"></canvas>
     
     <header class="w-full pt-12 pb-20">
         <div class="container mx-auto px-4">
@@ -426,7 +445,7 @@
     <main class="flex-1 w-full">
         <div class="container mx-auto px-4 py-12">
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-12 neon-text text-center"><span class="text-gradient">Skills & Expertise</span></h2>
+                <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Skills & Expertise</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="skill-card p-6 rounded-2xl">
@@ -510,7 +529,7 @@
             </section>
             
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-12 neon-text text-center"><span class="text-gradient">By The Numbers</span></h2>
+                <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">By The Numbers</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="stat-card p-8 rounded-2xl text-center">
@@ -531,7 +550,7 @@
             </section>
             
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-12 neon-text text-center"><span class="text-gradient">Services Offered</span></h2>
+                <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Services Offered</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="service-card p-6 rounded-2xl text-center">
@@ -561,7 +580,7 @@
             </section>
             
             <section class="mb-20">
-                <h2 class="text-3xl font-bold mb-12 neon-text text-center"><span class="text-gradient">Pricing</span></h2>
+                <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Pricing</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="pricing-card p-8 rounded-2xl">
@@ -699,36 +718,159 @@
     </footer>
     
     <script>
-        // Particle background
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const particleCount = Math.floor(window.innerWidth / 8);
+        // Starfield shader background
+        function initStarfield() {
+            const canvas = document.getElementById('starfield');
+            const gl = canvas.getContext('webgl');
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random properties
-                const size = Math.random() * 3 + 1;
-                const posX = Math.random() * window.innerWidth;
-                const posY = Math.random() * window.innerHeight;
-                const opacity = Math.random() * 0.4 + 0.1;
-                const animationDuration = Math.random() * 20 + 10;
-                const delay = Math.random() * 5;
-                const blur = Math.random() * 5 + 2;
-                
-                // Apply styles
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}px`;
-                particle.style.top = `${posY}px`;
-                particle.style.opacity = opacity;
-                particle.style.filter = `blur(${blur}px)`;
-                particle.style.animation = `particle-move ${animationDuration}s linear ${delay}s infinite, glow 4s ease-in-out ${delay}s infinite alternate`;
-                particle.style.borderRadius = '50%';
-                
-                container.appendChild(particle);
+            if (!gl) {
+                console.error('WebGL not supported');
+                return;
             }
+            
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            }
+            
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            
+            // Vertex shader source
+            const vsSource = `
+                attribute vec2 aPosition;
+                void main() {
+                    gl_Position = vec4(aPosition, 0.0, 1.0);
+                }
+            `;
+            
+            // Fragment shader source (purple starfield)
+            const fsSource = `
+                precision highp float;
+                
+                uniform float uTime;
+                uniform vec2 uResolution;
+                
+                // Purple color palette
+                vec3 purple1 = vec3(0.54, 0.17, 0.89);
+                vec3 purple2 = vec3(0.58, 0.44, 0.86);
+                vec3 purple3 = vec3(0.60, 0.20, 0.80);
+                
+                // Random function
+                float random(vec2 st) {
+                    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+                }
+                
+                // Star function
+                float star(vec2 uv, float flare) {
+                    float d = length(uv);
+                    float m = 0.05 / d;
+                    
+                    // Star rays
+                    float rays = max(0.0, 1.0 - abs(uv.x * uv.y * 1000.0));
+                    m += rays * flare;
+                    
+                    // Center glow
+                    m *= smoothstep(1.0, 0.2, d);
+                    return m;
+                }
+                
+                void main() {
+                    vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution.xy) / min(uResolution.y, uResolution.x);
+                    uv *= 5.0;
+                    
+                    vec3 color = vec3(0.0);
+                    
+                    // Background gradient
+                    color += mix(vec3(0.05, 0.03, 0.10), vec3(0.08, 0.04, 0.16), length(uv) * 0.2);
+                    
+                    // Layer 1: Small distant stars
+                    vec2 layer1 = floor(uv * 100.0) / 100.0;
+                    float star1 = random(layer1);
+                    if (star1 > 0.99) {
+                        vec2 starUV = fract(uv * 100.0) - 0.5;
+                        color += star(starUV, 0.0) * mix(purple1, purple2, random(layer1 + 0.3)) * 0.8;
+                    }
+                    
+                    // Layer 2: Medium stars
+                    vec2 layer2 = floor(uv * 50.0) / 50.0;
+                    float star2 = random(layer2);
+                    if (star2 > 0.98) {
+                        vec2 starUV = fract(uv * 50.0) - 0.5;
+                        color += star(starUV, 0.3) * mix(purple2, purple3, random(layer2 + 0.5)) * 1.2;
+                    }
+                    
+                    // Layer 3: Large close stars
+                    vec2 layer3 = floor(uv * 20.0) / 20.0;
+                    float star3 = random(layer3);
+                    if (star3 > 0.97) {
+                        vec2 starUV = fract(uv * 20.0) - 0.5;
+                        color += star(starUV, 0.6) * mix(purple1, purple3, random(layer3 + 0.7)) * 1.5;
+                    }
+                    
+                    // Twinkling effect
+                    float twinkle = sin(uTime * (random(uv) + 0.5) * 5.0) * 0.5 + 0.5;
+                    color *= 0.8 + 0.4 * twinkle;
+                    
+                    gl_FragColor = vec4(color, 1.0);
+                }
+            `;
+            
+            // Create shader program
+            const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+            gl.shaderSource(vertexShader, vsSource);
+            gl.compileShader(vertexShader);
+            
+            const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+            gl.shaderSource(fragmentShader, fsSource);
+            gl.compileShader(fragmentShader);
+            
+            const shaderProgram = gl.createProgram();
+            gl.attachShader(shaderProgram, vertexShader);
+            gl.attachShader(shaderProgram, fragmentShader);
+            gl.linkProgram(shaderProgram);
+            gl.useProgram(shaderProgram);
+            
+            // Create a rectangle that covers the entire screen
+            const positions = new Float32Array([
+                -1.0, -1.0,
+                1.0, -1.0,
+                -1.0, 1.0,
+                1.0, 1.0
+            ]);
+            
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+            
+            const aPosition = gl.getAttribLocation(shaderProgram, 'aPosition');
+            gl.enableVertexAttribArray(aPosition);
+            gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+            
+            // Get uniform locations
+            const uTimeLocation = gl.getUniformLocation(shaderProgram, 'uTime');
+            const uResolutionLocation = gl.getUniformLocation(shaderProgram, 'uResolution');
+            
+            // Animation
+            let startTime = Date.now();
+            
+            function animate() {
+                const currentTime = (Date.now() - startTime) / 1000;
+                
+                gl.uniform1f(uTimeLocation, currentTime);
+                gl.uniform2f(uResolutionLocation, canvas.width, canvas.height);
+                
+                gl.clearColor(0.0, 0.0, 0.0, 1.0);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+                
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
         }
         
         // Animated counters
@@ -970,7 +1112,7 @@
 
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
+            initStarfield();
             animateCounters();
             setupPortfolio();
             
