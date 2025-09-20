@@ -106,7 +106,51 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            /* Modern scrollbar styling */
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--darker);
         }
+        
+        /* Modern scrollbar for WebKit browsers */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 10px;
+            border: 2px solid var(--darker);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+        
+        /* Fade-in animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered animation delays */
+        .fade-in.delay-100 { transition-delay: 0.1s; }
+        .fade-in.delay-200 { transition-delay: 0.2s; }
+        .fade-in.delay-300 { transition-delay: 0.3s; }
+        .fade-in.delay-400 { transition-delay: 0.4s; }
+        .fade-in.delay-500 { transition-delay: 0.5s; }
+        .fade-in.delay-600 { transition-delay: 0.6s; }
         
         #starfield {
             position: fixed;
@@ -301,24 +345,6 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--darker);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, var(--accent), var(--primary));
         }
         
         /* Hover effect for list items */
@@ -562,7 +588,7 @@
         <header class="w-full pt-12 pb-20">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="mb-8 md:mb-0">
+                    <div class="mb-8 md:mb-0 fade-in">
                         <h1 class="text-4xl md:text-5xl font-bold neon-text text-gradient">
                             <a href="./xedni.html" class="hover:underline transition-all duration-300">Rayzz</a> <span class="status-dot"></span>
                         </h1>
@@ -571,7 +597,7 @@
                         </p>
                     </div>
                     
-                    <div class="flex flex-wrap gap-3">
+                    <div class="flex flex-wrap gap-3 fade-in delay-100">
                         <button onclick="copyEmail()" class="relative px-6 py-3 bg-secondary/20 hover:bg-accent/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
                             <i class="fas fa-envelope mr-2"></i>Copy Email
                             <span id="tooltip" class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
@@ -587,7 +613,7 @@
                     </div>
                 </div>
                 
-                <div class="mt-12 max-w-3xl glass p-8 rounded-2xl border border-white/5">
+                <div class="mt-12 max-w-3xl glass p-8 rounded-2xl border border-white/5 fade-in delay-200">
                     <p class="text-lg text-gray-300 leading-relaxed">
                         I build and automate everything — from Discord bots and web apps to cloud-deployed AI services. 
                         Explore my work, my skills, and ways to connect with me.
@@ -623,11 +649,11 @@
         
         <main class="flex-1 w-full">
             <div class="container mx-auto px-4 py-12">
-                <section class="mb-20">
+                <section class="mb-20 fade-in">
                     <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Skills & Expertise</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="skill-card p-6 rounded-2xl">
+                        <div class="skill-card p-6 rounded-2xl fade-in delay-100">
                             <div class="flex items-center mb-4">
                                 <div class="text-2xl mr-3 text-primary"><i class="fas fa-laptop-code"></i></div>
                                 <h3 class="text-xl font-bold text-gradient">Programming Languages</h3>
@@ -640,7 +666,7 @@
                             </ul>
                         </div>
                         
-                        <div class="skill-card p-6 rounded-2xl">
+                        <div class="skill-card p-6 rounded-2xl fade-in delay-200">
                             <div class="flex items-center mb-4">
                                 <div class="text-2xl mr-3 text-primary"><i class="fas fa-globe"></i></div>
                                 <h3 class="text-xl font-bold text-gradient">Web Development</h3>
@@ -653,7 +679,7 @@
                             </ul>
                         </div>
                         
-                        <div class="skill-card p-6 rounded-2xl">
+                        <div class="skill-card p-6 rounded-2xl fade-in delay-300">
                             <div class="flex items-center mb-4">
                                 <div class="text-2xl mr-3 text-primary"><i class="fas fa-database"></i></div>
                                 <h3 class="text-xl font-bold text-gradient">Database</h3>
@@ -666,7 +692,7 @@
                             </ul>
                         </div>
                         
-                        <div class="skill-card p-6 rounded-2xl">
+                        <div class="skill-card p-6 rounded-2xl fade-in delay-400">
                             <div class="flex items-center mb-4">
                                 <div class="text-2xl mr-3 text-primary"><i class="fas fa-cloud"></i></div>
                                 <h3 class="text-xl font-bold text-gradient">DevOps & Cloud</h3>
@@ -679,7 +705,7 @@
                             </ul>
                         </div>
                         
-                        <div class="skill-card p-6 rounded-2xl">
+                        <div class="skill-card p-6 rounded-2xl fade-in delay-500">
                             <div class="flex items-center mb-4">
                                 <div class="text-2xl mr-3 text-primary"><i class="fas fa-cogs"></i></div>
                                 <h3 class="text-xl font-bold text-gradient">Automation</h3>
@@ -692,7 +718,7 @@
                             </ul>
                         </div>
                         
-                        <div class="skill-card p-6 rounded-2xl">
+                        <div class="skill-card p-6 rounded-2xl fade-in delay-600">
                             <div class="flex items-center mb-4">
                                 <div class="text-2xl mr-3 text-primary"><i class="fas fa-brain"></i></div>
                                 <h3 class="text-xl font-bold text-gradient">AI/ML</h3>
@@ -707,50 +733,50 @@
                     </div>
                 </section>
                 
-                <section class="mb-20">
+                <section class="mb-20 fade-in">
                     <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">By The Numbers</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="stat-card p-8 rounded-2xl text-center">
+                        <div class="stat-card p-8 rounded-2xl text-center fade-in delay-100">
                             <div class="text-5xl font-bold text-gradient mb-2" id="projectsCount">0</div>
                             <h3 class="text-xl">Projects Completed</h3>
                         </div>
                         
-                        <div class="stat-card p-8 rounded-2xl text-center">
+                        <div class="stat-card p-8 rounded-2xl text-center fade-in delay-200">
                             <div class="text-5xl font-bold text-gradient mb-2" id="clientsCount">0</div>
                             <h3 class="text-xl">Happy Clients</h3>
                         </div>
                         
-                        <div class="stat-card p-8 rounded-2xl text-center">
+                        <div class="stat-card p-8 rounded-2xl text-center fade-in delay-300">
                             <div class="text-5xl font-bold text-gradient mb-2" id="awardsCount">0</div>
                             <h3 class="text-xl">Awards Won</h3>
                         </div>
                     </div>
                 </section>
                 
-                <section class="mb-20">
+                <section class="mb-20 fade-in">
                     <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Services Offered</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="service-card p-6 rounded-2xl text-center">
+                        <div class="service-card p-6 rounded-2xl text-center fade-in delay-100">
                             <div class="text-4xl mb-4 text-primary"><i class="fas fa-desktop"></i></div>
                             <h3 class="text-xl font-bold mb-2 text-gradient">Full-stack Web Apps</h3>
                             <p class="text-gray-300">Custom web applications with modern frameworks and scalable backends.</p>
                         </div>
                         
-                        <div class="service-card p-6 rounded-2xl text-center">
+                        <div class="service-card p-6 rounded-2xl text-center fade-in delay-200">
                             <div class="text-4xl mb-4 text-primary"><i class="fas fa-robot"></i></div>
                             <h3 class="text-xl font-bold mb-2 text-gradient">Discord Bot Development</h3>
                             <p class="text-gray-300">Feature-rich bots for moderation, utilities, games, and community management.</p>
                         </div>
                         
-                        <div class="service-card p-6 rounded-2xl text-center">
+                        <div class="service-card p-6 rounded-2xl text-center fade-in delay-300">
                             <div class="text-4xl mb-4 text-primary"><i class="fas fa-ai"></i></div>
                             <h3 class="text-xl font-bold mb-2 text-gradient">Machine Learning & AI</h3>
                             <p class="text-gray-300">Custom AI solutions, model training, and smart automation.</p>
                         </div>
                         
-                        <div class="service-card p-6 rounded-2xl text-center">
+                        <div class="service-card p-6 rounded-2xl text-center fade-in delay-400">
                             <div class="text-4xl mb-4 text-primary"><i class="fas fa-bolt"></i></div>
                             <h3 class="text-xl font-bold mb-2 text-gradient">Automation & DevOps</h3>
                             <p class="text-gray-300">Workflow automation, CI/CD pipelines, and cloud deployments.</p>
@@ -758,11 +784,11 @@
                     </div>
                 </section>
                 
-                <section class="mb-20">
+                <section class="mb-20 fade-in">
                     <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Pricing</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="pricing-card p-8 rounded-2xl">
+                        <div class="pricing-card p-8 rounded-2xl fade-in delay-100">
                             <h3 class="text-2xl font-bold mb-4 text-gradient">Website Building</h3>
                             <div class="text-4xl font-bold text-gradient mb-6">€199+</div>
                             <ul class="space-y-3 mb-8">
@@ -784,7 +810,7 @@
                             </button>
                         </div>
                         
-                        <div class="pricing-card p-8 rounded-2xl relative neon-border scale-105">
+                        <div class="pricing-card p-8 rounded-2xl relative neon-border scale-105 fade-in delay-200">
                             <div class="absolute top-0 right-0 bg-gradient-to-r from-primary to-accent text-white px-4 py-1 rounded-bl-xl rounded-tr-xl text-sm font-bold">
                                 POPULAR
                             </div>
@@ -809,7 +835,7 @@
                             </button>
                         </div>
                         
-                        <div class="pricing-card p-6 rounded-2xl">
+                        <div class="pricing-card p-6 rounded-2xl fade-in delay-300">
                             <h3 class="text-2xl font-bold mb-4 text-gradient">Advanced Projects</h3>
                             <div class="text-4xl font-bold text-gradient mb-6">€499+</div>
                             <ul class="space-y-3 mb-8">
@@ -832,14 +858,14 @@
                         </div>
                     </div>
                     
-                    <p class="text-center mt-8 text-gray-400">
+                    <p class="text-center mt-8 text-gray-400 fade-in delay-400">
                         * Prices are starting points. Final cost depends on project complexity and requirements.
                     </p>
                 </section>
             </div>
         </main>
         
-        <footer class="py-12 w-full glass mt-20">
+        <footer class="py-12 w-full glass mt-20 fade-in">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="mb-6 md:mb-0">
@@ -966,6 +992,9 @@
                     initStarfield();
                     initShootingStars();
                     animateCounters();
+                    
+                    // Initialize scroll animations
+                    initScrollAnimations();
                 }, 800);
             });
             
@@ -981,6 +1010,26 @@
                 enterTitle.style.transform = 'scale(1.05)';
             }, 1000);
         });
+
+        // Initialize scroll animations
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+        }
 
         // Starfield shader background
         function initStarfield() {
@@ -1328,25 +1377,6 @@
             // initStarfield();
             // initShootingStars();
             // animateCounters();
-            
-            // Add scroll animation
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fade-in');
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
-            });
         });
 
         // Other functions (copyEmail, copyDiscord, etc.)
