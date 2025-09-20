@@ -5,34 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rayzz | Sleepy</title>
     <script>
-  const titleText = "Rayzz | Sleepy";
-  const typingSpeed = 150; // milliseconds per character
-  const pauseTime = 1000; // pause before deleting
+        const titleText = "Rayzz | Sleepy";
+        const typingSpeed = 150;
+        const pauseTime = 1000;
 
-  let index = 0;
-  let forward = true;
+        let index = 0;
+        let forward = true;
 
-  function animateTitle() {
-    if (forward) {
-      document.title = titleText.substring(0, index + 1);
-      index++;
-      if (index === titleText.length) {
-        forward = false;
-        setTimeout(animateTitle, pauseTime);
-        return;
-      }
-    } else {
-      document.title = titleText.substring(0, index - 1);
-      index--;
-      if (index === 0) {
-        forward = true;
-      }
-    }
-    setTimeout(animateTitle, typingSpeed);
-  }
+        function animateTitle() {
+            if (forward) {
+                document.title = titleText.substring(0, index + 1);
+                index++;
+                if (index === titleText.length) {
+                    forward = false;
+                    setTimeout(animateTitle, pauseTime);
+                    return;
+                }
+            } else {
+                document.title = titleText.substring(0, index - 1);
+                index--;
+                if (index === 0) {
+                    forward = true;
+                }
+            }
+            setTimeout(animateTitle, typingSpeed);
+        }
 
-  window.onload = animateTitle;
-</script>
+        window.onload = animateTitle;
+    </script>
     <meta name="description" content="Rayzz - Sleep-Deprived Full-Stack Dev">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -516,29 +516,18 @@
             cursor: pointer;
             box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
         }
+
+        .audio-error {
+            display: none;
+            background: rgba(200, 0, 0, 0.2);
+            border: 1px solid rgba(255, 100, 100, 0.5);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
-    <!-- Audio element -->
-  <audio id="clickSound" preload="auto">
-    <source src="sound1.mp3" type="audio/mpeg">
-    <source src="sound1.ogg" type="audio/ogg">
-    Your browser does not support the audio element.
-</audio>
-
-
-
-  <script>
-    // Get the audio element
-    const sound = document.getElementById("clickSound");
-
-    // Listen for left clicks
-    document.addEventListener("mousedown", function(event) {
-      if (event.button === 0) { // 0 = left button
-        sound.currentTime = 0; // rewind if already playing
-        sound.play();
-      }
-    });
-  </script>
 <body class="min-h-screen">
     <!-- Enter Screen -->
     <div id="enter-screen">
@@ -554,6 +543,10 @@
             <div class="audio-controls">
                 <i class="fas fa-volume-up text-purple-400"></i>
                 <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider" id="volume-control">
+                <i class="fas fa-music text-purple-400" id="toggle-music" style="cursor: pointer;"></i>
+            </div>
+            <div id="audio-error" class="audio-error">
+                <p class="text-red-400">Audio file couldn't be loaded. Please check the file path.</p>
             </div>
         </div>
     </div>
@@ -873,12 +866,15 @@
     </div>
     
     <!-- Audio element for the song -->
-    <audio id="bg-music" loop>
-        <source src="song1.mp3" type="audio/mp3">
+    <audio id="bg-music" loop preload="auto">
+        <source src="song1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     
     <script>
+        // Audio context for handling browser autoplay restrictions
+        let audioContext = null;
+
         // Enter screen functionality
         document.addEventListener('DOMContentLoaded', function() {
             const enterScreen = document.getElementById('enter-screen');
@@ -886,6 +882,8 @@
             const mainContent = document.getElementById('main-content');
             const bgMusic = document.getElementById('bg-music');
             const volumeControl = document.getElementById('volume-control');
+            const toggleMusic = document.getElementById('toggle-music');
+            const audioError = document.getElementById('audio-error');
             
             // Set initial volume
             bgMusic.volume = volumeControl.value;
@@ -895,15 +893,69 @@
                 bgMusic.volume = this.value;
             });
             
+            // Toggle music play/pause
+            toggleMusic.addEventListener('click', function() {
+                if (bgMusic.paused) {
+                    bgMusic.play().catch(error => {
+                        console.error('Playback failed:', error);
+                        showAudioError();
+                    });
+                    toggleMusic.classList.remove('fa-play');
+                    toggleMusic.classList.add('fa-pause');
+                } else {
+                    bgMusic.pause();
+                    toggleMusic.classList.remove('fa-pause');
+                    toggleMusic.classList.add('fa-play');
+                }
+            });
+            
+            // Check if audio can play
+            bgMusic.addEventListener('canplay', function() {
+                console.log('Audio can play');
+                audioError.style.display = 'none';
+            });
+            
+            bgMusic.addEventListener('error', function() {
+                console.error('Error loading audio');
+                showAudioError();
+            });
+            
+            function showAudioError() {
+                audioError.style.display = 'block';
+            }
+            
             // Handle enter button click
             enterButton.addEventListener('click', function() {
                 // Fade out the enter screen
                 enterScreen.style.opacity = '0';
                 
-                // Play the music
-                bgMusic.play().catch(error => {
-                    console.log('Autoplay prevented:', error);
-                });
+                // Play the music with improved error handling
+                const playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Audio started successfully
+                        toggleMusic.classList.remove('fa-play');
+                        toggleMusic.classList.add('fa-pause');
+                    }).catch(error => {
+                        console.log('Playback failed, attempting user gesture workaround:', error);
+                        // Show instructions to user
+                        audioError.innerHTML = '<p class="text-red-400">Audio playback blocked. Click anywhere on the page to start music.</p>';
+                        audioError.style.display = 'block';
+                        
+                        // Set up a one-time click handler to start audio
+                        document.addEventListener('click', function resumeAudio() {
+                            bgMusic.play().then(() => {
+                                toggleMusic.classList.remove('fa-play');
+                                toggleMusic.classList.add('fa-pause');
+                                audioError.style.display = 'none';
+                            }).catch(e => {
+                                console.error('Still cannot play audio:', e);
+                            });
+                            document.removeEventListener('click', resumeAudio);
+                        });
+                    });
+                }
                 
                 // Show main content after fade out
                 setTimeout(function() {
