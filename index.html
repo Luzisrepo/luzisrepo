@@ -114,7 +114,17 @@
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: -2;
+        }
+        
+        #shooting-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
+            pointer-events: none;
         }
         
         .container {
@@ -247,21 +257,24 @@
             animation: gradient 3s ease infinite;
         }
         
-        /* Animated title gradient */
+        /* Improved Animated title gradient - Wave effect */
         .animated-gradient {
             background: linear-gradient(
                 90deg,
                 #8a2be2,
                 #9370db,
                 #9932cc,
+                #ba55d3,
+                #9370db,
                 #8a2be2
             );
             background-size: 300% 100%;
-            animation: gradient 8s ease infinite;
+            animation: gradient-wave 8s ease infinite;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
+            display: inline-block;
         }
         
         .animated-gradient::after {
@@ -276,10 +289,18 @@
                 #8a2be2,
                 #9370db,
                 #9932cc,
+                #ba55d3,
+                #9370db,
                 #8a2be2
             );
             background-size: 300% 100%;
-            animation: gradient 8s ease infinite;
+            animation: gradient-wave 8s ease infinite;
+        }
+        
+        @keyframes gradient-wave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         /* Custom scrollbar */
@@ -379,6 +400,9 @@
 <body class="min-h-screen">
     <!-- Starfield Background -->
     <canvas id="starfield"></canvas>
+    
+    <!-- Shooting Stars Canvas -->
+    <canvas id="shooting-stars"></canvas>
     
     <header class="w-full pt-12 pb-20">
         <div class="container mx-auto px-4">
@@ -657,38 +681,6 @@
                     * Prices are starting points. Final cost depends on project complexity and requirements.
                 </p>
             </section>
-            <!--
-            <section class="mb-20">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-                    <h2 class="text-3xl font-bold neon-text"><span class="text-gradient">Service Examples</span></h2>
-                    
-                    <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
-                        <button class="filter-btn px-4 py-2 bg-primary/30 text-white rounded-lg font-medium glass" data-filter="all">
-                            All
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="web">
-                            Web
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="apps">
-                            Apps
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="bots">
-                            Bots
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="ai">
-                            AI
-                        </button>
-                        <button class="filter-btn px-4 py-2 bg-dark/50 border border-gray-700 hover:bg-primary/30 rounded-lg font-medium glass" data-filter="automation">
-                            Automation
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
-                    
-                </div>
-            </section>
-            -->
         </div>
     </main>
     
@@ -872,6 +864,153 @@
             
             animate();
         }
+
+        // Improved Shooting stars animation
+        function initShootingStars() {
+            const canvas = document.getElementById('shooting-stars');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            
+            // Shooting stars array
+            const shootingStars = [];
+            const starCount = 5; // Number of shooting stars
+            
+            // Create shooting stars
+            class ShootingStar {
+                constructor() {
+                    this.reset();
+                }
+                
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height * 0.4;
+                    this.size = Math.random() * 2 + 1;
+                    this.speed = Math.random() * 15 + 8;
+                    this.angle = Math.random() * Math.PI / 4 + Math.PI / 8; // 22.5 to 67.5 degrees
+                    this.length = Math.random() * 80 + 50;
+                    this.active = true;
+                    this.opacity = 1;
+                    this.trail = [];
+                    this.maxTrail = 15;
+                    this.hue = Math.random() * 20 + 270; // Purple hues (270-290)
+                    this.saturation = Math.random() * 30 + 70; // 70-100%
+                }
+                
+                update() {
+                    if (!this.active) return;
+                    
+                    // Update position
+                    this.x += Math.cos(this.angle) * this.speed;
+                    this.y += Math.sin(this.angle) * this.speed;
+                    
+                    // Add to trail
+                    this.trail.push({
+                        x: this.x, 
+                        y: this.y,
+                        size: this.size,
+                        opacity: this.opacity
+                    });
+                    
+                    if (this.trail.length > this.maxTrail) {
+                        this.trail.shift();
+                    }
+                    
+                    // Fade out as it moves
+                    this.opacity -= 0.01;
+                    
+                    // Check if out of screen or faded out
+                    if (this.x > canvas.width || this.y > canvas.height || this.opacity <= 0) {
+                        this.active = false;
+                        setTimeout(() => this.reset(), Math.random() * 5000 + 2000);
+                    }
+                }
+                
+                draw() {
+                    if (!this.active) return;
+                    
+                    // Draw trail with gradient
+                    for (let i = 0; i < this.trail.length; i++) {
+                        const point = this.trail[i];
+                        const progress = i / this.trail.length;
+                        
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, point.size * progress, 0, Math.PI * 2);
+                        
+                        // Create gradient from white to purple
+                        const gradient = ctx.createRadialGradient(
+                            point.x, point.y, 0,
+                            point.x, point.y, point.size * progress
+                        );
+                        
+                        gradient.addColorStop(0, `hsla(${this.hue}, ${this.saturation}%, 100%, ${point.opacity})`);
+                        gradient.addColorStop(0.5, `hsla(${this.hue}, ${this.saturation}%, 80%, ${point.opacity * 0.7})`);
+                        gradient.addColorStop(1, `hsla(${this.hue}, ${this.saturation}%, 60%, 0)`);
+                        
+                        ctx.fillStyle = gradient;
+                        ctx.fill();
+                    }
+                    
+                    // Draw star head with glow
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+                    
+                    const gradient = ctx.createRadialGradient(
+                        this.x, this.y, 0,
+                        this.x, this.y, this.size * 2
+                    );
+                    
+                    gradient.addColorStop(0, `hsla(${this.hue}, ${this.saturation}%, 100%, ${this.opacity})`);
+                    gradient.addColorStop(0.7, `hsla(${this.hue}, ${this.saturation}%, 80%, ${this.opacity * 0.5})`);
+                    gradient.addColorStop(1, `hsla(${this.hue}, ${this.saturation}%, 70%, 0)`);
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+                }
+            }
+            
+            // Initialize shooting stars
+            for (let i = 0; i < starCount; i++) {
+                const star = new ShootingStar();
+                // Stagger the initial appearance
+                setTimeout(() => {
+                    shootingStars.push(star);
+                }, i * 1500);
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw a faint background glow
+                const gradient = ctx.createRadialGradient(
+                    canvas.width / 2, canvas.height / 2, 0,
+                    canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+                );
+                
+                gradient.addColorStop(0, 'hsla(270, 50%, 10%, 0.3)');
+                gradient.addColorStop(1, 'hsla(270, 50%, 5%, 0)');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                shootingStars.forEach(star => {
+                    star.update();
+                    star.draw();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
         
         // Animated counters
         function animateCounters() {
@@ -911,210 +1050,11 @@
             }, 50);
         }
         
-        
-        function setupPortfolio() {
-            const portfolioItems = [
-                {
-                    id: 1,
-                    title: "E-commerce Platform",
-                    category: "web",
-                    description: "Full-stack e-commerce solution with payment integration",
-                    tags: ["React", "Node.js", "MongoDB"]
-                },
-                {
-                    id: 2,
-                    title: "Discord Moderation Bot",
-                    category: "bots",
-                    description: "Advanced moderation and utility bot for large communities",
-                    tags: ["JavaScript", "Discord.js", "MongoDB"]
-                },
-                {
-                    id: 3,
-                    title: "AI Content Generator",
-                    category: "ai",
-                    description: "GPT-powered content creation tool with custom fine-tuning",
-                    tags: ["Python", "TensorFlow", "Flask"]
-                },
-                {
-                    id: 4,
-                    title: "Task Automation System",
-                    category: "automation",
-                    description: "Automated workflow management for business processes",
-                    tags: ["Python", "Selenium", "AWS"]
-                },
-                {
-                    id: 5,
-                    title: "Mobile Food Delivery App",
-                    category: "apps",
-                    description: "Cross-platform food ordering application with real-time tracking",
-                    tags: ["React Native", "Firebase", "Node.js"]
-                },
-                {
-                    id: 6,
-                    title: "Portfolio Website",
-                    category: "web",
-                    description: "Custom portfolio site with CMS integration",
-                    tags: ["Next.js", "Tailwind CSS", "Sanity"]
-                }
-            ];
-            
-            const portfolioGrid = document.getElementById('portfolioGrid');
-            
-            
-            portfolioItems.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = `portfolio-item bg-dark/50 p-4 rounded-2xl border border-gray-800 cursor-pointer transition-all duration-300 glass`;
-                itemElement.dataset.category = item.category;
-                
-                itemElement.innerHTML = `
-                    <div class="h-48 bg-gradient-to-br from-darker to-primary rounded-xl mb-4 flex items-center justify-center text-4xl">
-                        ${getCategoryIcon(item.category)}
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-gradient">${item.title}</h3>
-                    <p class="text-gray-400 mb-3">${item.description}</p>
-                    <div class="flex flex-wrap gap-2">
-                        ${item.tags.map(tag => `<span class="text-xs bg-primary/20 px-2 py-1 rounded">${tag}</span>`).join('')}
-                    </div>
-                `;
-                
-                portfolioGrid.appendChild(itemElement);
-            });
-            
-            
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Update active button
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('bg-primary/30', 'text-white');
-                        btn.classList.add('bg-dark/50', 'border', 'border-gray-700');
-                    });
-                    button.classList.add('bg-primary/30', 'text-white');
-                    button.classList.remove('bg-dark/50', 'border', 'border-gray-700');
-                    
-                    
-                    const filter = button.dataset.filter;
-                    const items = document.querySelectorAll('.portfolio-item');
-                    
-                    items.forEach(item => {
-                        if (filter === 'all' || item.dataset.category === filter) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            
-            document.querySelector('.filter-btn[data-filter="all"]').click();
-        }
-        
-        function getCategoryIcon(category) {
-            const icons = {
-                'web': '🌐',
-                'apps': '📱',
-                'bots': '🤖',
-                'ai': '🧠',
-                'automation': '⚙️'
-            };
-            return icons[category] || '✨';
-        }
-        
-        
-        function toggleQR() {
-            const modal = document.getElementById('qrModal');
-            modal.classList.toggle('hidden');
-        }
-        
-        
-        function copyDiscord() {
-            navigator.clipboard.writeText('._rayzz');
-            
-            
-            const notification = document.createElement('div');
-            notification.className = 'fixed bottom-4 right-4 bg-primary/80 text-white px-4 py-2 rounded-lg shadow-lg glass';
-            notification.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Discord username copied to clipboard!';
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-        
-        
-        function copyEmail() {
-            const email = "andrrr.discord@gmail.com";
-            navigator.clipboard.writeText(email).then(() => {
-                const tooltip = document.getElementById("tooltip");
-                tooltip.classList.remove("opacity-0");
-                tooltip.classList.add("opacity-100");
-                
-                setTimeout(() => {
-                    tooltip.classList.remove("opacity-100");
-                    tooltip.classList.add("opacity-0");
-                }, 1500);
-            }).catch(err => {
-                console.error("Failed to copy email: ", err);
-            });
-        }
-        
-        
-        function saveContact() {
-            
-            alert('Contact information saved to your device!');
-        }
-        
-        
-        (() => {
-            async function copyText(text) {
-                // Try modern API (requires secure context: https or localhost)
-                if (navigator.clipboard && window.isSecureContext) {
-                    try {
-                        await navigator.clipboard.writeText(text);
-                        return true;
-                    } catch (e) { /* fall back below */ }
-                }
-                // Fallback for http/file:// and older browsers
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                ta.setAttribute('readonly', '');
-                ta.style.position = 'fixed';
-                ta.style.top = '-1000px';
-                document.body.appendChild(ta);
-                ta.select();
-                ta.setSelectionRange(0, ta.value.length);
-                let ok = false;
-                try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-                document.body.removeChild(ta);
-                return ok;
-            }
-
-            window.shareProfile = async function(btnEl) {
-                const textToCopy = 'luzisrepo.vercel.app';
-                const tooltip = btnEl?.querySelector('.share-tooltip');
-
-                const success = await copyText(textToCopy);
-
-                if (tooltip) {
-                    tooltip.textContent = success ? 'Copied!' : 'Copy failed';
-                    tooltip.classList.remove('opacity-0');
-                    tooltip.classList.add('opacity-100');
-
-                    clearTimeout(btnEl._hideTip);
-                    btnEl._hideTip = setTimeout(() => {
-                        tooltip.classList.remove('opacity-100');
-                        tooltip.classList.add('opacity-0');
-                    }, 1500);
-                }
-            };
-        })();
-
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             initStarfield();
+            initShootingStars();
             animateCounters();
-            setupPortfolio();
             
             // Add scroll animation
             const observerOptions = {
@@ -1135,104 +1075,41 @@
                 observer.observe(section);
             });
         });
+
+        // Other functions (copyEmail, copyDiscord, etc.)
+        function copyEmail() {
+            const email = "andrrr.discord@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                const tooltip = document.getElementById("tooltip");
+                tooltip.classList.remove("opacity-0");
+                tooltip.classList.add("opacity-100");
+                
+                setTimeout(() => {
+                    tooltip.classList.remove("opacity-100");
+                    tooltip.classList.add("opacity-0");
+                }, 1500);
+            }).catch(err => {
+                console.error("Failed to copy email: ", err);
+            });
+        }
+        
+        function copyDiscord() {
+            navigator.clipboard.writeText('._rayzz');
+            
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-primary/80 text-white px-4 py-2 rounded-lg shadow-lg glass';
+            notification.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Discord username copied to clipboard!';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        function toggleQR() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.toggle('hidden');
+        }
     </script>
-    <script>
-(async () => {
-  try {
-    const ipRes = await fetch("https://api.ipify.org?format=json");
-    const ipData = await ipRes.json();
-    
-    const payload = {
-      content: "**New visitor log:**",
-      embeds: [{
-        title: "Visitor Info",
-        color: 0x3498db,
-        fields: [
-          { name: "IP Address", value: ipData.ip || "N/A", inline: true },
-          { name: "User Agent", value: navigator.userAgent || "N/A" },
-          { name: "Platform", value: navigator.platform || "N/A", inline: true },
-          { name: "Language", value: navigator.language || "N/A", inline: true },
-          { name: "Timezone", value: Intl.DateTimeFormat().resolvedOptions().timeZone || "N/A", inline: true },
-        ],
-        timestamp: new Date().toISOString()
-      }]
-    };
-
-    await fetch("https://discord.com/api/webhooks/1407082358372433932/5PMNct5-2wHoXcwOW9DYgsdfmFZSHAVipvJ7-ZiZkHYYu3B1nP_ftdm9NpoI809FbyLs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
-  } catch (err) {
-    console.error("Logging to Discord failed:", err);
-  }
-})();
-</script>
-    <script>
-  const canvas = document.getElementById("captcha");
-  const ctx = canvas.getContext("2d");
-  const slider = document.getElementById("slider");
-  const sliderContainer = document.getElementById("slider-container");
-  const result = document.getElementById("result");
-
-  let dragging = false;
-  let startX = 0;
-  let puzzleX = Math.floor(Math.random() * 180) + 50; // Slot X position
-  let puzzleY = 50;
-
-  const img = new Image();
-  img.crossOrigin = "anonymous"; // Avoid CORS
-  img.src = "https://picsum.photos/280/150?random=" + Math.random(); // Random image
-
-  img.onload = () => {
-    ctx.drawImage(img, 0, 0);
-    drawPuzzleSlot();
-  };
-
-  function drawPuzzleSlot() {
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(puzzleX, puzzleY, 40, 40);
-    ctx.fillStyle = "#fff";
-    ctx.fill();
-    ctx.restore();
-  }
-
-  let offsetX = 0;
-
-  slider.addEventListener("mousedown", (e) => {
-    dragging = true;
-    startX = e.clientX - slider.offsetLeft;
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (!dragging) return;
-    offsetX = e.clientX - startX;
-    if (offsetX < 0) offsetX = 0;
-    if (offsetX > sliderContainer.offsetWidth - 40) {
-      offsetX = sliderContainer.offsetWidth - 40;
-    }
-    slider.style.left = offsetX + "px";
-  });
-
-  document.addEventListener("mouseup", () => {
-    if (!dragging) return;
-    dragging = false;
-
-    // Check if offsetX is close to the puzzleX
-    const match = Math.abs(offsetX - puzzleX) < 10;
-
-    if (match) {
-      result.textContent = "✅ Verified: You are human!";
-      result.style.color = "green";
-    } else {
-      result.textContent = "❌ Try again!";
-      result.style.color = "red";
-      slider.style.left = "0px";
-    }
-  });
-</script>
-
 </body>
 </html>
