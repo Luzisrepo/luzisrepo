@@ -1,3 +1,17 @@
+# Hi, I'm Rayzz 👋
+
+Welcome to my portfolio and GitHub profile! Here you can check my skills, experience, and coding activity.  
+
+---
+
+## 🌌 Portfolio Preview
+Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animations**, and **custom JS effects**:
+
+![Landing Screen Preview](https://cdn.discordapp.com/attachments/1338127333504323764/1419355375634874459/ezgif-455b30462919ba.gif?ex=68d17533&is=68d023b3&hm=781ea8564ebc7c55d33e948faa8171f77dcc7147699ef2472efe3fbfb9babce4&)  
+
+[🔗 Open Portfolio](https://www.rayzz.dev)
+
+---
 
 ## 📊 Most Used Languages
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=luzisrepo&layout=compact&theme=transparent&hide_border=true)
@@ -77,3 +91,7 @@
 
 ## 📅 Commit Calendar
 ![GitHub commit graph](https://github-readme-activity-graph.vercel.app/graph?username=luzisrepo&theme=github-compact&hide_border=true)
+
+---
+
+> Made with 💻, ☕, and 🎶  
