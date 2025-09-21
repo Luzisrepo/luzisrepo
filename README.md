@@ -7,7 +7,7 @@ Welcome to my portfolio and GitHub profile! Here you can check my skills, experi
 ## 🌌 Portfolio Preview
 Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animations**, and **custom JS effects**:
 
-![Landing Screen Preview](https://i.imgur.com/V6VEC9k.gif)  
+![Landing Screen Preview](./assets/showcase1.gif)  
 
 [🔗 Open Portfolio](https://www.rayzz.dev)
 
