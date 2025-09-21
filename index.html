@@ -555,6 +555,36 @@
     </style>
 </head>
 <body class="min-h-screen">
+  
+  <!-- YouTube iframe (hidden) -->
+  <div id="player" style="display:none;"></div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: 'yJ6Lbsmb1lY', // your YouTube video ID
+        events: {
+          'onReady': onPlayerReady
+        },
+        playerVars: {
+          autoplay: 0,
+          controls: 0
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // Listen for click anywhere
+      document.addEventListener('click', () => {
+        player.playVideo();
+      });
+    }
+  </script>
     <!-- Enter Screen -->
     <div id="enter-screen">
         <div class="enter-content">
