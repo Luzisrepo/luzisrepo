@@ -1,3 +1,7 @@
+![Power purple _ amethyst](https://github.com/user-attachments/assets/63beb3a0-3426-4bfe-85c2-869dc90319b4)
+
+
+
 # Hi, I'm Rayzz 👋
 
 Welcome to my portfolio and GitHub profile! Here you can check my skills, experience, and coding activity.  
