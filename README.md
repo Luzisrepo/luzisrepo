@@ -7,8 +7,8 @@ Welcome to my portfolio and GitHub profile! Here you can check my skills, experi
 ## 🌌 Portfolio Preview
 Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animations**, and **custom JS effects**:
 
-<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/d92db05f-73f8-46c8-9180-133d3fcfd921" />
-<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/1d9b4b2e-184a-491c-a8dd-ef45a3501cf2" />
+![ezgif-41097b858c3a2f](https://github.com/user-attachments/assets/3261c091-2c7d-4bd0-997f-b949e8607c53)
+
 
 
 
