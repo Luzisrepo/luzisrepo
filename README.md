@@ -97,4 +97,4 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
 
 ---
 
-> Made with 💻, ☕, and 🎶  
+> Life js isn't enjoyable without a filter in ur mouth. 
