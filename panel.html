@@ -6,6 +6,38 @@
     <title>JM Solutions - Staff Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Ensure only active form shows */
+.form-container {
+    display: none; /* hide by default */
+    opacity: 0;
+    transform: translateY(20px);
+}
+.form-container.active {
+    display: block; /* show only selected form */
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Glassmorphic dropdowns */
+select {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #fff;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+select:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+select option {
+    background: #0f3460; /* dark theme for dropdown items */
+    color: #fff;
+}
+
         * {
             margin: 0;
             padding: 0;
