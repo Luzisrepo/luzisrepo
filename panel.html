@@ -6,20 +6,20 @@
   <title>JM Solutions - Staff Panel</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Ensure only active form shows */
+    
 .form-container {
-    display: none; /* hide by default */
+    display: none; 
     opacity: 0;
     transform: translateY(20px);
 }
 .form-container.active {
-    display: block; /* show only selected form */
+    display: block; 
     opacity: 1;
     transform: translateY(0);
     animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Glassmorphic dropdowns */
+
 select {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(12px);
@@ -53,7 +53,7 @@ select option {
             position: relative;
         }
 
-        /* Particle Background */
+        
         #particles-js {
             position: absolute;
             width: 100%;
@@ -61,7 +61,7 @@ select option {
             z-index: -1;
         }
 
-        /* Header */
+        
         header {
             padding: 1.5rem 2rem;
             display: flex;
@@ -109,7 +109,7 @@ select option {
             font-size: 1.5rem;
         }
 
-        /* Navigation */
+        
         nav {
             padding: 1rem 2rem;
             background: rgba(0, 0, 0, 0.2);
@@ -155,7 +155,7 @@ select option {
             background: #4cc9f0;
         }
 
-        /* Main Content */
+        
         main {
             padding: 2rem;
             max-width: 1200px;
@@ -254,7 +254,7 @@ select option {
             box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
         }
 
-        /* Success Message */
+        
         .success-message {
             background: rgba(46, 204, 113, 0.2);
             border: 1px solid rgba(46, 204, 113, 0.5);
@@ -272,7 +272,7 @@ select option {
             font-size: 1.2rem;
         }
 
-        /* Animations */
+        
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -304,7 +304,7 @@ select option {
             }
         }
 
-        /* Responsive */
+        
         @media (max-width: 768px) {
             .nav-links {
                 flex-wrap: wrap;
@@ -320,11 +320,11 @@ select option {
                 align-self: flex-end;
             }
         }
-    /* Ensure only active form shows */
+    
     .form-container { display: none; opacity: 0; transform: translateY(20px); }
     .form-container.active { display: block; opacity: 1; transform: translateY(0); animation: fadeInUp 0.6s ease forwards; }
 
-    /* Glassmorphic dropdowns */
+    
     select {
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(12px);
@@ -377,7 +377,7 @@ select option {
   </nav>
 
   <main>
-    <!-- Absence Notice -->
+    
     <section id="absence" class="form-container active">
       <div class="glass-panel">
         <h2><i class="fas fa-calendar-times"></i> Absence Notice</h2>
@@ -394,7 +394,7 @@ select option {
       </div>
     </section>
 
-    <!-- Bug Report -->
+    
     <section id="bug" class="form-container">
       <div class="glass-panel">
         <h2><i class="fas fa-bug"></i> Bug Report</h2>
@@ -409,7 +409,7 @@ select option {
       </div>
     </section>
 
-    <!-- Suggestion -->
+    
     <section id="suggestion" class="form-container">
       <div class="glass-panel">
         <h2><i class="fas fa-lightbulb"></i> Suggestion</h2>
@@ -424,7 +424,7 @@ select option {
       </div>
     </section>
 
-    <!-- Punishment -->
+    
     <section id="punishment" class="form-container">
       <div class="glass-panel">
         <h2><i class="fas fa-gavel"></i> Punishment Log</h2>
@@ -441,7 +441,7 @@ select option {
       </div>
     </section>
 
-    <!-- Ban Request -->
+    
     <section id="ban" class="form-container">
       <div class="glass-panel">
         <h2><i class="fas fa-ban"></i> Ban Request</h2>
@@ -540,7 +540,7 @@ select option {
       color:15105570
     }));
 
-    // Navigation
+    
     document.querySelectorAll(".nav-link").forEach(link=>{
       link.addEventListener("click",e=>{
         e.preventDefault();
