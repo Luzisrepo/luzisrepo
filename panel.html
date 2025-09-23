@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM Solutions - Staff Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: #4cc9f0;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: #a0a0c0;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+            background: rgba(76, 201, 240, 0.2);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4cc9f0;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #4cc9f0;
+        }
+
+        h2 i {
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #c0c0e0;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4cc9f0;
+            box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.2);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid rgba(46, 204, 113, 0.5);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+            align-items: center;
+            gap: 0.8rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .success-message i {
+            color: #2ecc71;
+            font-size: 1.2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .user-info {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-cogs"></i>
+            <h1>JM Solutions - Staff Panel</h1>
+        </div>
+        <div class="user-info">
+            <span>Welcome, <strong>Staff Member</strong></span>
+            <div class="avatar">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link active" data-target="absence"><i class="fas fa-calendar-times"></i> Absence Notice</a></li>
+            <li><a href="#" class="nav-link" data-target="bug"><i class="fas fa-bug"></i> Bug Report</a></li>
+            <li><a href="#" class="nav-link" data-target="suggestion"><i class="fas fa-lightbulb"></i> Suggestion</a></li>
+            <li><a href="#" class="nav-link" data-target="punishment"><i class="fas fa-gavel"></i> Punishment Log</a></li>
+            <li><a href="#" class="nav-link" data-target="ban"><i class="fas fa-ban"></i> Ban Request</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Absence Notice Form -->
+        <section id="absence" class="form-container active">
+            <div class="glass-panel">
+                <h2><i class="fas fa-calendar-times"></i> Absence Notice</h2>
+                <form id="absenceForm">
+                    <div class="form-group">
+                        <label for="inactivityType">Type of Inactivity</label>
+                        <select id="inactivityType" required>
+                            <option value="">Select Type</option>
+                            <option value="LOA">LOA (Leave of Absence)</option>
+                            <option value="ROA">ROA (Return of Absence)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Start of Inactivity</label>
+                        <input type="date" id="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">End of Inactivity</label>
+                        <input type="date" id="endDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="absenceReason">Reason</label>
+                        <textarea id="absenceReason" placeholder="Provide a reason for your absence..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Submit Notice</button>
+                </form>
+                <div class="success-message" id="absenceSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Absence notice submitted successfully!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bug Report Form -->
+        <section id="bug" class="form-container">
+            <div class="glass-panel">
+                <h2><i class="fas fa-bug"></i> Bug Report</h2>
+                <form id="bugForm">
+                    <div class="form-group">
+                        <label for="bugType">Type of Bug</label>
+                        <select id="bugType" required>
+                            <option value="">Select Type</option>
+                            <option value="Discord">Discord</option>
+                            <option value="R6">Rainbow Six Siege</option>
+                            <option value="BO6">Call of Duty: Black Ops 6</option>
+                            <option value="Website">Website</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bugDescription">Description of Bug</label>
+                        <textarea id="bugDescription" placeholder="Describe the bug in detail..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-bug"></i> Report Bug</button>
+                </form>
+                <div class="success-message" id="bugSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Bug report submitted successfully!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Suggestion Form -->
+        <section id="suggestion" class="form-container">
+            <div class="glass-panel">
+                <h2><i class="fas fa-lightbulb"></i> Suggestion</h2>
+                <form id="suggestionForm">
+                    <div class="form-group">
+                        <label for="suggestionType">Type of Suggestion</label>
+                        <select id="suggestionType" required>
+                            <option value="">Select Type</option>
+                            <option value="Discord">Discord</option>
+                            <option value="Software">Software</option>
+                            <option value="Website">Website</option>
+                            <option value="Community">Community</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="suggestionDescription">Description of Suggestion</label>
+                        <textarea id="suggestionDescription" placeholder="Describe your suggestion in detail..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-lightbulb"></i> Submit Suggestion</button>
+                </form>
+                <div class="success-message" id="suggestionSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Suggestion submitted successfully!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Punishment Log Form -->
+        <section id="punishment" class="form-container">
+            <div class="glass-panel">
+                <h2><i class="fas fa-gavel"></i> Punishment Log</h2>
+                <form id="punishmentForm">
+                    <div class="form-group">
+                        <label for="punishmentUsername">Username</label>
+                        <input type="text" id="punishmentUsername" placeholder="Enter username..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="punishmentReason">Reason</label>
+                        <textarea id="punishmentReason" placeholder="Reason for punishment..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="punishmentType">Punishment Issued</label>
+                        <select id="punishmentType" required>
+                            <option value="">Select Punishment</option>
+                            <option value="Warning">Warning</option>
+                            <option value="Mute">Mute</option>
+                            <option value="Kick">Kick</option>
+                            <option value="Temporary Ban">Temporary Ban</option>
+                            <option value="Permanent Ban">Permanent Ban</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="punishmentProof">Proof (URL)</label>
+                        <input type="url" id="punishmentProof" placeholder="Paste proof URL..." required>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-gavel"></i> Log Punishment</button>
+                </form>
+                <div class="success-message" id="punishmentSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Punishment logged successfully!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ban Request Form -->
+        <section id="ban" class="form-container">
+            <div class="glass-panel">
+                <h2><i class="fas fa-ban"></i> Ban Request Log</h2>
+                <form id="banForm">
+                    <div class="form-group">
+                        <label for="banUsername">Username</label>
+                        <input type="text" id="banUsername" placeholder="Enter username..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="banReason">Reason</label>
+                        <textarea id="banReason" placeholder="Reason for ban request..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="banProof">Proof (URL)</label>
+                        <input type="url" id="banProof" placeholder="Paste proof URL..." required>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-ban"></i> Submit Ban Request</button>
+                </form>
+                <div class="success-message" id="banSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Ban request submitted successfully!</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles background
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#4cc9f0" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4361ee",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            }
+        });
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and forms
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.form-container').forEach(f => f.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Show corresponding form
+                const target = this.getAttribute('data-target');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // Form submission handlers
+        document.getElementById('absenceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real implementation, you would send this data to a Discord webhook
+            document.getElementById('absenceSuccess').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('absenceSuccess').style.display = 'none';
+                this.reset();
+            }, 3000);
+        });
+
+        document.getElementById('bugForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('bugSuccess').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('bugSuccess').style.display = 'none';
+                this.reset();
+            }, 3000);
+        });
+
+        document.getElementById('suggestionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('suggestionSuccess').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('suggestionSuccess').style.display = 'none';
+                this.reset();
+            }, 3000);
+        });
+
+        document.getElementById('punishmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('punishmentSuccess').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('punishmentSuccess').style.display = 'none';
+                this.reset();
+            }, 3000);
+        });
+
+        document.getElementById('banForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('banSuccess').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('banSuccess').style.display = 'none';
+                this.reset();
+            }, 3000);
+        });
+
+        // Add cascade animation delays to form containers
+        document.querySelectorAll('.form-container').forEach((container, index) => {
+            container.style.animationDelay = `${0.1 * index}s`;
+        });
+    </script>
+</body>
+</html>
