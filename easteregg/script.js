@@ -1,5 +1,5 @@
 const video = document.createElement("video");
-const videoList = ["./ray.mp4"];
+const videoList = ["/easteregg/ray.mp4"];
 const rndNum = Math.floor(Math.random() * videoList.length);
 video.src = videoList[rndNum];
 video.crossOrigin = "anonymous";
