@@ -4,35 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rayzz | Sleepy</title>
-    <script>
-        const titleText = "Rayzz | Sleepy";
-        const typingSpeed = 150;
-        const pauseTime = 1000;
-
-        let index = 0;
-        let forward = true;
-
-        function animateTitle() {
-            if (forward) {
-                document.title = titleText.substring(0, index + 1);
-                index++;
-                if (index === titleText.length) {
-                    forward = false;
-                    setTimeout(animateTitle, pauseTime);
-                    return;
-                }
-            } else {
-                document.title = titleText.substring(0, index - 1);
-                index--;
-                if (index === 0) {
-                    forward = true;
-                }
-            }
-            setTimeout(animateTitle, typingSpeed);
-        }
-
-        window.onload = animateTitle;
-    </script>
     <meta name="description" content="Rayzz - Sleep-Deprived Full-Stack Dev">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -106,7 +77,6 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            /* Modern scrollbar styling */
             scrollbar-width: thin;
             scrollbar-color: var(--primary) var(--darker);
         }
@@ -185,7 +155,7 @@
         #spline-background spline-viewer {
             width: 100%;
             height: 100%;
-            opacity: 0.7; /* Adjust opacity to blend with the background */
+            opacity: 0.7;
         }
         
         .container {
@@ -439,7 +409,7 @@
             }
             
             #spline-background {
-                opacity: 0.4; /* Reduce opacity on mobile for better readability */
+                opacity: 0.4;
             }
         }
 
@@ -462,26 +432,32 @@
             text-align: center;
             max-width: 600px;
             padding: 2rem;
-        }
-
-        .enter-logo {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            color: #8a2be2;
-            text-shadow: 0 0 20px rgba(138, 43, 226, 0.7);
-            animation: pulse 2s infinite;
+            z-index: 10;
         }
 
         .enter-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #8a2be2, #ba55d3, #9370db);
+            background: linear-gradient(90deg, #ffffff, #a0a0a0, #808080, #a0a0a0, #ffffff);
+            background-size: 300% 100%;
+            animation: gradient-wave 8s ease infinite;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: gradient 3s ease infinite;
+            position: relative;
+        }
+
+        .enter-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #ffffff, #a0a0a0, #808080, #a0a0a0, #ffffff);
+            background-size: 300% 100%;
+            animation: gradient-wave 8s ease infinite;
         }
 
         .enter-subtitle {
@@ -544,24 +520,48 @@
             gap: 1rem;
         }
 
-        .volume-slider {
+        .volume-slider-glass {
             -webkit-appearance: none;
             width: 150px;
             height: 5px;
-            border-radius: 5px;
+            border-radius: 10px;
             background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .volume-slider::-webkit-slider-thumb {
+        .volume-slider-glass::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 15px;
-            height: 15px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
-            background: #8a2be2;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .volume-slider-glass::-webkit-slider-thumb:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .volume-slider-glass::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
         }
 
         .audio-error {
@@ -608,19 +608,22 @@
   </script>
     <!-- Enter Screen -->
     <div id="enter-screen">
+        <!-- Spline Background -->
+        <div id="spline-background">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.77/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/mjZQMreSlaGcBP9f/scene.splinecode"></spline-viewer>
+        </div>
+        
         <div class="enter-content">
-            <div class="enter-logo">
-                <i class="fas fa-star"></i>
-            </div>
             <h1 class="enter-title">RAYZZ</h1>
             <p class="enter-subtitle">Welcome to my corner. Click enter to explore it!</p>
             <button class="enter-button" id="enter-button">
                 ENTER
             </button>
             <div class="audio-controls">
-                <i class="fas fa-volume-up text-purple-400"></i>
-                <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider" id="volume-control">
-                <i class="fas fa-music text-purple-400" id="toggle-music" style="cursor: pointer;"></i>
+                <i class="fas fa-volume-up text-white"></i>
+                <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider-glass" id="volume-control">
+                <i class="fas fa-music text-white" id="toggle-music" style="cursor: pointer;"></i>
             </div>
             <div id="audio-error" class="audio-error">
                 <p class="text-red-400">Audio file couldn't be loaded. Please check the file path.</p>
@@ -970,6 +973,33 @@
     </audio>
     
     <script>
+        // Title animation
+        const titleText = "Rayzz | Sleepy";
+        const typingSpeed = 150;
+        const pauseTime = 1000;
+
+        let index = 0;
+        let forward = true;
+
+        function animateTitle() {
+            if (forward) {
+                document.title = titleText.substring(0, index + 1);
+                index++;
+                if (index === titleText.length) {
+                    forward = false;
+                    setTimeout(animateTitle, pauseTime);
+                    return;
+                }
+            } else {
+                document.title = titleText.substring(0, index - 1);
+                index--;
+                if (index === 0) {
+                    forward = true;
+                }
+            }
+            setTimeout(animateTitle, typingSpeed);
+        }
+
         // Audio context for handling browser autoplay restrictions
         let audioContext = null;
 
@@ -1067,17 +1097,16 @@
                     
                     // Initialize scroll animations
                     initScrollAnimations();
+                    
+                    // Start title animation
+                    animateTitle();
                 }, 800);
             });
             
             // Add some floating animation to the enter screen elements
-            const enterLogo = document.querySelector('.enter-logo');
             const enterTitle = document.querySelector('.enter-title');
             
             setTimeout(function() {
-                enterLogo.style.transition = 'transform 2s ease-in-out';
-                enterLogo.style.transform = 'translateY(-10px)';
-                
                 enterTitle.style.transition = 'transform 2s ease-in-out';
                 enterTitle.style.transform = 'scale(1.05)';
             }, 1000);
@@ -1442,14 +1471,6 @@
                 }
             }, 50);
         }
-        
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Don't initialize these yet - wait for enter screen
-            // initStarfield();
-            // initShootingStars();
-            // animateCounters();
-        });
 
         // Other functions (copyEmail, copyDiscord, etc.)
         function copyEmail() {
@@ -1484,6 +1505,22 @@
         function toggleQR() {
             const modal = document.getElementById('qrModal');
             modal.classList.toggle('hidden');
+        }
+        
+        function shareProfile(button) {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const tooltip = button.querySelector('.share-tooltip');
+                tooltip.classList.remove("opacity-0");
+                tooltip.classList.add("opacity-100");
+                
+                setTimeout(() => {
+                    tooltip.classList.remove("opacity-100");
+                    tooltip.classList.add("opacity-0");
+                }, 1500);
+            }).catch(err => {
+                console.error("Failed to copy URL: ", err);
+            });
         }
     </script>
 </body>
