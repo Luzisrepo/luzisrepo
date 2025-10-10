@@ -158,7 +158,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
+            z-index: -3;
         }
         
         #shooting-stars {
@@ -167,8 +167,25 @@
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        /* Spline Background */
+        #spline-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
             pointer-events: none;
+        }
+        
+        #spline-background spline-viewer {
+            width: 100%;
+            height: 100%;
+            opacity: 0.7; /* Adjust opacity to blend with the background */
         }
         
         .container {
@@ -420,6 +437,10 @@
             .skill-card:hover, .service-card:hover, .pricing-card:hover {
                 transform: translateY(-5px);
             }
+            
+            #spline-background {
+                opacity: 0.4; /* Reduce opacity on mobile for better readability */
+            }
         }
 
         /* Enter Screen Styles */
@@ -609,6 +630,12 @@
     
     <!-- Main Website Content (Initially Hidden) -->
     <div id="main-content" class="hidden">
+        <!-- Spline Background -->
+        <div id="spline-background">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.77/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/jlXe-Ohs5XmDMGxg/scene.splinecode"></spline-viewer>
+        </div>
+        
         <!-- Starfield Background -->
         <canvas id="starfield"></canvas>
         
