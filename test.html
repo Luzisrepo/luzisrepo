@@ -702,7 +702,7 @@
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
-    <div class="loading-text" id="loading-text">Loading...</div>
+    <div class="loading-text" id="loading-text">Loading 3D elements...</div>
   </div>
   
   <!-- YouTube iframe (hidden) -->
@@ -1101,25 +1101,25 @@
     </audio>
     
     <script>
-        // Loading screen functionality
+        // Loading screen functionality - Only wait for Spline elements
         document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.getElementById('loading-screen');
             const loadingText = document.getElementById('loading-text');
             const enterScreen = document.getElementById('enter-screen');
             
-            // Track loading progress
-            let loadedCount = 0;
-            let totalCount = 0;
+            // Track Spline loading progress
+            let splineLoadedCount = 0;
+            const totalSplineElements = 2; // We have 2 Spline viewers on the page
             
             // Update loading text
             function updateLoadingText() {
-                loadingText.textContent = `Loading... ${Math.round((loadedCount / totalCount) * 100)}%`;
+                loadingText.textContent = `Loading 3D elements... ${Math.round((splineLoadedCount / totalSplineElements) * 100)}%`;
             }
             
-            // Check if all elements are loaded
-            function checkAllLoaded() {
-                if (loadedCount >= totalCount) {
-                    // All elements loaded, hide loading screen and show enter screen
+            // Check if all Spline elements are loaded
+            function checkAllSplineLoaded() {
+                if (splineLoadedCount >= totalSplineElements) {
+                    // All Spline elements loaded, hide loading screen and show enter screen
                     setTimeout(function() {
                         loadingScreen.style.opacity = '0';
                         setTimeout(function() {
@@ -1133,92 +1133,35 @@
                 }
             }
             
-            // Count all images
-            const images = document.querySelectorAll('img');
-            totalCount += images.length;
-            
-            images.forEach(img => {
-                if (img.complete) {
-                    loadedCount++;
-                    updateLoadingText();
-                } else {
-                    img.addEventListener('load', function() {
-                        loadedCount++;
-                        updateLoadingText();
-                        checkAllLoaded();
-                    });
-                    img.addEventListener('error', function() {
-                        loadedCount++;
-                        updateLoadingText();
-                        checkAllLoaded();
-                    });
-                }
-            });
-            
-            // Count scripts
-            const scripts = document.querySelectorAll('script');
-            totalCount += scripts.length;
-            
-            scripts.forEach(script => {
-                if (script.src) {
-                    // External script
-                    script.addEventListener('load', function() {
-                        loadedCount++;
-                        updateLoadingText();
-                        checkAllLoaded();
-                    });
-                    script.addEventListener('error', function() {
-                        loadedCount++;
-                        updateLoadingText();
-                        checkAllLoaded();
-                    });
-                } else {
-                    // Inline script
-                    loadedCount++;
-                    updateLoadingText();
-                }
-            });
-            
-            // Count iframes and external content
-            const iframes = document.querySelectorAll('iframe');
-            totalCount += iframes.length;
-            
-            iframes.forEach(iframe => {
-                iframe.addEventListener('load', function() {
-                    loadedCount++;
-                    updateLoadingText();
-                    checkAllLoaded();
-                });
-                iframe.addEventListener('error', function() {
-                    loadedCount++;
-                    updateLoadingText();
-                    checkAllLoaded();
-                });
-            });
-            
-            // Count audio and video elements
-            const mediaElements = document.querySelectorAll('audio, video');
-            totalCount += mediaElements.length;
-            
-            mediaElements.forEach(media => {
-                media.addEventListener('canplaythrough', function() {
-                    loadedCount++;
-                    updateLoadingText();
-                    checkAllLoaded();
-                });
-                media.addEventListener('error', function() {
-                    loadedCount++;
-                    updateLoadingText();
-                    checkAllLoaded();
-                });
-            });
-            
-            // Count spline viewers
+            // Wait for Spline viewers to load
             const splineViewers = document.querySelectorAll('spline-viewer');
-            totalCount += splineViewers.length;
             
-            // Fallback: if totalCount is 0 or all elements are already loaded
-            if (totalCount === 0 || loadedCount === totalCount) {
+            // If there are Spline viewers, wait for them to load
+            if (splineViewers.length > 0) {
+                splineViewers.forEach(viewer => {
+                    // Check if already loaded
+                    if (viewer.loaded) {
+                        splineLoadedCount++;
+                        updateLoadingText();
+                        checkAllSplineLoaded();
+                    } else {
+                        // Listen for load event
+                        viewer.addEventListener('load', function() {
+                            splineLoadedCount++;
+                            updateLoadingText();
+                            checkAllSplineLoaded();
+                        });
+                        
+                        // Also listen for error in case loading fails
+                        viewer.addEventListener('error', function() {
+                            splineLoadedCount++;
+                            updateLoadingText();
+                            checkAllSplineLoaded();
+                        });
+                    }
+                });
+            } else {
+                // No Spline viewers found, proceed immediately
                 setTimeout(function() {
                     loadingScreen.style.opacity = '0';
                     setTimeout(function() {
@@ -1230,6 +1173,21 @@
                     }, 800);
                 }, 1000);
             }
+            
+            // Fallback: If Spline elements don't load within 10 seconds, proceed anyway
+            setTimeout(function() {
+                if (loadingScreen.style.display !== 'none') {
+                    console.log('Spline loading timeout - proceeding with website');
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                        enterScreen.style.display = 'flex';
+                        setTimeout(function() {
+                            enterScreen.style.opacity = '1';
+                        }, 50);
+                    }, 800);
+                }
+            }, 10000);
             
             // Update loading text initially
             updateLoadingText();
