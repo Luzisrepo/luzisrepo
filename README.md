@@ -1,4 +1,5 @@
-![Power purple _ amethyst](https://github.com/user-attachments/assets/63beb3a0-3426-4bfe-85c2-869dc90319b4)
+<img width="1920" height="751" alt="{09FAC6FC-D276-4069-90ED-87796B852EA7}" src="https://github.com/user-attachments/assets/a6ee0ec4-fb61-477e-bdf8-9346d0cfc515" />
+
 
 
 
