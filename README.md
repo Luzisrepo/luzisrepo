@@ -98,7 +98,13 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
 ---
 
 ## 📅 Commit Calendar
-![GitHub commit graph](https://github-readme-activity-graph.vercel.app/graph?username=luzisrepo&theme=github-compact&hide_border=true)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Luzisrepo/Luzisrepo/output/pacman-contribution-graph-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Luzisrepo/Luzisrepo/output/pacman-contribution-graph.svg">
+  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/Luzisrepo/Luzisrepo/output/pacman-contribution-graph.svg">
+</picture>
+
+###
 
 ---
 
