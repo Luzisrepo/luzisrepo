@@ -1,6 +1,5 @@
 <img width="1920" height="751" alt="{09FAC6FC-D276-4069-90ED-87796B852EA7}" src="https://github.com/user-attachments/assets/a6ee0ec4-fb61-477e-bdf8-9346d0cfc515" />
 
-![Alt text](https://spotify-recently-played-readme.vercel.app/api?user=31ph4bveiv7qpgdk7jitahejydeu&count={count})
 
 
 # Hi, I'm Rayzz 👋
