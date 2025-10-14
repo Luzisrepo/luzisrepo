@@ -11,7 +11,8 @@ Welcome to my portfolio and GitHub profile! Here you can check my skills, experi
 ## 🌌 Portfolio Preview
 Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animations**, and **custom JS effects**:
 
-![ezgif-41097b858c3a2f](https://github.com/user-attachments/assets/3261c091-2c7d-4bd0-997f-b949e8607c53)
+![ezgif-7c5927a25cf525](https://github.com/user-attachments/assets/d9740384-124e-4826-aa18-5d181a708840)
+
 
 
 
