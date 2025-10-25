@@ -201,7 +201,7 @@
             animation: pulse-slow 2s infinite;
         }
         
-        .skill-card, .service-card, .pricing-card, .stat-card {
+        .skill-card, .service-card, .pricing-card, .stat-card, .portfolio-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
@@ -210,13 +210,13 @@
             border: 1px solid rgba(138, 43, 226, 0.1);
         }
         
-        .skill-card:hover, .service-card:hover, .pricing-card:hover {
+        .skill-card:hover, .service-card:hover, .pricing-card:hover, .portfolio-card:hover {
             transform: translateY(-8px) rotate(1deg);
             box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
             border: 1px solid rgba(138, 43, 226, 0.4);
         }
         
-        .skill-card::before, .service-card::before, .pricing-card::before {
+        .skill-card::before, .service-card::before, .pricing-card::before, .portfolio-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -227,7 +227,7 @@
             transition: 0.5s;
         }
         
-        .skill-card:hover::before, .service-card:hover::before, .pricing-card:hover::before {
+        .skill-card:hover::before, .service-card:hover::before, .pricing-card:hover::before, .portfolio-card:hover::before {
             left: 100%;
         }
         
@@ -358,17 +358,6 @@
             transform: translateX(3px);
         }
         
-        /* Pulse animation for CTA elements */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
         /* Floating animation */
         @keyframes floating {
             0% { transform: translate(0px, 0px); }
@@ -398,13 +387,142 @@
             50% { border-color: var(--primary) }
         }
         
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(15, 10, 25, 0.6);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 0.75rem;
+            color: #e2e8f0;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: rgba(138, 43, 226, 0.7);
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: 0.75rem;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .form-success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .form-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        
+        /* Portfolio Card Styles */
+        .portfolio-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+        
+        .portfolio-description {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .portfolio-link:hover {
+            color: var(--secondary);
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .hero-text {
                 font-size: 2.5rem;
             }
             
-            .skill-card:hover, .service-card:hover, .pricing-card:hover {
+            .skill-card:hover, .service-card:hover, .pricing-card:hover, .portfolio-card:hover {
                 transform: translateY(-5px);
             }
             
@@ -814,6 +932,57 @@
                     </div>
                 </section>
                 
+                <!-- Portfolio Section -->
+                <section class="mb-20 fade-in">
+                    <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Portfolio</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="portfolio-card rounded-2xl fade-in delay-100">
+                            <img src="https://private-user-images.githubusercontent.com/171245354/505639459-754c815e-552b-4215-a87f-43d52a8ce96d.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjE0MDM3NjksIm5iZiI6MTc2MTQwMzQ2OSwicGF0aCI6Ii8xNzEyNDUzNTQvNTA1NjM5NDU5LTc1NGM4MTVlLTU1MmItNDIxNS1hODdmLTQzZDUyYThjZTk2ZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAyNVQxNDQ0MjlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04N2NkZjk1OTg4OTgwN2FlMjE1MjZmZGVjZWQ2M2Q1Y2RiMTc5ZTVkNjg5ZWI0ZjBhN2MxNDI5ZDA4ZmZhOGViJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.7ltTZxtxQQsIklA7GbmpJ4uBtHWjgp6cwdS0qODVCwA" alt="Discord Bot Project" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Is my flight late?</h3>
+                                <p class="portfolio-description">Is My Flight Late? is a modern, minimalist web application that allows users to quickly check the real-time status of flights using the AviationStack API.</p>
+                                <a href="https://github.com/Luzisrepo/IsMyFlightLate" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card rounded-2xl fade-in delay-200">
+                            <img src="https://private-user-images.githubusercontent.com/171245354/483974606-a99e9813-28da-49e5-b0d3-32b5d01f74fd.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjE0MDM1MTksIm5iZiI6MTc2MTQwMzIxOSwicGF0aCI6Ii8xNzEyNDUzNTQvNDgzOTc0NjA2LWE5OWU5ODEzLTI4ZGEtNDllNS1iMGQzLTMyYjVkMDFmNzRmZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAyNVQxNDQwMTlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01ZDM3MDAzMjhlZDdlNTkzZThiYmU2MzJiZDhkMDFhNjcwZGQ0N2FjMjFlMWU4ZTEyYWRkMjg0MmU4MDI5OWUyJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.nWg6xkDz3VWJIztBbvm6ohIN9r6nAeA5WCHSQN8sO2g" alt="Web Application" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Focus Flow</h3>
+                                <p class="portfolio-description">FocusFlow is a sleek productivity dashboard built with React that keeps the theme minimal while pushing the limits of animations and interactivity.</p>
+                                <a href="https://github.com/Luzisrepo/Focus-Flow" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card rounded-2xl fade-in delay-300">
+                            <img src="https://private-user-images.githubusercontent.com/171245354/482187771-df452356-89d2-42cc-8f32-3e73af9d91b4.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjE0MDM2MjMsIm5iZiI6MTc2MTQwMzMyMywicGF0aCI6Ii8xNzEyNDUzNTQvNDgyMTg3NzcxLWRmNDUyMzU2LTg5ZDItNDJjYy04ZjMyLTNlNzNhZjlkOTFiNC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAyNVQxNDQyMDNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05YmZmNGU5NmNlYmQ0ZTQ5MzExMDYwN2I2OWNiZjdlOTk5OTI5YTA4MTdiY2FlMWM1MTVkMDRjZTgxMDQwYjk3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.uPncBBe8kbxW8s2EAXQ71UU001g9s9yNb-N1ZtcK1Jo" alt="AI Service" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Ray Weather</h3>
+                                <p class="portfolio-description">A sleek and simple Weather App built using HTML, CSS, JavaScript, and a RESTful API to fetch real-time weather data.</p>
+                                <a href="https://github.com/Luzisrepo/RayWeather" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card rounded-2xl fade-in delay-400">
+                            <img src="https://private-user-images.githubusercontent.com/171245354/505639155-b5f0df7c-6964-4cd4-b946-d9eb7f61dbe0.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjE0MDM0NjMsIm5iZiI6MTc2MTQwMzE2MywicGF0aCI6Ii8xNzEyNDUzNTQvNTA1NjM5MTU1LWI1ZjBkZjdjLTY5NjQtNGNkNC1iOTQ2LWQ5ZWI3ZjYxZGJlMC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTAyNVQxNDM5MjNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wN2Y1MDQxMDc0NjZhNjJlMTM2OTZkMjA1MmE3NTE4ZjI4YzRjZmNkOGZhOTc2ZmQ3NTM4ZjdiYmYyYjFhOTk4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.MHH36Tyrauzej4G1Aj0svpp-Ot73rSxbuQe2RxJa_GI" alt="Automation Tool" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Ray Solver</h3>
+                                <p class="portfolio-description">Ray Solver is a modern, responsive web app for proportional allocation. It lets you input votes (or any resource distribution data), then calculates allocations using two of the most widely used methods.</p>
+                                <a href="https://github.com/Luzisrepo/Ray-Solver-Proportional-Allocation" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
                 <section class="mb-20 fade-in">
                     <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Services Offered</h2>
                     
@@ -877,7 +1046,7 @@
                                 </li>
                             </ul>
                             <button onclick="window.location.href='/get-started'" 
-    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
+    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass">
     Get Started
 </button>
                         </div>
@@ -903,7 +1072,7 @@
                                 </li>
                             </ul>
                             <button onclick="window.location.href='/get-started'" 
-    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
+    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass">
     Get Started
 </button>
 
@@ -927,7 +1096,7 @@
                                 </li>
                             </ul>
                             <button onclick="window.location.href='/get-started'" 
-    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
+    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass">
     Get Started
 </button>
                         </div>
@@ -936,6 +1105,53 @@
                     <p class="text-center mt-8 text-gray-400 fade-in delay-400">
                         * Prices are starting points. Final cost depends on project complexity and requirements.
                     </p>
+                </section>
+                
+                <!-- Get in Touch Section -->
+                <section class="mb-20 fade-in">
+                    <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Get In Touch</h2>
+                    
+                    <div class="contact-form glass p-8 rounded-2xl border border-white/5">
+                        <form id="contact-form" action="https://formspree.io/f/xjvqjqeq" method="POST">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Your Name</label>
+                                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Your Email</label>
+                                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-input" placeholder="What is this regarding?" required>
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label for="message" class="form-label">Your Message</label>
+                                <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project or inquiry..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Message
+                            </button>
+                        </form>
+                        
+                        <div id="form-success" class="form-success">
+                            <i class="fas fa-check-circle text-green-500 text-2xl mb-2"></i>
+                            <h3 class="text-xl font-bold text-green-400 mb-2">Message Sent Successfully!</h3>
+                            <p class="text-gray-300">Thank you for reaching out. I'll get back to you as soon as possible.</p>
+                        </div>
+                        
+                        <div id="form-error" class="form-error">
+                            <i class="fas fa-exclamation-triangle text-red-500 text-2xl mb-2"></i>
+                            <h3 class="text-xl font-bold text-red-400 mb-2">Oops! Something went wrong.</h3>
+                            <p class="text-gray-300">Please try again or contact me directly at andrrr.discord@gmail.com</p>
+                        </div>
+                    </div>
                 </section>
             </div>
         </main>
@@ -1098,6 +1314,9 @@
                     // Initialize scroll animations
                     initScrollAnimations();
                     
+                    // Initialize contact form
+                    initContactForm();
+                    
                     // Start title animation
                     animateTitle();
                 }, 800);
@@ -1130,6 +1349,64 @@
             fadeElements.forEach(element => {
                 fadeObserver.observe(element);
             });
+        }
+
+        // Initialize contact form
+        function initContactForm() {
+            const contactForm = document.getElementById('contact-form');
+            const formSuccess = document.getElementById('form-success');
+            const formError = document.getElementById('form-error');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    const submitBtn = contactForm.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    
+                    // Send form data using Fetch API
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Show success message
+                            formSuccess.style.display = 'block';
+                            formError.style.display = 'none';
+                            contactForm.reset();
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Show error message
+                        formError.style.display = 'block';
+                        formSuccess.style.display = 'none';
+                    })
+                    .finally(() => {
+                        // Reset button state
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        
+                        // Hide messages after 5 seconds
+                        setTimeout(() => {
+                            formSuccess.style.display = 'none';
+                            formError.style.display = 'none';
+                        }, 5000);
+                    });
+                });
+            }
         }
 
         // Starfield shader background
