@@ -6,6 +6,7 @@
     <link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
     <title>Rayzz | Sleepy</title>
     <meta name="description" content="Rayzz - Sleep-Deprived Full-Stack Dev">
+    <script src="https://cdn.jsdelivr.net/npm/kursor"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -55,6 +56,7 @@
             }
         }
     </script>
+    
     <style>
         :root {
             --primary: #8a2be2;
@@ -760,7 +762,13 @@
         
         <!-- Starfield Background -->
         <canvas id="starfield"></canvas>
-        
+        <script src="https://unpkg.com/kursor"></script>
+    <script>
+        new kursor({
+            type: 1
+        })
+    </script>
+
         
         <!-- Shooting Stars Canvas -->
         <canvas id="shooting-stars"></canvas>
@@ -1801,13 +1809,6 @@
                 console.error("Failed to copy URL: ", err);
             });
         }
-
-<script src="https://unpkg.com/kursor"></script>
-    <script>
-        new kursor({
-            type: 1
-        })
-    </script>
 
         
     </script>
