@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
     <title>Rayzz | Sleepy</title>
     <meta name="description" content="Rayzz - Sleep-Deprived Full-Stack Dev">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -100,123 +101,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(to bottom, var(--accent), var(--primary));
             box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
-        }
-        
-        /* Loading Screen Styles */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #0f0a19 0%, #1a1030 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease-out;
-        }
-
-        .loader {
-            width: 100%;
-            height: 15px;
-            text-align: center;
-        }
-
-        .dot {
-            position: relative;
-            width: 15px;
-            height: 15px;
-            margin: 0 2px;
-            display: inline-block;
-        }
-
-        .dot:first-child:before {
-            animation-delay: 0ms;
-        }
-
-        .dot:first-child:after {
-            animation-delay: 0ms;
-        }
-
-        .dot:last-child:before {
-            animation-delay: 200ms;
-        }
-
-        .dot:last-child:after {
-            animation-delay: 200ms;
-        }
-
-        .dot:before{
-            content: "";
-            position: absolute;
-            left: 0;
-            width: 15px;
-            height: 15px;
-            background-color: blue;
-            animation-name: dotHover;
-            animation-duration: 900ms;
-            animation-timing-function: cubic-bezier(.82,0,.26,1);
-            animation-iteration-count: infinite;
-            animation-delay: 100ms;
-            background: white;
-            border-radius: 100%;  
-        }
-
-        .dot:after {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            background: black;
-            box-shadow: 0px 0px 1px black;
-            opacity: .20;
-            width: 100%;
-            height: 3px;
-            left: 0;
-            bottom: -2px;
-            border-radius: 100%;
-            animation-name: dotShadow;
-            animation-duration: 900ms;
-            animation-timing-function: cubic-bezier(.82,0,.26,1);
-            animation-iteration-count: infinite;
-            animation-delay: 100ms;
-        }
-
-        @keyframes dotShadow {
-            0% {
-                transform: scaleX(1);
-            }
-            50% {
-                opacity: 0;
-                transform: scaleX(.6);
-            }
-            100% {
-                transform: scaleX(1);
-            }
-        }
-
-        @keyframes dotHover {
-            0% {
-                top: 0px;
-            }
-            50% {
-                top: -50px;
-                transform: scale(1.1);
-            }
-            100% {
-                top: 0;
-            }
-        }
-
-        .loading-text {
-            position: absolute;
-            bottom: 30%;
-            color: white;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            text-align: center;
-            width: 100%;
-            opacity: 0.8;
         }
         
         /* Fade-in animation classes */
@@ -318,7 +202,7 @@
             animation: pulse-slow 2s infinite;
         }
         
-        .skill-card, .service-card, .pricing-card, .stat-card {
+        .skill-card, .service-card, .pricing-card, .stat-card, .portfolio-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
@@ -327,13 +211,13 @@
             border: 1px solid rgba(138, 43, 226, 0.1);
         }
         
-        .skill-card:hover, .service-card:hover, .pricing-card:hover {
+        .skill-card:hover, .service-card:hover, .pricing-card:hover, .portfolio-card:hover {
             transform: translateY(-8px) rotate(1deg);
             box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
             border: 1px solid rgba(138, 43, 226, 0.4);
         }
         
-        .skill-card::before, .service-card::before, .pricing-card::before {
+        .skill-card::before, .service-card::before, .pricing-card::before, .portfolio-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -344,7 +228,7 @@
             transition: 0.5s;
         }
         
-        .skill-card:hover::before, .service-card:hover::before, .pricing-card:hover::before {
+        .skill-card:hover::before, .service-card:hover::before, .pricing-card:hover::before, .portfolio-card:hover::before {
             left: 100%;
         }
         
@@ -475,17 +359,6 @@
             transform: translateX(3px);
         }
         
-        /* Pulse animation for CTA elements */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
         /* Floating animation */
         @keyframes floating {
             0% { transform: translate(0px, 0px); }
@@ -515,13 +388,142 @@
             50% { border-color: var(--primary) }
         }
         
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(15, 10, 25, 0.6);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 0.75rem;
+            color: #e2e8f0;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: rgba(138, 43, 226, 0.7);
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: 0.75rem;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .form-success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .form-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        
+        /* Portfolio Card Styles */
+        .portfolio-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+        
+        .portfolio-description {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .portfolio-link:hover {
+            color: var(--secondary);
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .hero-text {
                 font-size: 2.5rem;
             }
             
-            .skill-card:hover, .service-card:hover, .pricing-card:hover {
+            .skill-card:hover, .service-card:hover, .pricing-card:hover, .portfolio-card:hover {
                 transform: translateY(-5px);
             }
             
@@ -541,9 +543,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9998;
+            z-index: 9999;
             transition: opacity 0.8s ease-out;
-            display: none;
         }
 
         .enter-content {
@@ -695,16 +696,6 @@
 </head>
 <body class="min-h-screen">
   
-  <!-- Loading Screen -->
-  <div class="loading-screen" id="loading-screen">
-    <div class="loader">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-    <div class="loading-text" id="loading-text">Loading 3D elements...</div>
-  </div>
-  
   <!-- YouTube iframe (hidden) -->
   <div id="player" style="display:none;"></div>
 
@@ -769,6 +760,7 @@
         
         <!-- Starfield Background -->
         <canvas id="starfield"></canvas>
+        
         
         <!-- Shooting Stars Canvas -->
         <canvas id="shooting-stars"></canvas>
@@ -847,10 +839,10 @@
                                 <h3 class="text-xl font-bold text-gradient">Programming Languages</h3>
                             </div>
                             <ul class="space-y-2">
-                                <li>JavaScript/TypeScript (Expert)</li>
-                                <li>Python (Advanced)</li>
-                                <li>C++ (Intermediate)</li>
-                                <li>Java (Intermediate)</li>
+                                <li>JavaScript/TypeScript</li>
+                                <li>Python</li>
+                                <li>C++</li>
+                                <li>Java</li>
                             </ul>
                         </div>
                         
@@ -942,6 +934,57 @@
                     </div>
                 </section>
                 
+                <!-- Portfolio Section -->
+                <section class="mb-20 fade-in">
+                    <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Portfolio</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="portfolio-card rounded-2xl fade-in delay-100">
+                            <img src="/assets/flight.png" alt="Discord Bot Project" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Is my flight late?</h3>
+                                <p class="portfolio-description">Is My Flight Late? is a modern, minimalist web application that allows users to quickly check the real-time status of flights using the AviationStack API.</p>
+                                <a href="https://github.com/Luzisrepo/IsMyFlightLate" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card rounded-2xl fade-in delay-200">
+                            <img src="/assets/focusflow.png" alt="Web Application" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Focus Flow</h3>
+                                <p class="portfolio-description">FocusFlow is a sleek productivity dashboard built with React that keeps the theme minimal while pushing the limits of animations and interactivity.</p>
+                                <a href="https://github.com/Luzisrepo/Focus-Flow" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card rounded-2xl fade-in delay-300">
+                            <img src="/assets/weather.png" alt="AI Service" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Ray Weather</h3>
+                                <p class="portfolio-description">A sleek and simple Weather App built using HTML, CSS, JavaScript, and a RESTful API to fetch real-time weather data.</p>
+                                <a href="https://github.com/Luzisrepo/RayWeather" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card rounded-2xl fade-in delay-400">
+                            <img src="/assets/solver.png" alt="Automation Tool" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Ray Solver</h3>
+                                <p class="portfolio-description">Ray Solver is a modern, responsive web app for proportional allocation. It lets you input votes (or any resource distribution data), then calculates allocations using two of the most widely used methods.</p>
+                                <a href="https://github.com/Luzisrepo/Ray-Solver-Proportional-Allocation" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
                 <section class="mb-20 fade-in">
                     <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Services Offered</h2>
                     
@@ -1005,7 +1048,7 @@
                                 </li>
                             </ul>
                             <button onclick="window.location.href='/get-started'" 
-    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
+    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass">
     Get Started
 </button>
                         </div>
@@ -1031,7 +1074,7 @@
                                 </li>
                             </ul>
                             <button onclick="window.location.href='/get-started'" 
-    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
+    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass">
     Get Started
 </button>
 
@@ -1055,7 +1098,7 @@
                                 </li>
                             </ul>
                             <button onclick="window.location.href='/get-started'" 
-    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass pulse">
+    class="w-full py-3 bg-primary/20 hover:bg-primary/30 rounded-xl font-bold transition-all duration-300 neon-hover glass">
     Get Started
 </button>
                         </div>
@@ -1064,6 +1107,53 @@
                     <p class="text-center mt-8 text-gray-400 fade-in delay-400">
                         * Prices are starting points. Final cost depends on project complexity and requirements.
                     </p>
+                </section>
+                
+                <!-- Get in Touch Section -->
+                <section class="mb-20 fade-in">
+                    <h2 class="text-3xl font-bold mb-12 text-center animated-gradient">Get In Touch</h2>
+                    
+                    <div class="contact-form glass p-8 rounded-2xl border border-white/5">
+                        <form id="contact-form" action="https://formspree.io/f/xjvqjqeq" method="POST">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Your Name</label>
+                                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Your Email</label>
+                                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-input" placeholder="What is this regarding?" required>
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label for="message" class="form-label">Your Message</label>
+                                <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project or inquiry..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Message
+                            </button>
+                        </form>
+                        
+                        <div id="form-success" class="form-success">
+                            <i class="fas fa-check-circle text-green-500 text-2xl mb-2"></i>
+                            <h3 class="text-xl font-bold text-green-400 mb-2">Message Sent Successfully!</h3>
+                            <p class="text-gray-300">Thank you for reaching out. I'll get back to you as soon as possible.</p>
+                        </div>
+                        
+                        <div id="form-error" class="form-error">
+                            <i class="fas fa-exclamation-triangle text-red-500 text-2xl mb-2"></i>
+                            <h3 class="text-xl font-bold text-red-400 mb-2">Oops! Something went wrong.</h3>
+                            <p class="text-gray-300">Please try again or contact me directly at andrrr.discord@gmail.com</p>
+                        </div>
+                    </div>
                 </section>
             </div>
         </main>
@@ -1101,98 +1191,6 @@
     </audio>
     
     <script>
-        // Loading screen functionality - Only wait for Spline elements
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const loadingText = document.getElementById('loading-text');
-            const enterScreen = document.getElementById('enter-screen');
-            
-            // Track Spline loading progress
-            let splineLoadedCount = 0;
-            const totalSplineElements = 2; // We have 2 Spline viewers on the page
-            
-            // Update loading text
-            function updateLoadingText() {
-                loadingText.textContent = `Loading 3D elements... ${Math.round((splineLoadedCount / totalSplineElements) * 100)}%`;
-            }
-            
-            // Check if all Spline elements are loaded
-            function checkAllSplineLoaded() {
-                if (splineLoadedCount >= totalSplineElements) {
-                    // All Spline elements loaded, hide loading screen and show enter screen
-                    setTimeout(function() {
-                        loadingScreen.style.opacity = '0';
-                        setTimeout(function() {
-                            loadingScreen.style.display = 'none';
-                            enterScreen.style.display = 'flex';
-                            setTimeout(function() {
-                                enterScreen.style.opacity = '1';
-                            }, 50);
-                        }, 800);
-                    }, 500);
-                }
-            }
-            
-            // Wait for Spline viewers to load
-            const splineViewers = document.querySelectorAll('spline-viewer');
-            
-            // If there are Spline viewers, wait for them to load
-            if (splineViewers.length > 0) {
-                splineViewers.forEach(viewer => {
-                    // Check if already loaded
-                    if (viewer.loaded) {
-                        splineLoadedCount++;
-                        updateLoadingText();
-                        checkAllSplineLoaded();
-                    } else {
-                        // Listen for load event
-                        viewer.addEventListener('load', function() {
-                            splineLoadedCount++;
-                            updateLoadingText();
-                            checkAllSplineLoaded();
-                        });
-                        
-                        // Also listen for error in case loading fails
-                        viewer.addEventListener('error', function() {
-                            splineLoadedCount++;
-                            updateLoadingText();
-                            checkAllSplineLoaded();
-                        });
-                    }
-                });
-            } else {
-                // No Spline viewers found, proceed immediately
-                setTimeout(function() {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(function() {
-                        loadingScreen.style.display = 'none';
-                        enterScreen.style.display = 'flex';
-                        setTimeout(function() {
-                            enterScreen.style.opacity = '1';
-                        }, 50);
-                    }, 800);
-                }, 1000);
-            }
-            
-            // Fallback: If Spline elements don't load within 10 seconds, proceed anyway
-            setTimeout(function() {
-                if (loadingScreen.style.display !== 'none') {
-                    console.log('Spline loading timeout - proceeding with website');
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(function() {
-                        loadingScreen.style.display = 'none';
-                        enterScreen.style.display = 'flex';
-                        setTimeout(function() {
-                            enterScreen.style.opacity = '1';
-                        }, 50);
-                    }, 800);
-                }
-            }, 10000);
-            
-            // Update loading text initially
-            updateLoadingText();
-        });
-
         // Title animation
         const titleText = "Rayzz | Sleepy";
         const typingSpeed = 150;
@@ -1318,6 +1316,9 @@
                     // Initialize scroll animations
                     initScrollAnimations();
                     
+                    // Initialize contact form
+                    initContactForm();
+                    
                     // Start title animation
                     animateTitle();
                 }, 800);
@@ -1350,6 +1351,64 @@
             fadeElements.forEach(element => {
                 fadeObserver.observe(element);
             });
+        }
+
+        // Initialize contact form
+        function initContactForm() {
+            const contactForm = document.getElementById('contact-form');
+            const formSuccess = document.getElementById('form-success');
+            const formError = document.getElementById('form-error');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    const submitBtn = contactForm.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    
+                    // Send form data using Fetch API
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Show success message
+                            formSuccess.style.display = 'block';
+                            formError.style.display = 'none';
+                            contactForm.reset();
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Show error message
+                        formError.style.display = 'block';
+                        formSuccess.style.display = 'none';
+                    })
+                    .finally(() => {
+                        // Reset button state
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        
+                        // Hide messages after 5 seconds
+                        setTimeout(() => {
+                            formSuccess.style.display = 'none';
+                            formError.style.display = 'none';
+                        }, 5000);
+                    });
+                });
+            }
         }
 
         // Starfield shader background
@@ -1742,6 +1801,15 @@
                 console.error("Failed to copy URL: ", err);
             });
         }
+
+<script src="https://unpkg.com/kursor"></script>
+    <script>
+        new kursor({
+            type: 1
+        })
+    </script>
+
+        
     </script>
 </body>
 </html>
