@@ -33,7 +33,7 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
 
 ---
 
-## 🛠 Skills & Experience
+## 🛠 Tech Stack
 
 <div align="center">
 
