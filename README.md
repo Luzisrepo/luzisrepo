@@ -1,7 +1,6 @@
 <div>
   <img style="width:100%; max-width:1000px;" src="https://capsule-render.vercel.app/api?type=waving&height=100&section=header&reversal=false&fontSize=70&fontColor=FFFFFF&fontAlign=50&fontAlignY=50&stroke=-&descSize=20&descAlign=50&descAlignY=50&theme=cobalt" />
 </div>
-
 <img width="1920" height="751" alt="{09FAC6FC-D276-4069-90ED-87796B852EA7}" src="https://github.com/user-attachments/assets/a6ee0ec4-fb61-477e-bdf8-9346d0cfc515" />
 
 
@@ -223,4 +222,8 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
 
 ---
 
-> Life js isn't enjoyable without a filter in ur mouth. 
+> Life js isn't enjoyable without a filter in ur mouth.
+<div>
+  <img style="width:100%; max-width:1000px;" src="https://capsule-render.vercel.app/api?type=waving&height=100&section=footer&reversal=false&fontSize=70&fontColor=FFFFFF&fontAlign=50&fontAlignY=50&stroke=-&descSize=20&descAlign=50&descAlignY=50&theme=cobalt" />
+</div>
+
