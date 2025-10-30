@@ -2,7 +2,7 @@
 
 
 
-# Hi, I'm Rayzz 👋
+# Hi, I'm Rayzz <img src="https://media.tenor.com/_rAgn1VgQdIAAAAi/wave.gif" height="30"/>
 
 Welcome to my portfolio and GitHub profile! Here you can check my skills, experience, and coding activity.  
 
