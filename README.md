@@ -34,73 +34,103 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
 ---
 
 ## 🛠 Skills & Experience
+
+<div align="center">
+
 <table>
+<!-- === Core Languages & Web === -->
 <tr>
-<td>🐍 <b>Python</b><br><sub>Jun 2017 — Everything and anything.</sub></td>
-<td>⚡ <b>JavaScript</b><br><sub>May 2017 — Browser extensions & plugins.</sub></td>
-<td>🎨 <b>HTML + CSS</b><br><sub>May 2017 — Never made a good-looking site in pure HTML & CSS 😅</sub></td>
+<td align="center">🐍 <b>Python</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="40"/></td>
+<td align="center">⚡ <b>JavaScript</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40"/></td>
+<td align="center">📜 <b>TypeScript</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40"/></td>
 </tr>
 <tr>
-<td>💡 <b>jQuery</b><br><sub>Aug 2017 — Didn’t make it into my stack.</sub></td>
-<td>🤖 <b>discord.py</b><br><sub>Sep 2018 — Made so many cool Discord bots.</sub></td>
-<td>🌱 <b>git</b><br><sub>Jan 2019 — #1 content creator on the hub.</sub></td>
+<td align="center">🎨 <b>HTML + CSS</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40"/> 
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40"/></td>
+<td align="center">💡 <b>jQuery</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" height="40"/></td>
+<td align="center">⚛ <b>React</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40"/></td>
 </tr>
 <tr>
-<td>🐧 <b>Linux</b><br><sub>Oct 2020 — I use Arch btw.</sub></td>
-<td>🖥 <b>Bash</b><br><sub>Dec 2020 — Automated repetitive tasks.</sub></td>
-<td>☕ <b>Java</b><br><sub>May 2021 — From Minecraft mods to “everything is an object” love.</sub></td>
+<td align="center">🌐 <b>Next.js</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" height="40"/></td>
+<td align="center">🎨 <b>Tailwind CSS</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="40"/></td>
+<td align="center">🏗 <b>NestJS</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" height="40"/></td>
+</tr>
+
+<!-- === Backend, Cloud & DevOps === -->
+<tr>
+<td align="center">📦 <b>Docker</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height="40"/></td>
+<td align="center">☁ <b>AWS</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-line-wordmark.svg" height="40"/></td>
+<td align="center">🛠 <b>Terraform</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" height="40"/></td>
 </tr>
 <tr>
-<td>🔍 <b>Java Deobfuscation & Bytecode</b><br><sub>Aug 2021 – May 2022 — 0xCAFEBABE</sub></td>
-<td>🧠 <b>TensorFlow</b><br><sub>Feb 2022 — And so it begins…</sub></td>
-<td>🎬 <b>MoviePy</b><br><sub>Mar 2023 — Жадность фраера сгубила. You live, you learn.</sub></td>
+<td align="center">🌐 <b>NGINX</b></td>
+<td align="center">📨 <b>RabbitMQ</b></td>
+<td align="center">🗄 <b>Supabase</b></td>
 </tr>
 <tr>
-<td>⚛ <b>React</b><br><sub>Sep 2023 — React is React.</sub></td>
-<td>🎨 <b>Tailwind CSS</b><br><sub>Sep 2023 — Made frontend go from torture to therapy.</sub></td>
-<td>🌐 <b>Next.js</b><br><sub>Nov 2023 — Can’t stand Svelte fanboys.</sub></td>
+<td align="center">🌱 <b>git</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="40"/></td>
+<td align="center">🐧 <b>Linux</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="40"/></td>
+<td align="center">🖥 <b>Bash</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" height="40"/></td>
+</tr>
+
+<!-- === Machine Learning & Data === -->
+<tr>
+<td align="center">🧠 <b>TensorFlow</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" height="40"/></td>
+<td align="center">🔥 <b>PyTorch</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" height="40"/></td>
+<td align="center">🔬 <b>JAX + FLAX + OPTAX</b></td>
 </tr>
 <tr>
-<td>📜 <b>TypeScript</b><br><sub>Sep 2023 — Looks better than JS, reminds me of Java.</sub></td>
-<td>📱 <b>React Native + Expo</b><br><sub>Mar 2024 — Roses are red… new SDKs > studying.</sub></td>
-<td>🔬 <b>JAX + FLAX + OPTAX</b><br><sub>Apr 2024 — Going deeper than TensorFlow.</sub></td>
+<td align="center">🏋 <b>Gymnasium</b></td>
+<td align="center">🤖 <b>StableBaselines</b></td>
+<td align="center">⚡ <b>FastAPI</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" height="40"/></td>
+</tr>
+
+<!-- === Programming Languages === -->
+<tr>
+<td align="center">☕ <b>Java</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="40"/></td>
+<td align="center">🐹 <b>Go</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" height="40"/></td>
+<td align="center">🦀 <b>Rust</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" height="40"/></td>
 </tr>
 <tr>
-<td>🗄 <b>Supabase</b><br><sub>Jun 2024 — The only decent BaaS with working RN templates.</sub></td>
-<td>🔥 <b>PyTorch</b><br><sub>Jul 2024 — Why not?</sub></td>
-<td>📦 <b>Docker</b><br><sub>Aug 2024 — Went from hater → growing fond.</sub></td>
+<td align="center">⛓ <b>Solidity</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" height="40"/></td>
+<td align="center">🔌 <b>WebSockets</b></td>
+<td align="center">🔍 <b>Java Deobfuscation & Bytecode</b></td>
+</tr>
+
+<!-- === Creative, Tools, & Misc === -->
+<tr>
+<td align="center">🎨 <b>Processing</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/processing/processing-original.svg" height="40"/></td>
+<td align="center">🎬 <b>MoviePy</b></td>
+<td align="center">🎥 <b>ffmpeg</b></td>
 </tr>
 <tr>
-<td>☁ <b>AWS</b><br><sub>Aug 2024 — Addicted to the cloud.</sub></td>
-<td>📨 <b>RabbitMQ</b><br><sub>Sep 2024 — I ❤️ microservices.</sub></td>
-<td>🐹 <b>Go</b><br><sub>Sep 2024 — It’s fun.</sub></td>
+<td align="center">✍ <b>Neovim</b></td>
+<td align="center">⌨ <b>Glorious Engrammer</b></td>
+<td align="center">🎨 <b>Figma</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" height="40"/></td>
+</tr>
+
+<!-- === Newly Added Technologies from Icon List === -->
+<tr>
+<td align="center">💾 <b>MongoDB</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40"/></td>
+<td align="center">💬 <b>Redis</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" height="40"/></td>
+<td align="center">🧩 <b>Django</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" height="40"/></td>
 </tr>
 <tr>
-<td>🦀 <b>Rust</b><br><sub>Sep 2024 — Doing too much to minimize cold starts 💀</sub></td>
-<td>🎨 <b>Processing</b><br><sub>Oct 2024 — Overkilling uni homework.</sub></td>
-<td>🛠 <b>Terraform</b><br><sub>Oct 2024 — I do not enjoy Terraform.</sub></td>
+<td align="center">🍶 <b>Flask</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height="40"/></td>
+<td align="center">🪄 <b>PyCharm</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" height="40"/></td>
+<td align="center">🧱 <b>Webflow</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webflow/webflow-original.svg" height="40"/></td>
 </tr>
 <tr>
-<td>🏋 <b>Gymnasium</b><br><sub>Nov 2024 — For StableBaselines.</sub></td>
-<td>🤖 <b>StableBaselines</b><br><sub>Nov 2024 — Implementing research papers.</sub></td>
-<td>⚡ <b>FastAPI</b><br><sub>Jan 2025 — Serving ML services.</sub></td>
+<td align="center">💻 <b>C</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"/></td>
+<td align="center">💻 <b>C++</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" height="40"/></td>
+<td align="center">💻 <b>C#</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="40"/></td>
 </tr>
-<tr>
-<td>🏗 <b>NestJS</b><br><sub>Feb 2025 — Opinionated frameworks = maintainable teams.</sub></td>
-<td>🌐 <b>NGINX</b><br><sub>Mar 2025 — Hosting servers & frontends 🫡</sub></td>
-<td>🎥 <b>ffmpeg</b><br><sub>May 2025 — Never realized how delicate videos are.</sub></td>
-</tr>
-<tr>
-<td>🔌 <b>WebSockets</b><br><sub>May 2025 — How did I avoid them for 8 years?</sub></td>
-<td>⛓ <b>Solidity</b><br><sub>Jun 2025 — Smart contracts for betting.</sub></td>
-<td>✍ <b>Neovim</b><br><sub>Jun 2025 — I give in.</sub></td>
-</tr>
-<tr>
-<td>⌨ <b>Glorious Engrammer</b><br><sub>Jun 2025 — Glove80 warmup.</sub></td>
-<td></td>
-<td></td>
-</tr>
+
 </table>
+
+</div>
+
 
 ---
 
