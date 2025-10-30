@@ -38,98 +38,143 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
 <div align="center">
 
 <table>
+
 <!-- === Core Languages & Web === -->
 <tr>
-<td align="center">🐍 <b>Python</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="40"/></td>
-<td align="center">⚡ <b>JavaScript</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40"/></td>
-<td align="center">📜 <b>TypeScript</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40"/></td>
+<td align="center">🐍 <b>Python</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="40"/></td>
+<td align="center">⚡ <b>JavaScript</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40"/></td>
+<td align="center">📜 <b>TypeScript</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40"/></td>
 </tr>
 <tr>
 <td align="center">🎨 <b>HTML + CSS</b><br>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40"/> 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40"/></td>
-<td align="center">💡 <b>jQuery</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" height="40"/></td>
-<td align="center">⚛ <b>React</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40"/></td>
+<td align="center">💡 <b>jQuery</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" height="40"/></td>
+<td align="center">⚛ <b>React</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40"/></td>
 </tr>
 <tr>
-<td align="center">🌐 <b>Next.js</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" height="40"/></td>
-<td align="center">🎨 <b>Tailwind CSS</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="40"/></td>
-<td align="center">🏗 <b>NestJS</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" height="40"/></td>
+<td align="center">🌐 <b>Next.js</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" height="40"/></td>
+<td align="center">🎨 <b>Tailwind CSS</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="40"/></td>
+<td align="center">🏗 <b>NestJS</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg" height="40"/></td>
 </tr>
 
 <!-- === Backend, Cloud & DevOps === -->
 <tr>
-<td align="center">📦 <b>Docker</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height="40"/></td>
-<td align="center">☁ <b>AWS</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-line-wordmark.svg" height="40"/></td>
-<td align="center">🛠 <b>Terraform</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" height="40"/></td>
+<td align="center">📦 <b>Docker</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height="40"/></td>
+<td align="center">☁ <b>AWS</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-line-wordmark.svg" height="40"/></td>
+<td align="center">🛠 <b>Terraform</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" height="40"/></td>
 </tr>
 <tr>
-<td align="center">🌐 <b>NGINX</b></td>
-<td align="center">📨 <b>RabbitMQ</b></td>
-<td align="center">🗄 <b>Supabase</b></td>
+<td align="center">🌐 <b>NGINX</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" height="40"/></td>
+<td align="center">📨 <b>RabbitMQ</b><br>📧</td>
+<td align="center">🗄 <b>Supabase</b><br>🗃️</td>
 </tr>
 <tr>
-<td align="center">🌱 <b>git</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="40"/></td>
-<td align="center">🐧 <b>Linux</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="40"/></td>
-<td align="center">🖥 <b>Bash</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" height="40"/></td>
+<td align="center">🌱 <b>Git</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="40"/></td>
+<td align="center">🐧 <b>Linux</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" height="40"/></td>
+<td align="center">🖥 <b>Bash</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" height="40"/></td>
 </tr>
 
-<!-- === Machine Learning & Data === -->
+<!-- === Machine Learning & AI === -->
 <tr>
-<td align="center">🧠 <b>TensorFlow</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" height="40"/></td>
-<td align="center">🔥 <b>PyTorch</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" height="40"/></td>
-<td align="center">🔬 <b>JAX + FLAX + OPTAX</b></td>
+<td align="center">🧠 <b>TensorFlow</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" height="40"/></td>
+<td align="center">🔥 <b>PyTorch</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" height="40"/></td>
+<td align="center">🔬 <b>JAX + FLAX + OPTAX</b><br>🧩</td>
 </tr>
 <tr>
-<td align="center">🏋 <b>Gymnasium</b></td>
-<td align="center">🤖 <b>StableBaselines</b></td>
-<td align="center">⚡ <b>FastAPI</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" height="40"/></td>
+<td align="center">🏋 <b>Gymnasium</b><br>🤸</td>
+<td align="center">🤖 <b>StableBaselines</b><br>🧠</td>
+<td align="center">⚡ <b>FastAPI</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" height="40"/></td>
 </tr>
 
 <!-- === Programming Languages === -->
 <tr>
-<td align="center">☕ <b>Java</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="40"/></td>
-<td align="center">🐹 <b>Go</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" height="40"/></td>
-<td align="center">🦀 <b>Rust</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" height="40"/></td>
+<td align="center">☕ <b>Java</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="40"/></td>
+<td align="center">🐹 <b>Go</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" height="40"/></td>
+<td align="center">🦀 <b>Rust</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg" height="40"/></td>
 </tr>
 <tr>
-<td align="center">⛓ <b>Solidity</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" height="40"/></td>
-<td align="center">🔌 <b>WebSockets</b></td>
-<td align="center">🔍 <b>Java Deobfuscation & Bytecode</b></td>
+<td align="center">⛓ <b>Solidity</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" height="40"/></td>
+<td align="center">🔌 <b>WebSockets</b><br>🌐</td>
+<td align="center">🔍 <b>Java Deobfuscation & Bytecode</b><br>☕</td>
 </tr>
 
 <!-- === Creative, Tools, & Misc === -->
 <tr>
-<td align="center">🎨 <b>Processing</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/processing/processing-original.svg" height="40"/></td>
-<td align="center">🎬 <b>MoviePy</b></td>
-<td align="center">🎥 <b>ffmpeg</b></td>
+<td align="center">🎨 <b>Processing</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/processing/processing-original.svg" height="40"/></td>
+<td align="center">🎬 <b>MoviePy</b><br>🎞️</td>
+<td align="center">🎥 <b>ffmpeg</b><br>📹</td>
 </tr>
 <tr>
-<td align="center">✍ <b>Neovim</b></td>
-<td align="center">⌨ <b>Glorious Engrammer</b></td>
-<td align="center">🎨 <b>Figma</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" height="40"/></td>
+<td align="center">✍ <b>Neovim</b><br>⌨️</td>
+<td align="center">⌨ <b>Glorious Engrammer</b><br>🖋️</td>
+<td align="center">🎨 <b>Figma</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" height="40"/></td>
 </tr>
 
-<!-- === Newly Added Technologies from Icon List === -->
+<!-- === Databases & Frameworks === -->
 <tr>
-<td align="center">💾 <b>MongoDB</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40"/></td>
-<td align="center">💬 <b>Redis</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" height="40"/></td>
-<td align="center">🧩 <b>Django</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" height="40"/></td>
+<td align="center">💾 <b>MongoDB</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40"/></td>
+<td align="center">💬 <b>Redis</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" height="40"/></td>
+<td align="center">🧩 <b>Django</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" height="40"/></td>
 </tr>
 <tr>
-<td align="center">🍶 <b>Flask</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height="40"/></td>
-<td align="center">🪄 <b>PyCharm</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" height="40"/></td>
-<td align="center">🧱 <b>Webflow</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webflow/webflow-original.svg" height="40"/></td>
+<td align="center">🍶 <b>Flask</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height="40"/></td>
+<td align="center">🪄 <b>PyCharm</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" height="40"/></td>
+<td align="center">🧱 <b>Webflow</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webflow/webflow-original.svg" height="40"/></td>
 </tr>
+
+<!-- === Systems Programming Languages === -->
 <tr>
-<td align="center">💻 <b>C</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"/></td>
-<td align="center">💻 <b>C++</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" height="40"/></td>
-<td align="center">💻 <b>C#</b><br><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="40"/></td>
+<td align="center">💻 <b>C</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40"/></td>
+<td align="center">💻 <b>C++</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" height="40"/></td>
+<td align="center">💻 <b>C#</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="40"/></td>
+</tr>
+
+<!-- === Bots & APIs === -->
+<tr>
+<td align="center">🤖 <b>discord.py</b><br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg" height="40"/></td>
+<td align="center">🔌 <b>API Development</b><br>🔗</td>
+<td align="center">📡 <b>Microservices</b><br>🛰️</td>
 </tr>
 
 </table>
 
 </div>
+
 
 
 ---
