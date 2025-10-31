@@ -106,7 +106,7 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
 <tr>
 <td style="width:150px;height:150px;border:1px solid #333;vertical-align:middle;">
 🎨 <b>Tailwind CSS</b><br>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original-wordmark.svg" width="48" height="48"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" width="48" height="48"/>
 </td>
 <td style="width:150px;height:150px;border:1px solid #333;vertical-align:middle;">
 🌐 <b>Next.js</b><br>
