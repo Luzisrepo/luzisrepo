@@ -7,6 +7,8 @@
 
 # Hi, I'm Rayzz <img src="https://media.tenor.com/_rAgn1VgQdIAAAAi/wave.gif" height="30"/>
 
+[![Sick & Tired – ilyTOMMY](https://i.scdn.co/image/ab67616d0000b273f0c0f6e7db2dd45cbb943c2f)](https://open.spotify.com/track/28uWC7nDaUAWMq9Z5LSvHN?si=834697622bfd4773)
+
 Welcome to my portfolio and GitHub profile! Here you can check my skills, experience, and coding activity.  
 
 ---
