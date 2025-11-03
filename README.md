@@ -223,7 +223,7 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
 
 
 ## 📫 Connect With Me
-[![Discord](https://img.shields.io/badge/Discord.rayzz-5865F2?style=for-the-badge&logo=discord&logoColor=white)](rayzz.dev)
+[![Discord](https://img.shields.io/badge/Discord.rayzz-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://rayzz.dev)
 [![Email](https://img.shields.io/badge/Email-rayzz%40gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white)](mailto:andrrr.discord@gmail.com)
 
 
