@@ -226,7 +226,11 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
   <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/Luzisrepo/Luzisrepo/output/pacman-contribution-graph.svg">
 </picture>
 
+
 ###
+<div align="center">
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=luzisrepo&theme=dracula" />
+</div>
 
 ---
 
