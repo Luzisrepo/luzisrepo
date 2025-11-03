@@ -12,6 +12,18 @@ Welcome to my portfolio and GitHub profile! Here you can check my skills, experi
 
 ---
 
+
+## 📖 Table of Contents
+- [Hi, I'm Rayzz](#hi-im-rayzz-)
+- [Portfolio Preview](#-portfolio-preview)
+- [Stats](#-stats)
+- [Tech Stack](#-tech-stack)
+- [Currently Exploring](#-currently-exploring)
+- [Connect With Me](#-connect-with-me)
+- [Commit Calendar](#-commit-calendar)
+
+---
+
 ## 🌌 Portfolio Preview
 Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animations**, and **custom JS effects**:
 
