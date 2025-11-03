@@ -206,6 +206,14 @@ Check out my interactive portfolio I built using **Tailwind CSS**, **AOS animati
 
 </div>
 
+---
+
+
+
+## 🧭 Currently Exploring
+- 🦀 Rust for backend performance
+- ⚡ FastAPI for lightweight APIs
+- ☁️ Cloud infrastructure with Terraform + AWS  
 
 
 
