@@ -170,7 +170,6 @@
   [![Portfolio](https://img.shields.io/badge/🌐_Portfolio-8A2BE2?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.rayzz.dev)
   [![Discord](https://img.shields.io/badge/💬_Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://rayzz.dev)
   [![Email](https://img.shields.io/badge/📧_Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:andrrr.discord@gmail.com)
-  [![LinkedIn](https://img.shields.io/badge/💼_LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/yourprofile)
   
 </div>
 
