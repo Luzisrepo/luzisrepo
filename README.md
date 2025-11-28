@@ -27,7 +27,7 @@
   # Hi, I'm Rayzz <img src="https://media.tenor.com/_rAgn1VgQdIAAAAi/wave.gif" height="30"/>
   
   <img src="https://img.shields.io/badge/Full%20Stack%20Developer-8A2BE2?style=for-the-badge&logo=fullstack&logoColor=white" />
-  <img src="https://img.shields.io/badge/AI%20%26%20ML%20Enthusiast-8A2BE2?style=for-the-badge&logo=ai&logoColor=white" />
+  <img src="https://img.shields.io/badge/WebDev%20%26%20ML%20Enthusiast-8A2BE2?style=for-the-badge&logo=ai&logoColor=white" />
   <img src="https://img.shields.io/badge/Open%20Source%20Contributor-8A2BE2?style=for-the-badge&logo=opensource&logoColor=white" />
   
 </div>
