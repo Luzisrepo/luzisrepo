@@ -9,7 +9,7 @@
 
 <!-- Badge de Citação com Design Técnico -->
 <div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=26&duration=4000&pause=1000&color=8A2BE2&center=true&vCenter=true&width=800&lines=Life+js+isn't+enjoyable+without+a+filter+in+your+mouth.;Full-Stack+Developer+%7C+AI+Enthusiast+%7C+Open+Source+Contributor" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=26&duration=4000&pause=1000&color=8A2BE2&center=true&vCenter=true&width=1000&lines=Life+js+isn't+enjoyable+without+a+filter+in+your+mouth.;Full-Stack+Developer+%7C+WebDev+Enthusiast+%7C+Open+Source+Contributor" alt="Typing SVG" />
 </div>
 
 <!-- Contador de Visitas -->
