@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
+    <title>Rayzz | Sleepy</title>
+    <meta name="description" content="Rayzz - Sleep-Deprived Full-Stack Dev">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8a2be2',
+                        secondary: '#9370db',
+                        accent: '#9932cc',
+                        dark: '#0f0a19',
+                        darker: '#090511',
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        glow: {
+                            'from': { 'box-shadow': '0 0 5px rgba(138, 43, 226, 0.5), 0 0 10px rgba(138, 43, 226, 0.3), 0 0 15px rgba(138, 43, 226, 0.2)' },
+                            'to': { 'box-shadow': '0 0 15px rgba(138, 43, 226, 0.7), 0 0 20px rgba(138, 43, 226, 0.5), 0 0 30px rgba(138, 43, 226, 0.3)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #9370db;
+            --accent: #9932cc;
+            --dark: #0f0a19;
+            --darker: #090511;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--darker);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            touch-action: pan-y;
+        }
+        
+        /* Mobile-optimized scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 10px;
+        }
+        
+        /* Load-in animations only */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Animation delays */
+        .fade-in.delay-100 { transition-delay: 0.1s; }
+        .fade-in.delay-200 { transition-delay: 0.2s; }
+        .fade-in.delay-300 { transition-delay: 0.3s; }
+        .fade-in.delay-400 { transition-delay: 0.4s; }
+        .fade-in.delay-500 { transition-delay: 0.5s; }
+        .fade-in.delay-600 { transition-delay: 0.6s; }
+        
+        /* Simple starfield for mobile */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(180deg, #090511 0%, #1a1030 100%);
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 5px rgba(138, 43, 226, 0.7), 
+                         0 0 10px rgba(138, 43, 226, 0.5);
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 5px rgba(138, 43, 226, 0.7), 
+                        0 0 10px rgba(138, 43, 226, 0.5);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        /* REMOVED all hover effects */
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+            box-shadow: 0 0 10px #48bb78;
+            animation: pulse-slow 2s infinite;
+        }
+        
+        .skill-card, .service-card, .pricing-card, .stat-card, .portfolio-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            background: rgba(15, 10, 25, 0.8);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        /* REMOVED all hover animations for cards */
+        
+        .qr-code {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        button, .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            z-index: 1;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        /* REMOVED button hover effects */
+        
+        /* Glassmorphism effect - reduced blur for mobile */
+        .glass {
+            background: rgba(15, 10, 25, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(138, 43, 226, 0.15);
+        }
+        
+        /* Text gradient */
+        .text-gradient {
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+        }
+        
+        /* Animated gradient */
+        .animated-gradient {
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #9370db,
+                #9932cc,
+                #ba55d3,
+                #9370db,
+                #8a2be2
+            );
+            background-size: 300% 100%;
+            animation: gradient-wave 8s ease infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        @keyframes gradient-wave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.875rem;
+            background: rgba(15, 10, 25, 0.8);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 0.5rem;
+            color: #e2e8f0;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            font-size: 16px; /* Prevents zoom on iOS */
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: rgba(138, 43, 226, 0.7);
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: 0.75rem;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            font-size: 1rem;
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            background: rgba(15, 10, 25, 0.8);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            z-index: 1000;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: rgba(15, 10, 25, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 999;
+            transition: right 0.3s ease;
+            padding: 5rem 1.5rem 2rem;
+            overflow-y: auto;
+            border-left: 1px solid rgba(138, 43, 226, 0.2);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu-link {
+            display: block;
+            padding: 1rem;
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-menu-link:active {
+            background: rgba(138, 43, 226, 0.2);
+            padding-left: 1.5rem;
+        }
+        
+        .mobile-menu-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Portfolio Card Styles */
+        .portfolio-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-image {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        
+        .portfolio-content {
+            padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+        
+        .portfolio-description {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            font-size: 0.9rem;
+        }
+        
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* Form success/error */
+        .form-success, .form-error {
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .form-success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+        }
+        
+        .form-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+        }
+        
+        /* Enter Screen Styles - Simplified for mobile */
+        #enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0a19 0%, #1a1030 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+        
+        .enter-content {
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            padding: 1.5rem;
+            z-index: 10;
+        }
+        
+        .enter-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #ffffff, #a0a0a0, #808080, #a0a0a0, #ffffff);
+            background-size: 300% 100%;
+            animation: gradient-wave 8s ease infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .enter-subtitle {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: #d8bfd8;
+        }
+        
+        .enter-button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #8a2be2, #9932cc);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            width: 100%;
+            max-width: 200px;
+        }
+        
+        .audio-controls {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .volume-slider-glass {
+            -webkit-appearance: none;
+            width: 120px;
+            height: 5px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        
+        .volume-slider-glass::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+        }
+        
+        .audio-error {
+            display: none;
+            background: rgba(200, 0, 0, 0.2);
+            border: 1px solid rgba(255, 100, 100, 0.5);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile-specific optimizations */
+        @media (max-width: 640px) {
+            .hero-text {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            .skill-card, .service-card, .pricing-card, .portfolio-card {
+                padding: 1rem;
+            }
+            
+            .stat-card {
+                padding: 1.5rem;
+            }
+            
+            .portfolio-image {
+                height: 150px;
+            }
+            
+            .enter-title {
+                font-size: 2rem;
+            }
+            
+            .enter-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            button, .btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Prevent text selection on buttons */
+        .no-select {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        /* Better touch targets */
+        .touch-target {
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+  
+    <!-- Enter Screen -->
+    <div id="enter-screen">
+        <!-- Simplified star background -->
+        <div id="starfield"></div>
+        
+        <div class="enter-content">
+            <h1 class="enter-title">RAYZZ</h1>
+            <p class="enter-subtitle">Welcome to my corner. Tap enter to explore it!</p>
+            <button class="enter-button" id="enter-button">
+                ENTER
+            </button>
+            <div class="audio-controls">
+                <i class="fas fa-volume-up text-white"></i>
+                <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider-glass" id="volume-control">
+                <i class="fas fa-music text-white" id="toggle-music" style="cursor: pointer;"></i>
+            </div>
+            <div id="audio-error" class="audio-error">
+                <p class="text-red-400">Audio file couldn't be loaded.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Website Content (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#top" class="mobile-menu-link" onclick="closeMobileMenu()">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#skills" class="mobile-menu-link" onclick="closeMobileMenu()">
+                <i class="fas fa-laptop-code"></i> Skills
+            </a>
+            <a href="#portfolio" class="mobile-menu-link" onclick="closeMobileMenu()">
+                <i class="fas fa-briefcase"></i> Portfolio
+            </a>
+            <a href="#services" class="mobile-menu-link" onclick="closeMobileMenu()">
+                <i class="fas fa-cogs"></i> Services
+            </a>
+            <a href="#pricing" class="mobile-menu-link" onclick="closeMobileMenu()">
+                <i class="fas fa-tags"></i> Pricing
+            </a>
+            <a href="#contact" class="mobile-menu-link" onclick="closeMobileMenu()">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+            <div class="mt-8 pt-4 border-t border-white/10">
+                <div class="flex justify-center gap-3 mt-4">
+                    <a href="https://github.com/luzisrepo" target="_blank" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <button onclick="copyEmail()" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </button>
+                    <button onclick="copyDiscord()" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center">
+                        <i class="fab fa-discord text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Simple star background -->
+        <div id="starfield-main"></div>
+        
+        <!-- Mobile Header with Burger Menu -->
+        <header class="w-full pt-6 pb-6 fixed top-0 left-0 z-100 glass" style="z-index: 100;">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center">
+                    <div class="fade-in">
+                        <h1 class="text-2xl font-bold neon-text text-gradient">
+                            <a href="#top" class="no-select">Rayzz</a> <span class="status-dot"></span>
+                        </h1>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button class="mobile-menu-btn touch-target no-select" id="mobile-menu-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Add padding to account for fixed header -->
+        <div style="height: 80px;"></div>
+        
+        <div class="container mx-auto px-4">
+            <div class="mt-12 max-w-3xl glass p-6 rounded-2xl border border-white/5 fade-in delay-200">
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    I build and automate everything — from Discord bots and web apps to cloud-deployed AI services. 
+                    Explore my work, my skills, and ways to connect with me.
+                </p>
+                
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <button onclick="copyEmail()" class="relative px-5 py-3 bg-secondary/20 rounded-xl font-medium transition-all duration-300 glass touch-target no-select">
+                        <i class="fas fa-envelope mr-2"></i>Copy Email
+                        <span id="tooltip" class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
+                            Copied!
+                        </span>
+                    </button>
+                    <button onclick="copyDiscord()" class="px-5 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 glass touch-target no-select">
+                        <i class="fab fa-discord mr-2"></i>Discord
+                    </button>
+                    <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="px-5 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 glass touch-target no-select">
+                        <i class="fab fa-github mr-2"></i>GitHub
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="qrModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm">
+            <div class="bg-darker/90 p-6 rounded-2xl max-w-sm mx-4 relative border border-primary/30 neon-border">
+                <button onclick="toggleQR()" class="absolute top-4 right-4 text-gray-400 touch-target">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <h3 class="text-xl font-bold mb-4 text-center text-gradient">Scan to connect</h3>
+                <div class="qr-code bg-white p-4 rounded-xl flex items-center justify-center">
+                    <img src="frame.png" alt="QR Code" class="w-40 h-40 object-contain" />
+                </div>
+                <p class="mt-4 text-center text-gray-300 text-sm">Scan this QR code to save my contact</p>
+            </div>
+        </div>
+        
+        <main class="flex-1 w-full">
+            <div class="container mx-auto px-4 py-8">
+                <section id="skills" class="mb-16 fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center animated-gradient">Skills & Expertise</h2>
+                    
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="skill-card p-5 rounded-2xl fade-in delay-100">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-laptop-code"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">Programming Languages</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>JavaScript/TypeScript</li>
+                                <li>Python</li>
+                                <li>C++</li>
+                                <li>Java</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-5 rounded-2xl fade-in delay-200">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-globe"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">Web Development</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>React & Next.js</li>
+                                <li>Node.js & Express</li>
+                                <li>Tailwind CSS</li>
+                                <li>REST & GraphQL APIs</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-5 rounded-2xl fade-in delay-300">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-database"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">Database</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>MongoDB</li>
+                                <li>PostgreSQL</li>
+                                <li>Firebase</li>
+                                <li>Redis</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-5 rounded-2xl fade-in delay-400">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-cloud"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">DevOps & Cloud</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>Docker & Kubernetes</li>
+                                <li>AWS & GCP</li>
+                                <li>CI/CD Pipelines</li>
+                                <li>Nginx & Apache</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-5 rounded-2xl fade-in delay-500">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-cogs"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">Automation</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>Discord Bots</li>
+                                <li>Web Scraping</li>
+                                <li>Browser Extensions</li>
+                                <li>Scripting</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-card p-5 rounded-2xl fade-in delay-600">
+                            <div class="flex items-center mb-4">
+                                <div class="text-2xl mr-3 text-primary"><i class="fas fa-brain"></i></div>
+                                <h3 class="text-xl font-bold text-gradient">AI/ML</h3>
+                            </div>
+                            <ul class="space-y-2">
+                                <li>TensorFlow/PyTorch</li>
+                                <li>NLP & Computer Vision</li>
+                                <li>LLM Integration</li>
+                                <li>Data Analysis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="mb-16 fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center animated-gradient">By The Numbers</h2>
+                    
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="stat-card p-6 rounded-2xl text-center fade-in delay-100">
+                            <div class="text-4xl font-bold text-gradient mb-2" id="projectsCount">0</div>
+                            <h3 class="text-lg">Projects Completed</h3>
+                        </div>
+                        
+                        <div class="stat-card p-6 rounded-2xl text-center fade-in delay-200">
+                            <div class="text-4xl font-bold text-gradient mb-2" id="clientsCount">0</div>
+                            <h3 class="text-lg">Happy Clients</h3>
+                        </div>
+                        
+                        <div class="stat-card p-6 rounded-2xl text-center fade-in delay-300">
+                            <div class="text-4xl font-bold text-gradient mb-2" id="awardsCount">0</div>
+                            <h3 class="text-lg">Awards Won</h3>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Portfolio Section -->
+                <section id="portfolio" class="mb-16 fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center animated-gradient">Portfolio</h2>
+                    
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="portfolio-card rounded-2xl fade-in delay-100">
+                            <img src="/assets/flight.png" alt="Discord Bot Project" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Is my flight late?</h3>
+                                <p class="portfolio-description">Is My Flight Late? is a modern, minimalist web application that allows users to quickly check the real-time status of flights using the AviationStack API.</p>
+                                <a href="https://github.com/Luzisrepo/IsMyFlightLate" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card rounded-2xl fade-in delay-200">
+                            <img src="/assets/focusflow.png" alt="Web Application" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Focus Flow</h3>
+                                <p class="portfolio-description">FocusFlow is a sleek productivity dashboard built with React that keeps the theme minimal while pushing the limits of animations and interactivity.</p>
+                                <a href="https://github.com/Luzisrepo/Focus-Flow" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card rounded-2xl fade-in delay-300">
+                            <img src="/assets/weather.png" alt="AI Service" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Ray Weather</h3>
+                                <p class="portfolio-description">A sleek and simple Weather App built using HTML, CSS, JavaScript, and a RESTful API to fetch real-time weather data.</p>
+                                <a href="https://github.com/Luzisrepo/RayWeather" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card rounded-2xl fade-in delay-400">
+                            <img src="/assets/solver.png" alt="Automation Tool" class="portfolio-image">
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title text-gradient">Ray Solver</h3>
+                                <p class="portfolio-description">Ray Solver is a modern, responsive web app for proportional allocation. It lets you input votes (or any resource distribution data), then calculates allocations using two of the most widely used methods.</p>
+                                <a href="https://github.com/Luzisrepo/Ray-Solver-Proportional-Allocation" target="_blank" class="portfolio-link">
+                                    View Project <i class="fas fa-external-link-alt ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="services" class="mb-16 fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center animated-gradient">Services Offered</h2>
+                    
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="service-card p-5 rounded-2xl text-center fade-in delay-100">
+                            <div class="text-3xl mb-3 text-primary"><i class="fas fa-desktop"></i></div>
+                            <h3 class="text-lg font-bold mb-2 text-gradient">Full-stack Web Apps</h3>
+                            <p class="text-gray-300 text-sm">Custom web applications with modern frameworks and scalable backends.</p>
+                        </div>
+                        
+                        <div class="service-card p-5 rounded-2xl text-center fade-in delay-200">
+                            <div class="text-3xl mb-3 text-primary"><i class="fas fa-robot"></i></div>
+                            <h3 class="text-lg font-bold mb-2 text-gradient">Discord Bot Development</h3>
+                            <p class="text-gray-300 text-sm">Feature-rich bots for moderation, utilities, games, and community management.</p>
+                        </div>
+                        
+                        <div class="service-card p-5 rounded-2xl text-center fade-in delay-300">
+                            <div class="text-3xl mb-3 text-primary"><i class="fas fa-brain"></i></div>
+                            <h3 class="text-lg font-bold mb-2 text-gradient">Machine Learning & AI</h3>
+                            <p class="text-gray-300 text-sm">Custom AI solutions, model training, and smart automation.</p>
+                        </div>
+                        
+                        <div class="service-card p-5 rounded-2xl text-center fade-in delay-400">
+                            <div class="text-3xl mb-3 text-primary"><i class="fas fa-bolt"></i></div>
+                            <h3 class="text-lg font-bold mb-2 text-gradient">Automation & DevOps</h3>
+                            <p class="text-gray-300 text-sm">Workflow automation, CI/CD pipelines, and cloud deployments.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="pricing" class="mb-16 fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center animated-gradient">Pricing</h2>
+                    
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="pricing-card p-6 rounded-2xl fade-in delay-100">
+                            <h3 class="text-xl font-bold mb-3 text-gradient">Website Building</h3>
+                            <div class="text-3xl font-bold text-gradient mb-4">€199+</div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span class="text-sm">Simple contact/landing page</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span class="text-sm">1–2 portfolio sections</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span class="text-sm">SEO-ready & mobile-friendly</span>
+                                </li>
+                            </ul>
+                            <button onclick="scrollToContact()" class="w-full py-3 bg-primary/20 rounded-xl font-bold transition-all duration-300 glass touch-target no-select">
+                                Get Started
+                            </button>
+                        </div>
+                        
+                        <div class="pricing-card p-6 rounded-2xl relative neon-border fade-in delay-200">
+                            <div class="absolute top-0 right-0 bg-gradient-to-r from-primary to-accent text-white px-3 py-1 rounded-bl-xl rounded-tr-xl text-xs font-bold">
+                                POPULAR
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gradient">Plugin Building</h3>
+                            <div class="text-3xl font-bold text-gradient mb-4">€349+</div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span class="text-sm">Custom browser extensions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span class="text-sm">Discord bots & automation scripts</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span class="text-sm">Lightweight API integrations</span>
+                                </li>
+                            </ul>
+                            <button onclick="scrollToContact()" class="w-full py-3 bg-primary/20 rounded-xl font-bold transition-all duration-300 glass touch-target no-select">
+                                Get Started
+                            </button>
+                        </div>
+                        
+                        <div class="pricing-card p-6 rounded-2xl fade-in delay-300">
+                            <h3 class="text-xl font-bold mb-3 text-gradient">Advanced Projects</h3>
+                            <div class="text-3xl font-bold text-gradient mb-4">€499+</div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span class="text-sm">AI & ML integrations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span class="text-sm">Cloud deployments (AWS, Docker)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-primary mr-2">✓</span>
+                                    <span class="text-sm">Custom automation pipelines</span>
+                                </li>
+                            </ul>
+                            <button onclick="scrollToContact()" class="w-full py-3 bg-primary/20 rounded-xl font-bold transition-all duration-300 glass touch-target no-select">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center mt-6 text-gray-400 text-sm fade-in delay-400">
+                        * Prices are starting points. Final cost depends on project complexity.
+                    </p>
+                </section>
+                
+                <!-- Get in Touch Section -->
+                <section id="contact" class="mb-16 fade-in">
+                    <h2 class="text-2xl font-bold mb-8 text-center animated-gradient">Get In Touch</h2>
+                    
+                    <div class="contact-form glass p-6 rounded-2xl border border-white/5">
+                        <form id="contact-form" action="https://formspree.io/f/xjvqjqeq" method="POST">
+                            <div class="grid grid-cols-1 gap-4 mb-4">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Your Name</label>
+                                    <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Your Email</label>
+                                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-input" placeholder="What is this regarding?" required>
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <label for="message" class="form-label">Your Message</label>
+                                <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project or inquiry..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn touch-target no-select">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Message
+                            </button>
+                        </form>
+                        
+                        <div id="form-success" class="form-success">
+                            <i class="fas fa-check-circle text-green-500 text-2xl mb-2"></i>
+                            <h3 class="text-lg font-bold text-green-400 mb-2">Message Sent Successfully!</h3>
+                            <p class="text-gray-300 text-sm">Thank you for reaching out. I'll get back to you as soon as possible.</p>
+                        </div>
+                        
+                        <div id="form-error" class="form-error">
+                            <i class="fas fa-exclamation-triangle text-red-500 text-2xl mb-2"></i>
+                            <h3 class="text-lg font-bold text-red-400 mb-2">Oops! Something went wrong.</h3>
+                            <p class="text-gray-300 text-sm">Please try again or contact me directly at andrrr.discord@gmail.com</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <footer class="py-8 w-full glass mt-12 fade-in">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col items-center">
+                    <div class="mb-6">
+                        <h2 class="text-xl font-bold neon-text text-gradient">Rayzz</h2>
+                        <p class="text-gray-400 mt-2 text-sm">© 2025 All rights reserved</p>
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <a href="https://github.com/luzisrepo" target="_blank" class="w-10 h-10 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center touch-target">
+                            <i class="fab fa-github"></i>
+                        </a>
+
+                        <button onclick="copyEmail()" class="w-10 h-10 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center touch-target">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+
+                        <button onclick="copyDiscord()" class="w-10 h-10 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center touch-target">
+                            <i class="fab fa-discord"></i>
+                        </button>
+                        
+                        <button onclick="toggleQR()" class="w-10 h-10 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center touch-target">
+                            <i class="fas fa-qrcode"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Audio element for the song -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="song1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        // Title animation
+        const titleText = "Rayzz | Sleepy";
+        let index = 0;
+        let forward = true;
+
+        function animateTitle() {
+            if (forward) {
+                document.title = titleText.substring(0, index + 1);
+                index++;
+                if (index === titleText.length) {
+                    forward = false;
+                    setTimeout(animateTitle, 1000);
+                    return;
+                }
+            } else {
+                document.title = titleText.substring(0, index - 1);
+                index--;
+                if (index === 0) {
+                    forward = true;
+                }
+            }
+            setTimeout(animateTitle, 150);
+        }
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('mobile-menu-btn');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            
+            menu.classList.toggle('active');
+            btn.classList.toggle('active');
+            overlay.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (menu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('mobile-menu-btn');
+            const overlay = document.getElementById('mobile-menu-overlay');
+            
+            menu.classList.remove('active');
+            btn.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Simple starfield for mobile
+        function createSimpleStarfield() {
+            const starfield = document.getElementById('starfield');
+            const starCount = window.innerWidth < 640 ? 50 : 80;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 4 + 's';
+                starfield.appendChild(star);
+            }
+        }
+        
+        // Enter screen functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const enterScreen = document.getElementById('enter-screen');
+            const enterButton = document.getElementById('enter-button');
+            const mainContent = document.getElementById('main-content');
+            const bgMusic = document.getElementById('bg-music');
+            const volumeControl = document.getElementById('volume-control');
+            const toggleMusic = document.getElementById('toggle-music');
+            const audioError = document.getElementById('audio-error');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            
+            // Create simple starfield
+            createSimpleStarfield();
+            
+            // Initialize mobile menu
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+            
+            // Set initial volume
+            bgMusic.volume = volumeControl.value;
+            
+            // Update volume when slider changes
+            volumeControl.addEventListener('input', function() {
+                bgMusic.volume = this.value;
+            });
+            
+            // Toggle music play/pause
+            toggleMusic.addEventListener('click', function() {
+                if (bgMusic.paused) {
+                    bgMusic.play().catch(error => {
+                        console.error('Playback failed:', error);
+                        showAudioError();
+                    });
+                    toggleMusic.classList.remove('fa-play');
+                    toggleMusic.classList.add('fa-pause');
+                } else {
+                    bgMusic.pause();
+                    toggleMusic.classList.remove('fa-pause');
+                    toggleMusic.classList.add('fa-play');
+                }
+            });
+            
+            // Check if audio can play
+            bgMusic.addEventListener('canplay', function() {
+                audioError.style.display = 'none';
+            });
+            
+            bgMusic.addEventListener('error', function() {
+                console.error('Error loading audio');
+                showAudioError();
+            });
+            
+            function showAudioError() {
+                audioError.style.display = 'block';
+            }
+            
+            // Handle enter button click
+            enterButton.addEventListener('click', function() {
+                // Fade out the enter screen
+                enterScreen.style.opacity = '0';
+                
+                // Play the music with improved error handling
+                const playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Audio started successfully
+                        toggleMusic.classList.remove('fa-play');
+                        toggleMusic.classList.add('fa-pause');
+                    }).catch(error => {
+                        console.log('Playback failed:', error);
+                        audioError.innerHTML = '<p class="text-red-400">Audio playback blocked. Tap anywhere to start music.</p>';
+                        audioError.style.display = 'block';
+                        
+                        // Set up a one-time click handler to start audio
+                        document.addEventListener('click', function resumeAudio() {
+                            bgMusic.play().then(() => {
+                                toggleMusic.classList.remove('fa-play');
+                                toggleMusic.classList.add('fa-pause');
+                                audioError.style.display = 'none';
+                            }).catch(e => {
+                                console.error('Still cannot play audio:', e);
+                            });
+                            document.removeEventListener('click', resumeAudio);
+                        });
+                    });
+                }
+                
+                // Show main content after fade out
+                setTimeout(function() {
+                    enterScreen.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                    
+                    // Initialize the main website components
+                    animateCounters();
+                    
+                    // Initialize scroll animations
+                    initScrollAnimations();
+                    
+                    // Initialize contact form
+                    initContactForm();
+                    
+                    // Start title animation
+                    animateTitle();
+                }, 800);
+            });
+        });
+
+        // Initialize scroll animations
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+        }
+
+        // Initialize contact form
+        function initContactForm() {
+            const contactForm = document.getElementById('contact-form');
+            const formSuccess = document.getElementById('form-success');
+            const formError = document.getElementById('form-error');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    const submitBtn = contactForm.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    
+                    // Send form data using Fetch API
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Show success message
+                            formSuccess.style.display = 'block';
+                            formError.style.display = 'none';
+                            contactForm.reset();
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Show error message
+                        formError.style.display = 'block';
+                        formSuccess.style.display = 'none';
+                    })
+                    .finally(() => {
+                        // Reset button state
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        
+                        // Hide messages after 5 seconds
+                        setTimeout(() => {
+                            formSuccess.style.display = 'none';
+                            formError.style.display = 'none';
+                        }, 5000);
+                    });
+                });
+            }
+        }
+
+        // Animated counters
+        function animateCounters() {
+            const projects = document.getElementById('projectsCount');
+            const clients = document.getElementById('clientsCount');
+            const awards = document.getElementById('awardsCount');
+            
+            const targetProjects = 47;
+            const targetClients = 23;
+            const targetAwards = 5;
+            
+            let countProjects = 0;
+            let countClients = 0;
+            let countAwards = 0;
+            
+            const interval = setInterval(() => {
+                if (countProjects < targetProjects) {
+                    countProjects++;
+                    projects.textContent = countProjects;
+                }
+                
+                if (countClients < targetClients) {
+                    countClients++;
+                    clients.textContent = countClients;
+                }
+                
+                if (countAwards < targetAwards) {
+                    countAwards++;
+                    awards.textContent = countAwards;
+                }
+                
+                if (countProjects >= targetProjects && 
+                    countClients >= targetClients && 
+                    countAwards >= targetAwards) {
+                    clearInterval(interval);
+                }
+            }, 50);
+        }
+
+        // Utility functions
+        function copyEmail() {
+            const email = "andrrr.discord@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                const tooltip = document.getElementById("tooltip");
+                tooltip.classList.remove("opacity-0");
+                tooltip.classList.add("opacity-100");
+                
+                setTimeout(() => {
+                    tooltip.classList.remove("opacity-100");
+                    tooltip.classList.add("opacity-0");
+                }, 1500);
+            }).catch(err => {
+                console.error("Failed to copy email: ", err);
+            });
+        }
+        
+        function copyDiscord() {
+            navigator.clipboard.writeText('._rayzz');
+            
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-primary/80 text-white px-4 py-2 rounded-lg shadow-lg glass';
+            notification.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Discord username copied!';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        function toggleQR() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.toggle('hidden');
+        }
+        
+        function scrollToContact() {
+            closeMobileMenu();
+            document.getElementById('contact').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        // Handle back button to close mobile menu
+        window.addEventListener('popstate', function() {
+            closeMobileMenu();
+        });
+        
+        // Prevent context menu on long press for buttons
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.closest('button') || e.target.closest('.btn')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
