@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
+    <title>Rayzz | Collaboration Policy</title>
+    <meta name="description" content="My professional collaboration policies for effective teamwork">
+    <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+    <script src="https://unpkg.com/kursor"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8a2be2',
+                        secondary: '#9370db',
+                        accent: '#9932cc',
+                        dark: '#0f0a19',
+                        darker: '#090511',
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'tilt': 'tilt 10s infinite linear',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        glow: {
+                            'from': { 'box-shadow': '0 0 5px rgba(138, 43, 226, 0.5), 0 0 10px rgba(138, 43, 226, 0.3), 0 0 15px rgba(138, 43, 226, 0.2)' },
+                            'to': { 'box-shadow': '0 0 15px rgba(138, 43, 226, 0.7), 0 0 20px rgba(138, 43, 226, 0.5), 0 0 30px rgba(138, 43, 226, 0.3)' },
+                        },
+                        tilt: {
+                            '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(1deg)' },
+                            '75%': { transform: 'rotate(-1deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #9370db;
+            --accent: #9932cc;
+            --dark: #0f0a19;
+            --darker: #090511;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--darker);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--darker);
+        }
+        
+        /* Modern scrollbar for WebKit browsers */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 10px;
+            border: 2px solid var(--darker);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+        
+        /* Fade-in animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered animation delays */
+        .fade-in.delay-100 { transition-delay: 0.1s; }
+        .fade-in.delay-200 { transition-delay: 0.2s; }
+        .fade-in.delay-300 { transition-delay: 0.3s; }
+        .fade-in.delay-400 { transition-delay: 0.4s; }
+        .fade-in.delay-500 { transition-delay: 0.5s; }
+        .fade-in.delay-600 { transition-delay: 0.6s; }
+        
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+        }
+        
+        #shooting-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        /* Spline Background */
+        #spline-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        #spline-background spline-viewer {
+            width: 100%;
+            height: 100%;
+            opacity: 0.7;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 5px rgba(138, 43, 226, 0.7), 
+                         0 0 10px rgba(138, 43, 226, 0.5),
+                         0 0 20px rgba(138, 43, 226, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 5px rgba(138, 43, 226, 0.7), 
+                        0 0 10px rgba(138, 43, 226, 0.5);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        .neon-hover:hover {
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.9), 
+                        0 0 25px rgba(138, 43, 226, 0.6),
+                        0 0 35px rgba(138, 43, 226, 0.3);
+            transform: translateY(-3px) scale(1.02);
+        }
+        
+        .policy-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 10, 25, 0.6);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .policy-card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
+            border: 1px solid rgba(138, 43, 226, 0.4);
+        }
+        
+        .policy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .policy-card:hover::before {
+            left: 100%;
+        }
+        
+        .good-example {
+            background: linear-gradient(45deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.25));
+            border-left: 4px solid #22c55e;
+        }
+        
+        .bad-example {
+            background: linear-gradient(45deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.25));
+            border-left: 4px solid #ef4444;
+        }
+        
+        .tip-card {
+            background: linear-gradient(45deg, rgba(250, 204, 21, 0.15), rgba(234, 179, 8, 0.25));
+            border-left: 4px solid #facc15;
+        }
+        
+        .checkbox-list li {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .checkbox-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            width: 2rem;
+            height: 2rem;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        button, .btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        button::before, .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        button:hover::before, .btn:hover::before {
+            opacity: 1;
+        }
+        
+        /* Glassmorphism effect */
+        .glass {
+            background: rgba(15, 10, 25, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.18);
+        }
+        
+        /* Text gradient */
+        .text-gradient {
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        /* Improved Animated title gradient - Wave effect */
+        .animated-gradient {
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #9370db,
+                #9932cc,
+                #ba55d3,
+                #9370db,
+                #8a2be2
+            );
+            background-size: 300% 100%;
+            animation: gradient-wave 8s ease infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                #8a2be2,
+                #9370db,
+                #9932cc,
+                #ba55d3,
+                #9370db,
+                #8a2be2
+            );
+            background-size: 300% 100%;
+            animation: gradient-wave 8s ease infinite;
+        }
+        
+        @keyframes gradient-wave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Hover effect for list items */
+        li {
+            transition: transform 0.3s ease, color 0.3s ease;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        li::before {
+            content: '➜';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        li:hover {
+            transform: translateX(5px);
+            color: var(--secondary);
+        }
+        
+        li:hover::before {
+            transform: translateX(3px);
+        }
+        
+        /* Floating animation */
+        @keyframes floating {
+            0% { transform: translate(0px, 0px); }
+            50% { transform: translate(0px, -15px); }
+            100% { transform: translate(0px, 0px); }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--primary);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+        
+        /* Enter Screen Styles */
+        #enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0a19 0%, #1a1030 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .enter-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        .enter-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #ffffff, #a0a0a0, #808080, #a0a0a0, #ffffff);
+            background-size: 300% 100%;
+            animation: gradient-wave 8s ease infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .enter-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #ffffff, #a0a0a0, #808080, #a0a0a0, #ffffff);
+            background-size: 300% 100%;
+            animation: gradient-wave 8s ease infinite;
+        }
+
+        .enter-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: #d8bfd8;
+        }
+
+        .enter-button {
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #8a2be2, #9932cc);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        .enter-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
+        }
+
+        .enter-button:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: linear-gradient(45deg, #8a2be2, #9932cc, #ba55d3, #9370db, #8a2be2);
+            background-size: 400%;
+            border-radius: 50px;
+            animation: steam 20s linear infinite;
+        }
+
+        @keyframes steam {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 400% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        /* Timeline for workflow */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+        
+        /* Availability indicator */
+        .availability-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            margin-left: 1rem;
+        }
+        
+        .available {
+            background: linear-gradient(45deg, rgba(34, 197, 94, 0.2), rgba(22, 163, 74, 0.3));
+            color: #22c55e;
+        }
+        
+        .limited {
+            background: linear-gradient(45deg, rgba(250, 204, 21, 0.2), rgba(234, 179, 8, 0.3));
+            color: #facc15;
+        }
+        
+        .unavailable {
+            background: linear-gradient(45deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.3));
+            color: #ef4444;
+        }
+        
+        /* Response time badges */
+        .response-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .response-fast {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        
+        .response-medium {
+            background: rgba(250, 204, 21, 0.2);
+            color: #facc15;
+            border: 1px solid rgba(250, 204, 21, 0.3);
+        }
+        
+        .response-slow {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    
+    <!-- Enter Screen -->
+    <div id="enter-screen">
+        <!-- Spline Background -->
+        <div id="spline-background">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.77/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/fvv7BjQFVerzeCVM/scene.splinecode"></spline-viewer>
+        </div>
+        
+        <div class="enter-content">
+            <h1 class="enter-title">COLLABORATION POLICY</h1>
+            <p class="enter-subtitle">My professional guidelines for effective teamwork</p>
+            <button class="enter-button" id="enter-button">
+                ENTER
+            </button>
+        </div>
+    </div>
+    
+    <!-- Main Website Content (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        <!-- Spline Background -->
+        <div id="spline-background">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.77/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/jlXe-Ohs5XmDMGxg/scene.splinecode"></spline-viewer>
+        </div>
+        
+        <!-- Starfield Background -->
+        <canvas id="starfield"></canvas>
+        
+        <!-- Shooting Stars Canvas -->
+        <canvas id="shooting-stars"></canvas>
+        
+        <header class="w-full pt-12 pb-20">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-8 md:mb-0 fade-in">
+                        <h1 class="text-4xl md:text-5xl font-bold neon-text text-gradient">
+                            Collaboration Policy <span class="status-dot"></span>
+                        </h1>
+                        <p class="text-secondary text-lg mt-3 typewriter">
+                            Guidelines for effective and respectful collaboration
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-3 fade-in delay-100">
+                        <button onclick="sharePolicy()" class="relative px-6 py-3 bg-secondary/20 hover:bg-accent/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fas fa-share-alt mr-2"></i>Share Policy
+                            <span id="tooltip" class="absolute left-1/2 -translate-x-1/2 -top-10 bg-black/80 text-white text-sm px-3 py-1.5 rounded-lg opacity-0 pointer-events-none transition-all duration-300 glass">
+                                Copied!
+                            </span>
+                        </button>
+                        <button onclick="downloadPDF()" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fas fa-download mr-2"></i>Download PDF
+                        </button>
+                        <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="px-6 py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-12 max-w-4xl glass p-8 rounded-2xl border border-white/5 fade-in delay-200">
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        <span class="text-primary font-bold">This document outlines my professional collaboration policies.</span><br><br>
+                        These guidelines help ensure productive, respectful, and efficient teamwork. 
+                        They cover everything from how to ask for help effectively to my preferred 
+                        working style and availability.
+                    </p>
+                    
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <button onclick="scrollToSection('asking-help')" class="relative px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fas fa-question-circle mr-2"></i>Asking for Help
+                        </button>
+                        <button onclick="scrollToSection('async-work')" class="px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fas fa-clock mr-2"></i>Async Work
+                        </button>
+                        <button onclick="scrollToSection('meetings')" class="px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fas fa-video mr-2"></i>Meetings
+                        </button>
+                        <button onclick="scrollToSection('availability')" class="px-6 py-3 bg-dark/50 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                            <i class="fas fa-calendar mr-2"></i>Availability
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main class="flex-1 w-full">
+            <div class="container mx-auto px-4 py-12">
+                <!-- 1. How to Ask Me for Help -->
+                <section id="asking-help" class="mb-20 fade-in">
+                    <div class="flex items-center mb-8">
+                        <div class="text-3xl mr-4 text-primary">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold animated-gradient">How to Ask Me for Help</h2>
+                        <span class="availability-indicator available ml-4">
+                            <i class="fas fa-circle mr-2"></i>Always welcome
+                        </span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-100">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">What to Include</h3>
+                            <p class="text-gray-300 mb-4">
+                                When asking for help, please include these four elements. This saves everyone time and leads to better solutions.
+                            </p>
+                            <ul class="checkbox-list space-y-3">
+                                <li><span class="font-bold text-primary">Context</span> - What you're trying to accomplish</li>
+                                <li><span class="font-bold text-primary">Attempts</span> - What you've already tried</li>
+                                <li><span class="font-bold text-primary">Evidence</span> - Errors, logs, or screenshots</li>
+                                <li><span class="font-bold text-primary">Goal</span> - What "done" looks like</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="fade-in delay-200">
+                            <div class="good-example p-6 rounded-2xl mb-6">
+                                <h4 class="text-lg font-bold mb-3 text-green-400">✅ Good Example</h4>
+                                <p class="text-gray-300 italic">
+                                    "Hey, I'm trying to deploy the API to staging but getting a 502 error. 
+                                    I've checked the logs and restarted the service twice. 
+                                    Here's the error from the load balancer logs: [screenshot]. 
+                                    I need the API to return 200 OK on the health endpoint."
+                                </p>
+                            </div>
+                            
+                            <div class="bad-example p-6 rounded-2xl">
+                                <h4 class="text-lg font-bold mb-3 text-red-400">❌ Bad Example</h4>
+                                <p class="text-gray-300 italic">
+                                    "Hey, the deployment is broken. Can you help?"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 tip-card p-6 rounded-2xl fade-in delay-300">
+                        <div class="flex items-start">
+                            <div class="text-xl mr-3 text-yellow-400">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold mb-2 text-yellow-400">Pro Tip</h4>
+                                <p class="text-gray-300">
+                                    This approach makes you look senior and saves everyone time. For more on asking smart questions, 
+                                    read <a href="http://www.catb.org/~esr/faqs/smart-questions.html" class="text-primary hover:underline">Eric Raymond's "How To Ask Questions The Smart Way"</a> 
+                                    or my <a href="#" onclick="showFriendlyGuide()" class="text-primary hover:underline">friendlier version</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 2. Async-First / Response Time Expectations -->
+                <section id="async-work" class="mb-20 fade-in">
+                    <div class="flex items-center mb-8">
+                        <div class="text-3xl mr-4 text-primary">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold animated-gradient">Async-First Work Style</h2>
+                        <span class="availability-indicator limited ml-4">
+                            <i class="fas fa-circle mr-2"></i>Async by default
+                        </span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-100">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">My Default Mode</h3>
+                            <ul class="space-y-3">
+                                <li>I work <span class="font-bold text-primary">async-first</span> by default</li>
+                                <li>I usually respond within <span class="font-bold text-primary">4-8 hours</span> on weekdays</li>
+                                <li>Weekends are for rest and recovery</li>
+                                <li>Deep work blocks are protected time</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-200">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">Urgent Matters</h3>
+                            <p class="text-gray-300 mb-4">If something is truly urgent:</p>
+                            <ul class="space-y-2">
+                                <li>Start message with <code class="bg-black/30 px-2 py-1 rounded">[URGENT]</code></li>
+                                <li>Text my phone (for critical production issues only)</li>
+                                <li>Don't send "hello" and wait for response</li>
+                                <li>Include all context in first message</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-300">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">Response Times</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <span class="response-badge response-fast">4 hours</span>
+                                    <span class="text-gray-300">Non-blocking questions</span>
+                                </div>
+                                <div>
+                                    <span class="response-badge response-medium">1 business day</span>
+                                    <span class="text-gray-300">Code reviews, PR feedback</span>
+                                </div>
+                                <div>
+                                    <span class="response-badge response-slow">2-3 days</span>
+                                    <span class="text-gray-300">Feature requests, architectural discussions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 glass p-6 rounded-2xl fade-in delay-400">
+                        <div class="flex items-center mb-4">
+                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-fire"></i></div>
+                            <h3 class="text-xl font-bold text-gradient">Why This Works</h3>
+                        </div>
+                        <p class="text-gray-300">
+                            This approach is <span class="text-primary font-bold">🔥 for freelance or open-source work</span>. 
+                            It sets clear boundaries without sounding grumpy, respects everyone's focus time, 
+                            and ensures urgent matters get appropriate attention while maintaining sustainable workflows.
+                        </p>
+                    </div>
+                </section>
+                
+                <!-- 3. Meeting Philosophy -->
+                <section id="meetings" class="mb-20 fade-in">
+                    <div class="flex items-center mb-8">
+                        <div class="text-3xl mr-4 text-primary">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold animated-gradient">Meeting Philosophy</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-100">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">When Meetings Are Worth It</h3>
+                            <ul class="space-y-3">
+                                <li>Complex architectural decisions</li>
+                                <li>Sensitive team discussions</li>
+                                <li>Brainstorming sessions (with clear goals)</li>
+                                <li>Relationship building with new partners</li>
+                                <li>Retrospectives and post-mortems</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-200">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">Meeting Requirements</h3>
+                            <ul class="space-y-3">
+                                <li><span class="font-bold text-primary">Agenda-first:</span> Send agenda 24h in advance</li>
+                                <li><span class="font-bold text-primary">Time-boxed:</span> Default to 25 or 50 minutes</li>
+                                <li><span class="font-bold text-primary">Documented:</span> Notes and action items shared after</li>
+                                <li><span class="font-bold text-primary">Optional:</span> Recorded for those who can't attend</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 policy-card p-6 rounded-2xl fade-in delay-300">
+                        <div class="flex items-start mb-4">
+                            <div class="text-2xl mr-3 text-red-500">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-red-400">No Meeting If...</h3>
+                                <p class="text-gray-300 mt-2">
+                                    We shouldn't have a meeting if this can be a document, 
+                                    a Slack thread, or a Loom video. 
+                                    This attracts people who value focus and respects everyone's time.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                            <div class="text-center p-4 bg-dark/50 rounded-xl">
+                                <div class="text-3xl font-bold text-primary">📄</div>
+                                <div class="text-gray-300 mt-2">Write a document</div>
+                            </div>
+                            <div class="text-center p-4 bg-dark/50 rounded-xl">
+                                <div class="text-3xl font-bold text-primary">💬</div>
+                                <div class="text-gray-300 mt-2">Async discussion</div>
+                            </div>
+                            <div class="text-center p-4 bg-dark/50 rounded-xl">
+                                <div class="text-3xl font-bold text-primary">🎥</div>
+                                <div class="text-gray-300 mt-2">Record a video</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 4. Code Review Philosophy -->
+                <section class="mb-20 fade-in">
+                    <div class="flex items-center mb-8">
+                        <div class="text-3xl mr-4 text-primary">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold animated-gradient">Code Review Philosophy</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-100">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">What I Focus On</h3>
+                            <ul class="space-y-3">
+                                <li><span class="font-bold text-primary">Readability:</span> Can others understand this?</li>
+                                <li><span class="font-bold text-primary">Correctness:</span> Does it work as intended?</li>
+                                <li><span class="font-bold text-primary">Edge cases:</span> What happens when things fail?</li>
+                                <li><span class="font-bold text-primary">Security:</span> Any obvious vulnerabilities?</li>
+                                <li><span class="font-bold text-primary">Performance:</span> Any obvious bottlenecks?</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-200">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">What I Don't Nitpick</h3>
+                            <ul class="space-y-3">
+                                <li>Personal style preferences</li>
+                                <li>Minor refactors without clear benefit</li>
+                                <li>Exact variable naming (within reason)</li>
+                                <li>Perfect test coverage on prototype code</li>
+                                <li>Architecture on small, temporary changes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-300">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">Feedback Delivery</h3>
+                            <ul class="space-y-3">
+                                <li>Questions over statements: "What if...?" not "You should..."</li>
+                                <li>Positive reinforcement for good patterns</li>
+                                <li>Specific, actionable suggestions</li>
+                                <li>Context about why, not just what</li>
+                                <li>Assumes positive intent</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-400">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">PR Preferences</h3>
+                            <ul class="space-y-3">
+                                <li><span class="font-bold text-primary">Small PRs:</span> ~300 lines max when possible</li>
+                                <li><span class="font-bold text-primary">Clear descriptions:</span> What and why</li>
+                                <li><span class="font-bold text-primary">Testing instructions:</span> How to verify</li>
+                                <li><span class="font-bold text-primary">Screenshots:</span> For UI changes</li>
+                                <li><span class="font-bold text-primary">Self-contained:</span> One logical change per PR</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 5. Tech Stack & Decision Principles -->
+                <section class="mb-20 fade-in">
+                    <div class="flex items-center mb-8">
+                        <div class="text-3xl mr-4 text-primary">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold animated-gradient">Tech Stack & Decision Principles</h2>
+                    </div>
+                    
+                    <div class="glass p-8 rounded-2xl fade-in delay-100">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-gradient">My Decision-Making Framework</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl font-bold text-primary">1</span>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">Default to Boring Tech</h4>
+                                <p class="text-gray-300 text-sm">Choose battle-tested, well-documented solutions</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl font-bold text-primary">2</span>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">Optimize for Maintainability</h4>
+                                <p class="text-gray-300 text-sm">Readability over cleverness every time</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl font-bold text-primary">3</span>
+                                </div>
+                                <h4 class="font-bold text-lg mb-2">Avoid Premature Abstraction</h4>
+                                <p class="text-gray-300 text-sm">Solve the problem you have, not the one you might have</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-200">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">Preferred Tech Stack</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-bold text-primary">Frontend</h4>
+                                    <p class="text-gray-300">React, Next.js, TypeScript, Tailwind CSS</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary">Backend</h4>
+                                    <p class="text-gray-300">Node.js, Python, PostgreSQL, Redis</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary">Infrastructure</h4>
+                                    <p class="text-gray-300">Docker, AWS, GitHub Actions, Terraform</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-300">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">When I Choose New Tech</h3>
+                            <ul class="space-y-3">
+                                <li>Clear productivity improvement (>30%)</li>
+                                <li>Strong community and documentation</li>
+                                <li>Solves a specific pain point elegantly</li>
+                                <li>Team consensus after evaluation</li>
+                                <li>Migration path from current stack</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 6. Open Source / Contributions Policy -->
+                <section class="mb-20 fade-in">
+                    <div class="flex items-center mb-8">
+                        <div class="text-3xl mr-4 text-primary">
+                            <i class="fab fa-osi"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold animated-gradient">Open Source Policy</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-100">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">PRs I Welcome</h3>
+                            <ul class="space-y-3">
+                                <li>Bug fixes with reproduction steps</li>
+                                <li>Documentation improvements</li>
+                                <li>Performance optimizations with benchmarks</li>
+                                <li>Security vulnerability fixes</li>
+                                <li>Backward-compatible enhancements</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-200">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">Feature Requests</h3>
+                            <ul class="space-y-3">
+                                <li>Open an issue first for discussion</li>
+                                <li>Include use case and expected behavior</li>
+                                <li>Consider if it fits project scope</li>
+                                <li>Be prepared to implement it yourself</li>
+                                <li>No guarantee of acceptance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="policy-card p-6 rounded-2xl text-center fade-in delay-300">
+                            <div class="text-4xl mb-4 text-primary"><i class="fas fa-clock"></i></div>
+                            <h3 class="text-xl font-bold mb-2 text-gradient">Review Timelines</h3>
+                            <p class="text-gray-300">1-2 weeks for most PRs. Critical bug fixes may be faster.</p>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl text-center fade-in delay-400">
+                            <div class="text-4xl mb-4 text-primary"><i class="fas fa-heart"></i></div>
+                            <h3 class="text-xl font-bold mb-2 text-gradient">Code of Conduct</h3>
+                            <p class="text-gray-300">All contributions must follow our <a href="#" class="text-primary hover:underline">Code of Conduct</a>.</p>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl text-center fade-in delay-500">
+                            <div class="text-4xl mb-4 text-primary"><i class="fas fa-balance-scale"></i></div>
+                            <h3 class="text-xl font-bold mb-2 text-gradient">License</h3>
+                            <p class="text-gray-300">MIT licensed. You're free to use, modify, and distribute.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 7. Availability & Time Zones -->
+                <section id="availability" class="mb-20 fade-in">
+                    <div class="flex items-center mb-8">
+                        <div class="text-3xl mr-4 text-primary">
+                            <i class="fas fa-globe-europe"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold animated-gradient">Availability & Time Zones</h2>
+                        <span class="availability-indicator available ml-4">
+                            <i class="fas fa-clock mr-2"></i>CEST
+                        </span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-100">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">My Schedule</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-bold text-primary">Timezone</h4>
+                                    <p class="text-gray-300">Central European Time (CET/CEST, UTC+1/+2)</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary">Core Hours</h4>
+                                    <p class="text-gray-300">9:00 AM - 5:00 PM CET, Monday to Friday</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary">Deep Work</h4>
+                                    <p class="text-gray-300">10:00 AM - 12:00 PM & 2:00 PM - 4:00 PM (focus time)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="policy-card p-6 rounded-2xl fade-in delay-200">
+                            <h3 class="text-xl font-bold mb-4 text-gradient">Collaboration Hours</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-bold text-primary">Meetings</h4>
+                                    <p class="text-gray-300">1:00 PM - 3:00 PM CET for synchronous work</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary">Quick Syncs</h4>
+                                    <p class="text-gray-300">9:30 AM - 10:00 AM & 4:00 PM - 4:30 PM</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-primary">Weekends</h4>
+                                    <p class="text-gray-300">No expectations. Emergencies only.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 glass p-6 rounded-2xl fade-in delay-300">
+                        <div class="flex items-center mb-4">
+                            <div class="text-2xl mr-3 text-primary"><i class="fas fa-handshake"></i></div>
+                            <h3 class="text-xl font-bold text-gradient">Working Across Timezones</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            I regularly collaborate with teams in North America and Asia. Here's my approach:
+                        </p>
+                        <ul class="space-y-2">
+                            <li><span class="font-bold text-primary">Documentation-first:</span> Write everything down</li>
+                            <li><span class="font-bold text-primary">Overlap hours:</span> Find 2-3 hours of overlap for sync work</li>
+                            <li><span class="font-bold text-primary async">Async updates:</span> Daily standups via written updates</li>
+                            <li><span class="font-bold text-primary">Recorded meetings:</span> For those who can't attend live</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Final Summary -->
+                <section class="mb-20 fade-in">
+                    <div class="glass p-8 rounded-2xl border border-primary/30">
+                        <h2 class="text-3xl font-bold mb-6 text-center animated-gradient">Why These Policies Matter</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="text-center">
+                                <div class="text-4xl mb-4 text-primary"><i class="fas fa-clock"></i></div>
+                                <h3 class="text-lg font-bold mb-2 text-gradient">Respects Time</h3>
+                                <p class="text-gray-300 text-sm">Yours, mine, and everyone else's</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="text-4xl mb-4 text-primary"><i class="fas fa-brain"></i></div>
+                                <h3 class="text-lg font-bold mb-2 text-gradient">Protects Focus</h3>
+                                <p class="text-gray-300 text-sm">Enables deep, meaningful work</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="text-4xl mb-4 text-primary"><i class="fas fa-users"></i></div>
+                                <h3 class="text-lg font-bold mb-2 text-gradient">Builds Trust</h3>
+                                <p class="text-gray-300 text-sm">Clear expectations reduce friction</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="text-4xl mb-4 text-primary"><i class="fas fa-rocket"></i></div>
+                                <h3 class="text-lg font-bold mb-2 text-gradient">Scales Effectively</h3>
+                                <p class="text-gray-300 text-sm">Works with teams of any size</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 text-center">
+                            <button onclick="sharePolicy()" class="px-8 py-3 bg-gradient-to-r from-primary to-accent rounded-xl font-bold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                                <i class="fas fa-share-alt mr-2"></i> Share These Policies
+                            </button>
+                            <p class="text-gray-400 mt-4 text-sm">
+                                These guidelines evolve. Feedback and suggestions are welcome via GitHub issues.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <footer class="py-12 w-full glass mt-20 fade-in">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <h2 class="text-2xl font-bold neon-text text-gradient">Collaboration Policy</h2>
+                        <p class="text-gray-400 mt-2">Effective teamwork through clear guidelines</p>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <button onclick="sharePolicy()" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                            <i class="fas fa-share-alt text-xl"></i>
+                        </button>
+
+                        <button onclick="window.open('https://github.com/luzisrepo', '_blank')" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                            <i class="fab fa-github text-xl"></i>
+                        </button>
+
+                        <button onclick="scrollToTop()" class="w-12 h-12 rounded-full bg-dark/50 border border-gray-800 flex items-center justify-center hover:bg-primary/30 transition-all duration-300 neon-hover">
+                            <i class="fas fa-arrow-up text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                    <p>Last updated: June 2025 • Inspired by effective remote teams worldwide</p>
+                    <p class="mt-2">© 2025 Rayzz • These policies help me do my best work with you</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Friendly Guide Modal -->
+    <div id="friendlyGuideModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm p-4">
+        <div class="bg-darker/90 p-8 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto relative border border-primary/30 neon-border">
+            <button onclick="closeFriendlyGuide()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-300">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h3 class="text-2xl font-bold mb-4 text-center text-gradient">Asking Smart Questions (Friendly Version)</h3>
+            
+            <div class="space-y-4 mt-6">
+                <div class="policy-card p-4 rounded-xl">
+                    <h4 class="font-bold text-lg mb-2 text-primary">1. Do Your Homework First</h4>
+                    <p class="text-gray-300">Check documentation, search existing issues, try basic troubleshooting.</p>
+                </div>
+                
+                <div class="policy-card p-4 rounded-xl">
+                    <h4 class="font-bold text-lg mb-2 text-primary">2. Be Specific</h4>
+                    <p class="text-gray-300">"The login page shows error 500" is better than "it's broken."</p>
+                </div>
+                
+                <div class="policy-card p-4 rounded-xl">
+                    <h4 class="font-bold text-lg mb-2 text-primary">3. Share What You've Tried</h4>
+                    <p class="text-gray-300">This shows effort and helps avoid suggesting solutions you've already attempted.</p>
+                </div>
+                
+                <div class="policy-card p-4 rounded-xl">
+                    <h4 class="font-bold text-lg mb-2 text-primary">4. Include Relevant Details</h4>
+                    <p class="text-gray-300">Version numbers, environment, error messages, screenshots.</p>
+                </div>
+                
+                <div class="policy-card p-4 rounded-xl">
+                    <h4 class="font-bold text-lg mb-2 text-primary">5. Ask, Don't Demand</h4>
+                    <p class="text-gray-300">"Could you help me understand..." vs "Fix this for me."</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <button onclick="closeFriendlyGuide()" class="px-6 py-2 bg-primary/20 hover:bg-primary/30 rounded-lg font-medium transition-all duration-300">
+                    Close Guide
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/kursor"></script>
+    <script>
+        // Custom cursor
+        new kursor({
+            type: 3,
+            removeDefaultCursor: true,
+            color: '#fff',
+            shadow: '0 0 8px rgba(255,255,255,0.8)'
+        });
+        
+        // Enter screen functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const enterScreen = document.getElementById('enter-screen');
+            const enterButton = document.getElementById('enter-button');
+            const mainContent = document.getElementById('main-content');
+            
+            // Handle enter button click
+            enterButton.addEventListener('click', function() {
+                // Fade out the enter screen
+                enterScreen.style.opacity = '0';
+                
+                // Show main content after fade out
+                setTimeout(function() {
+                    enterScreen.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                    
+                    // Initialize the main website components
+                    initStarfield();
+                    initShootingStars();
+                    
+                    // Initialize scroll animations
+                    initScrollAnimations();
+                    
+                    // Start title animation
+                    animateTitle();
+                }, 800);
+            });
+        });
+
+        // Title animation
+        const titleText = "Rayzz | Collaboration Policy";
+        const typingSpeed = 150;
+        const pauseTime = 1000;
+
+        let index = 0;
+        let forward = true;
+
+        function animateTitle() {
+            if (forward) {
+                document.title = titleText.substring(0, index + 1);
+                index++;
+                if (index === titleText.length) {
+                    forward = false;
+                    setTimeout(animateTitle, pauseTime);
+                    return;
+                }
+            } else {
+                document.title = titleText.substring(0, index - 1);
+                index--;
+                if (index === 0) {
+                    forward = true;
+                }
+            }
+            setTimeout(animateTitle, typingSpeed);
+        }
+
+        // Initialize scroll animations
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+        }
+
+        // Starfield shader background
+        function initStarfield() {
+            const canvas = document.getElementById('starfield');
+            const gl = canvas.getContext('webgl');
+            
+            if (!gl) {
+                console.error('WebGL not supported');
+                return;
+            }
+            
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            }
+            
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            
+            // Vertex shader source
+            const vsSource = `
+                attribute vec2 aPosition;
+                void main() {
+                    gl_Position = vec4(aPosition, 0.0, 1.0);
+                }
+            `;
+            
+            // Fragment shader source (purple starfield)
+            const fsSource = `
+                precision highp float;
+                
+                uniform float uTime;
+                uniform vec2 uResolution;
+                
+                // Purple color palette
+                vec3 purple1 = vec3(0.54, 0.17, 0.89);
+                vec3 purple2 = vec3(0.58, 0.44, 0.86);
+                vec3 purple3 = vec3(0.60, 0.20, 0.80);
+                
+                // Random function
+                float random(vec2 st) {
+                    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+                }
+                
+                // Star function
+                float star(vec2 uv, float flare) {
+                    float d = length(uv);
+                    float m = 0.05 / d;
+                    
+                    // Star rays
+                    float rays = max(0.0, 1.0 - abs(uv.x * uv.y * 1000.0));
+                    m += rays * flare;
+                    
+                    // Center glow
+                    m *= smoothstep(1.0, 0.2, d);
+                    return m;
+                }
+                
+                void main() {
+                    vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution.xy) / min(uResolution.y, uResolution.x);
+                    uv *= 5.0;
+                    
+                    vec3 color = vec3(0.0);
+                    
+                    // Background gradient
+                    color += mix(vec3(0.05, 0.03, 0.10), vec3(0.08, 0.04, 0.16), length(uv) * 0.2);
+                    
+                    // Layer 1: Small distant stars
+                    vec2 layer1 = floor(uv * 100.0) / 100.0;
+                    float star1 = random(layer1);
+                    if (star1 > 0.99) {
+                        vec2 starUV = fract(uv * 100.0) - 0.5;
+                        color += star(starUV, 0.0) * mix(purple1, purple2, random(layer1 + 0.3)) * 0.8;
+                    }
+                    
+                    // Layer 2: Medium stars
+                    vec2 layer2 = floor(uv * 50.0) / 50.0;
+                    float star2 = random(layer2);
+                    if (star2 > 0.98) {
+                        vec2 starUV = fract(uv * 50.0) - 0.5;
+                        color += star(starUV, 0.3) * mix(purple2, purple3, random(layer2 + 0.5)) * 1.2;
+                    }
+                    
+                    // Layer 3: Large close stars
+                    vec2 layer3 = floor(uv * 20.0) / 20.0;
+                    float star3 = random(layer3);
+                    if (star3 > 0.97) {
+                        vec2 starUV = fract(uv * 20.0) - 0.5;
+                        color += star(starUV, 0.6) * mix(purple1, purple3, random(layer3 + 0.7)) * 1.5;
+                    }
+                    
+                    // Twinkling effect
+                    float twinkle = sin(uTime * (random(uv) + 0.5) * 5.0) * 0.5 + 0.5;
+                    color *= 0.8 + 0.4 * twinkle;
+                    
+                    gl_FragColor = vec4(color, 1.0);
+                }
+            `;
+            
+            // Create shader program
+            const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+            gl.shaderSource(vertexShader, vsSource);
+            gl.compileShader(vertexShader);
+            
+            const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+            gl.shaderSource(fragmentShader, fsSource);
+            gl.compileShader(fragmentShader);
+            
+            const shaderProgram = gl.createProgram();
+            gl.attachShader(shaderProgram, vertexShader);
+            gl.attachShader(shaderProgram, fragmentShader);
+            gl.linkProgram(shaderProgram);
+            gl.useProgram(shaderProgram);
+            
+            // Create a rectangle that covers the entire screen
+            const positions = new Float32Array([
+                -1.0, -1.0,
+                1.0, -1.0,
+                -1.0, 1.0,
+                1.0, 1.0
+            ]);
+            
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+            
+            const aPosition = gl.getAttribLocation(shaderProgram, 'aPosition');
+            gl.enableVertexAttribArray(aPosition);
+            gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+            
+            // Get uniform locations
+            const uTimeLocation = gl.getUniformLocation(shaderProgram, 'uTime');
+            const uResolutionLocation = gl.getUniformLocation(shaderProgram, 'uResolution');
+            
+            // Animation
+            let startTime = Date.now();
+            
+            function animate() {
+                const currentTime = (Date.now() - startTime) / 1000;
+                
+                gl.uniform1f(uTimeLocation, currentTime);
+                gl.uniform2f(uResolutionLocation, canvas.width, canvas.height);
+                
+                gl.clearColor(0.0, 0.0, 0.0, 1.0);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+                
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+
+        // Improved Shooting stars animation
+        function initShootingStars() {
+            const canvas = document.getElementById('shooting-stars');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            
+            // Shooting stars array
+            const shootingStars = [];
+            const starCount = 5; // Number of shooting stars
+            
+            // Create shooting stars
+            class ShootingStar {
+                constructor() {
+                    this.reset();
+                }
+                
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height * 0.4;
+                    this.size = Math.random() * 2 + 1;
+                    this.speed = Math.random() * 15 + 8;
+                    this.angle = Math.random() * Math.PI / 4 + Math.PI / 8; // 22.5 to 67.5 degrees
+                    this.length = Math.random() * 80 + 50;
+                    this.active = true;
+                    this.opacity = 1;
+                    this.trail = [];
+                    this.maxTrail = 15;
+                    this.hue = Math.random() * 20 + 270; // Purple hues (270-290)
+                    this.saturation = Math.random() * 30 + 70; // 70-100%
+                }
+                
+                update() {
+                    if (!this.active) return;
+                    
+                    // Update position
+                    this.x += Math.cos(this.angle) * this.speed;
+                    this.y += Math.sin(this.angle) * this.speed;
+                    
+                    // Add to trail
+                    this.trail.push({
+                        x: this.x, 
+                        y: this.y,
+                        size: this.size,
+                        opacity: this.opacity
+                    });
+                    
+                    if (this.trail.length > this.maxTrail) {
+                        this.trail.shift();
+                    }
+                    
+                    // Fade out as it moves
+                    this.opacity -= 0.01;
+                    
+                    // Check if out of screen or faded out
+                    if (this.x > canvas.width || this.y > canvas.height || this.opacity <= 0) {
+                        this.active = false;
+                        setTimeout(() => this.reset(), Math.random() * 5000 + 2000);
+                    }
+                }
+                
+                draw() {
+                    if (!this.active) return;
+                    
+                    // Draw trail with gradient
+                    for (let i = 0; i < this.trail.length; i++) {
+                        const point = this.trail[i];
+                        const progress = i / this.trail.length;
+                        
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, point.size * progress, 0, Math.PI * 2);
+                        
+                        // Create gradient from white to purple
+                        const gradient = ctx.createRadialGradient(
+                            point.x, point.y, 0,
+                            point.x, point.y, point.size * progress
+                        );
+                        
+                        gradient.addColorStop(0, `hsla(${this.hue}, ${this.saturation}%, 100%, ${point.opacity})`);
+                        gradient.addColorStop(0.5, `hsla(${this.hue}, ${this.saturation}%, 80%, ${point.opacity * 0.7})`);
+                        gradient.addColorStop(1, `hsla(${this.hue}, ${this.saturation}%, 60%, 0)`);
+                        
+                        ctx.fillStyle = gradient;
+                        ctx.fill();
+                    }
+                    
+                    // Draw star head with glow
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+                    
+                    const gradient = ctx.createRadialGradient(
+                        this.x, this.y, 0,
+                        this.x, this.y, this.size * 2
+                    );
+                    
+                    gradient.addColorStop(0, `hsla(${this.hue}, ${this.saturation}%, 100%, ${this.opacity})`);
+                        gradient.addColorStop(0.7, `hsla(${this.hue}, ${this.saturation}%, 80%, ${this.opacity * 0.5})`);
+                        gradient.addColorStop(1, `hsla(${this.hue}, ${this.saturation}%, 70%, 0)`);
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+                }
+            }
+            
+            // Initialize shooting stars
+            for (let i = 0; i < starCount; i++) {
+                const star = new ShootingStar();
+                // Stagger the initial appearance
+                setTimeout(() => {
+                    shootingStars.push(star);
+                }, i * 1500);
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw a faint background glow
+                const gradient = ctx.createRadialGradient(
+                    canvas.width / 2, canvas.height / 2, 0,
+                    canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+                );
+                
+                gradient.addColorStop(0, 'hsla(270, 50%, 10%, 0.3)');
+                gradient.addColorStop(1, 'hsla(270, 50%, 5%, 0)');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                shootingStars.forEach(star => {
+                    star.update();
+                    star.draw();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+
+        // Utility functions
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function sharePolicy() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                const tooltip = document.getElementById("tooltip");
+                tooltip.classList.remove("opacity-0");
+                tooltip.classList.add("opacity-100");
+                
+                setTimeout(() => {
+                    tooltip.classList.remove("opacity-100");
+                    tooltip.classList.add("opacity-0");
+                }, 1500);
+            }).catch(err => {
+                console.error("Failed to copy URL: ", err);
+            });
+        }
+
+        function downloadPDF() {
+            alert("In a real implementation, this would download a PDF version of these policies.");
+        }
+
+        function showFriendlyGuide() {
+            document.getElementById('friendlyGuideModal').classList.remove('hidden');
+        }
+
+        function closeFriendlyGuide() {
+            document.getElementById('friendlyGuideModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
