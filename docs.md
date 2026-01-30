@@ -615,5 +615,5 @@ For issues, questions, or contributions:
 
 ---
 
-*Last Updated: April 2025*  
-*Documentation Version: 1.0.0*
+*Last Updated: January 2026*  
+*Documentation Version: 5.2.0*
