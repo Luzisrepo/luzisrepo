@@ -695,9 +695,119 @@
             margin-top: 10px;
             text-align: center;
         }
+
+        /* Mobile Popup Styles */
+#mobile-popup {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+#mobile-popup.flex {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Hide popup on the mobile.html page itself */
+@media (max-width: 768px) {
+    body.mobile-version #mobile-popup {
+        display: none !important;
+    }
+}
     </style>
 </head>
 <body class="min-h-screen">
+
+  <!-- Mobile Detection Popup -->
+<div id="mobile-popup" class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="bg-darker/95 max-w-md w-full rounded-2xl border border-primary/30 p-6 neon-border glass">
+        <div class="text-center mb-6">
+            <div class="text-4xl mb-4 text-primary">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2 text-gradient">Mobile View Detected</h3>
+            <p class="text-gray-300">For the best experience, we recommend viewing this website on a desktop device. The full interactive features and animations are optimized for larger screens.</p>
+        </div>
+
+        <script>
+        // Mobile detection function
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+           (window.innerWidth <= 768 && window.innerHeight <= 1024);
+}
+
+// Mobile popup functions
+function showMobilePopup() {
+    const popup = document.getElementById('mobile-popup');
+    if (popup) {
+        popup.classList.remove('hidden');
+        popup.classList.add('flex');
+        
+        // Add animation
+        setTimeout(() => {
+            popup.style.opacity = '1';
+            popup.style.transform = 'scale(1)';
+        }, 10);
+    }
+}
+
+function closeMobilePopup() {
+    const popup = document.getElementById('mobile-popup');
+    if (popup) {
+        popup.style.opacity = '0';
+        popup.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            popup.classList.add('hidden');
+            popup.classList.remove('flex');
+            
+            // Store preference in localStorage
+            localStorage.setItem('mobilePopupDismissed', 'true');
+        }, 300);
+    }
+}
+
+function redirectToMobile() {
+    window.location.href = 'mobile.html';
+}
+
+// Check on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Delay the check to ensure everything is loaded
+    setTimeout(() => {
+        // Only show if not already dismissed and on mobile
+        const alreadyDismissed = localStorage.getItem('mobilePopupDismissed');
+        
+        if (isMobileDevice() && !alreadyDismissed) {
+            // Show after 1 second delay
+            setTimeout(showMobilePopup, 1000);
+        }
+        
+        // Also check on resize
+        window.addEventListener('resize', function() {
+            if (isMobileDevice() && !alreadyDismissed && !document.getElementById('mobile-popup').classList.contains('flex')) {
+                showMobilePopup();
+            }
+        });
+    }, 500);
+}); </script>
+        
+        <div class="flex flex-col gap-3">
+            <button onclick="redirectToMobile()" class="w-full py-3 bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary rounded-xl font-bold transition-all duration-300 neon-hover">
+                <i class="fas fa-external-link-alt mr-2"></i> Go to Mobile Version
+            </button>
+            <button onclick="closeMobilePopup()" class="w-full py-3 bg-dark/50 hover:bg-accent/30 border border-secondary/30 rounded-xl font-medium transition-all duration-300 neon-hover glass">
+                <i class="fas fa-desktop mr-2"></i> Continue Anyway
+            </button>
+        </div>
+        
+        <div class="mt-4 text-center">
+            <p class="text-sm text-gray-400">
+                <i class="fas fa-info-circle mr-1"></i> Some features may not work properly on mobile
+            </p>
+        </div>
+    </div>
+</div>
   
   <!-- YouTube iframe (hidden) -->
   <div id="player" style="display:none;"></div>
