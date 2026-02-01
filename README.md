@@ -212,8 +212,6 @@
   
   ###  "Code is like humor. When you have to explain it, it's bad." - Cory House
   
-  <img src="https://komarev.com/ghpvc/?username=luzisrepo&color=8a2be2&style=for-the-badge" alt="Profile Views" />
-  
 </div>
 
 <div>
